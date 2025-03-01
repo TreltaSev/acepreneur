@@ -1,0 +1,50 @@
+@import 'tailwindcss';
+
+/*
+------------------ FONTS ------------------ 
+    ~Usage~
+        Add local fonts into the website, just insert the
+        file into /src/fonts and follow the templates below
+*/
+
+@font-face {
+	font-family: Lato;
+	font-style: normal;
+	font-weight: 200 700;
+	font-display: swap;
+	src: url('fonts/Lato.ttf') format('truetype');
+}
+
+@font-face {
+	font-family: 'DM Mono';
+	font-style: normal;
+	font-weight: 200 700;
+	font-display: swap;
+	src: url('fonts/DM Mono.ttf') format('truetype');
+}
+
+/*
+------------------ THEME ------------------ 
+    ~Usage~
+        The themes directive allows us to add custom "design tokens" like
+		fonts, colors, and breakpoints into this project
+*/
+@theme {
+
+	/* For example, we can define out lato font like so */
+	--font-lato: Lato, Tahoma, sans-serif;
+
+	/* Colors as well */
+	--color-primary-100: #d9e8f9;
+	--color-primary-200: #b3d1f4;
+	--color-primary-300: #8cb9ee;
+	--color-primary-400: #66a2e9;
+	--color-primary-500: #408be3;
+	--color-primary-600: #336fb6;
+	--color-primary-700: #265388;
+	--color-primary-800: #1a385b;
+	--color-primary-900: #0d1c2d;
+	--color-primary-950: #071626;
+}
+
+@custom-variant dark (&:where(.dark, .dark *));
