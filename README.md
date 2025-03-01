@@ -1,4 +1,4 @@
-# Sveltekit Static Github Page Template
+# Eday (Entrepreneur day mobile application)
 
 Everything you need to setup a github static page using sveltekit and tailwindcss
 
