@@ -7,15 +7,15 @@
 	let mode$ = global_mode$.mode$;
 
 	// Apply the class on subscription update
-	mode$.subscribe((v) => {
-		if (typeof document !== 'undefined') {
-			document.documentElement.classList.toggle('dark', v === 'dark');
-		}
-	});
+	// mode$.subscribe((v) => {
+	// 	if (typeof document !== 'undefined') {
+	// 		document.documentElement.classList.toggle('dark', v === 'dark');
+	// 	}
+	// });
 
 </script>
 
-<div class="bg-primary-100 dark:bg-primary-900 size-full">
+<div class="white size-full">
     {@render children?.()}
 </div> 
 

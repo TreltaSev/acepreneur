@@ -35,16 +35,8 @@
 	--font-lato: Lato, Tahoma, sans-serif;
 
 	/* Colors as well */
-	--color-primary-100: #d9e8f9;
-	--color-primary-200: #b3d1f4;
-	--color-primary-300: #8cb9ee;
-	--color-primary-400: #66a2e9;
-	--color-primary-500: #408be3;
-	--color-primary-600: #336fb6;
-	--color-primary-700: #265388;
-	--color-primary-800: #1a385b;
-	--color-primary-900: #0d1c2d;
-	--color-primary-950: #071626;
+	--color-primary: #19A89D;
+	--color-secondary: #803F98;
 }
 
 @custom-variant dark (&:where(.dark, .dark *));
