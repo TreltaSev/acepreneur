@@ -1,7 +1,19 @@
+set shell := ["powershell.exe", "/c"]
 
 [working-directory: './app']
 default:
     bun run dev
+
+# Runs the backend
+[working-directory: './backend']
+backend:
+    siblink run .
+
+
+# Runs the backend in a new console window
+[working-directory: './']
+backend-detached:
+    Start-Process "cmd.exe" -ArgumentList "/k", "just backend"
 
 # Builds project
 [working-directory: './app']
