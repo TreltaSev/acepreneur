@@ -1,0 +1,28 @@
+{
+	"name": "Esports Tournament",
+	"description": "The Game Design and Web Development classes will be hosting a gaming tournament. Try your hand at several different games including: Super Smash Bros, Fortnite, and Mario Kart. The winners will be eligible for prizes!",
+	"card": {
+		"color": "#FDC7F8",
+		"image": {
+			"url": "https://image.png",
+			"class": "cant-use-tailwind---maybe",
+			"style": "border-radius:50%;"
+		}
+	},
+	"slug": "esports-tournament",
+	"content": {
+		"blueprint": "<section></section><section></section>"
+	},
+    "tags": ["gaming", "tournament", "prizes"],
+    "announcement": {
+        "content": "Winner Announced!\nNext round starts in 20 minutes",
+        "author": "user-oa0o0WI02nn",
+		"time": ""
+    },
+    "reactions": {
+        "likes": [
+			"user-hldoaho813212",
+			"user-0913hnajlnwd8"
+		]
+    }
+}
