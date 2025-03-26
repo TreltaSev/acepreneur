@@ -1,0 +1,12 @@
+{
+    "backend": {
+      "port": 4000,
+      "host": "0.0.0.0",
+      "ssl": {
+        "active": false,
+        "$parent": "/etc/ssl/ff",
+        "cert": "$/.cert",
+        "key": "$/.key"
+      }
+    }
+  }
