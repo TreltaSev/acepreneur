@@ -1,9 +1,5 @@
-import requests
-import base64
-
-from utils.types.oauth2 import SessionClient, UserClient
 from utils.exception import HighLevelException
-from utils.types import Struct, User
+from utils.types import User
 from utils.mongo import MongoClient
 
 from typing import List, Callable

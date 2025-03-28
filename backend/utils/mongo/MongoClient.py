@@ -10,6 +10,5 @@ class MongoClient:
     
     # Collections
     logs: pymongo.collection.Collection = database["logs"]
-    sessions: pymongo.collection.Collection = database["sessions"]
     users: pymongo.collection.Collection = database["users"]
-    credentials: pymongo.collection.Collection = database["credentials"]
+    events: pymongo.collection.Collection = database["events"]
