@@ -1,0 +1,57 @@
+services:
+  backend:
+    image: ff_qb
+    build:
+      context: backend
+      dockerfile: ./Dockerfile
+    environment:
+      - MONGO_URL=${MONGO_URL}
+      - BASE_URL=${BASE_URL}
+    volumes:
+      - ${SSL_PATH:-./.ssl}:/etc/ssl/ff:ro
+      - ./siblink.config.json:/etc/config/siblink.config.json
+    networks:
+      - docker-network
+    depends_on:
+      - mongodb
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx_router
+    volumes:
+      - ./ff_nginx.conf:/etc/nginx/nginx.conf:ro
+      - ${SSL_PATH:-./.ssl}:/etc/ssl/com:ro
+    ports:
+      - '80:80'
+      - '443:443'
+      - '8000:8000'
+    networks:
+      - docker-network
+    depends_on:
+      - frontend
+      - backend
+    restart: on-failure
+  
+  mongodb:
+    image: mongo
+    container_name: mongo_db
+    ports:
+      - "27017:27017"
+    volumes:
+      - "mongodb_data:/data/db"
+    networks:
+      - docker-network
+    command: 
+      - '--logpath'
+      - '/var/log/mongodb/mongod.log'
+  
+
+volumes:
+  certs:
+    driver: local
+  mongodb_data:
+    driver: local
+
+networks:
+  docker-network:
+    driver: bridge

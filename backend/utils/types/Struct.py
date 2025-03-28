@@ -1,5 +1,6 @@
-from utils.helper import find
-from typing import Any
+from utils.helper import find, requires
+from typing import Any, List
+import json
 
 class Struct:
     """
@@ -42,14 +43,14 @@ class Struct:
             else:
                 result[key] = value
         return result
-    
+
     def find_element(self, key: str, id: str, convert: Any) -> Any:
         """
         Used to find elements within allowed arrays.
-        
+
         Parameters
         ----------
-        
+
         `key : str`
             Array name, must be within the Savings.__allowed_keys list.            
         `id : str`
@@ -57,13 +58,57 @@ class Struct:
         `convert : Any`
             Class that the account will be converted to.            
         """
-        
+
         # Type Checking
         if key not in getattr(self, "_allowed_keys", []):
             raise TypeError(f"Un-allowed Search Key: {key}")
-        
-        account = find(getattr(self, key), property="id", match=id, convert=convert, default=None)
-        
+
+        account = find(getattr(self, key), property="id",
+                       match=id, convert=convert, default=None)
+
         if not account:
             raise KeyError(f"Failed to find {key} with id: \"{id}\"")
         return account
+
+    def requires(self, keys: List[str]):
+        """
+        Wrapper for the :meth utils.helper.requires: method
+
+        :param keys: List of keys that this object requires
+        :type keys: List[str]
+        """
+        return requires(self, keys)
+
+    def filtered(self, keys: List[str]) -> dict:
+        """
+        Filters the object to include only the specified keys.
+
+        Parameters
+        ----------
+        keys : List[str]
+            List of keys to include in the resulting dictionary.
+
+        Returns
+        -------
+        dict
+            Dictionary containing only the specified keys that exist in the object.
+        """
+        return {key: self.dict[key] for key in keys if key in self.dict}
+    
+    def sanitized(self) -> dict:
+        """
+        Filters the object to include only keys with JSON serializable values.
+        
+        Returns
+        -------
+        dict
+            Dictionary containing only keys with JSON serializable values.
+        """
+        result = {}
+        for key, value in self.dict.items():
+            try:
+                json.dumps(value)  # Check if value is JSON serializable
+                result[key] = value
+            except (TypeError, OverflowError):
+                continue
+        return result

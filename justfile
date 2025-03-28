@@ -7,12 +7,21 @@ default:
 # Runs the backend
 [working-directory: './backend']
 backend:
+    just nginx-restart
     siblink run .
+
+
+# Dumps and restarts nginx
+[working-directory: './']
+@nginx-restart:
+    siblink run -- ./scripts/dev nginx dump
+    siblink run -- ./scripts/dev nginx restart
 
 
 # Runs the backend in a new console window
 [working-directory: './']
 backend-detached:
+    Start-Process "cmd.exe" -ArgumentList "/c", "just nginx-restart"
     Start-Process "cmd.exe" -ArgumentList "/k", "just backend"
 
 # Builds project

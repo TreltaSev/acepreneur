@@ -4,7 +4,7 @@
       "host": "0.0.0.0",
       "ssl": {
         "active": false,
-        "$parent": "/etc/ssl/ff",
+        "$parent": "/etc/ssl/com",
         "cert": "$/.cert",
         "key": "$/.key"
       }
