@@ -23,18 +23,21 @@ Jinja2==3.1.4
 MarkupSafe==3.0.2
 msal==1.31.1
 oauthlib==3.2.2
+pillow==11.1.0
 priority==2.0.0
 pyasn1==0.6.1
 pyasn1_modules==0.4.1
 pycparser==2.22
 PyJWT==2.10.1
 pymongo==4.10.1
+pypng==0.20220715.0
 pyucc==1.7
+qrcode==8.0
 Quart==0.19.9
 requests==2.32.3
 requests-oauthlib==2.0.0
 rsa==4.9
-siblink @ git+https://github.com/TreltaSev/siblink.git@c90aa3123ddb20a82692aa5d81eb7b49af252484
+siblink==1.1.0
 urllib3==2.2.3
 uvicorn==0.32.0
 Werkzeug==3.1.3
