@@ -12,7 +12,7 @@ from utils.req import requireAdmin, getUser, getHeaders
 
 blueprint = cloakquart.Blueprint("api:@event", __name__)
 eventRefactor = blueprint.refactor_route(
-    "/api/event/<_id>", methods=["GET", "POST", "DELETE", "PATCH"])
+    "/api/event/<_id>", methods=["GET", "POST", "DELETE", "PATCH", "PUT"])
 
 
 @blueprint.route("/api/events", methods=["GET"])
@@ -106,10 +106,67 @@ async def event_DELETE(_id: str, *args, **kwargs):
 
 
 @eventRefactor.on("PATCH")
-@getHeaders(["Bearer"], explicit=True)
+@getHeaders(["Bearer"],  explicit=True)
+@getUser()
+@getJson
+async def event_PATCH(json_struct: Struct, user: User, _id: str, *args, **kwargs):
+    """
+    So... here, I might do something stupid and just "trust" the user.
+
+    Requirements
+    ------------
+    - User to be logged in
+    - Admin of specified event  
+    """
+
+    json_struct.requires(["update"])
+
+    Search = MongoClient.events.find_one({"id": _id})
+
+    if not Search:
+        raise HighLevelException(f"Failed to locate event of id {_id}")
+    
+
+    event = Event(Search)
+    
+    # Check if user is either a dev admin or a event admin
+    if not (user.get("admin", False) or user.id in event.admins):
+        raise HighLevelException("You are missing the required permissions to access this resource")
+
+    event.update(json_struct.update)
+
+    Result = MongoClient.events.replace_one({"id": _id}, event.unwrap)
+
+    return Result.raw_result
+
+@eventRefactor.on("PUT")
+@getHeaders(["Bearer"],  explicit=True)
 @getUser()
 @requireAdmin()
-async def event_PATCH(_id, *args, **kwargs):
-    return {
-        "hey": "there :)"
-    }
+@getJson
+async def event_PUT(json_struct: Struct, _id: str, *args, **kwargs):
+    """
+    So... here, I might do something stupid and just "trust" the user.
+
+    Requirements
+    ------------
+    - User to be logged in
+    - Administrator Login    
+    """
+
+    json_struct.requires(["admin_id"])
+    
+    # Ensure event exists
+    EventSearch = MongoClient.events.find_one({"id": _id})
+    if not EventSearch:
+        raise HighLevelException(f"Event with id \"{EventSearch}\" was not found.")
+
+    # Ensure user exists
+    UserSearch = MongoClient.users.find_one({"id": json_struct.admin_id})    
+    if not UserSearch:
+        raise HighLevelException(f"User with id \"{json_struct.admin_id}\" was not found.")
+        
+    # Update Document, specifically the admin array
+    UpdateResult = MongoClient.events.update_one({"id": _id}, {"$addToSet": {"admins": json_struct.admin_id}})
+    
+    return UpdateResult.raw_result

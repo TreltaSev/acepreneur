@@ -4,6 +4,7 @@ import json
 
 _undefined = object()
 
+
 class Struct:
     """
     Converts a nested dictionary object into a discoverable object
@@ -73,21 +74,21 @@ class Struct:
             raise KeyError(f"Structure Does not contain the key {key}")
 
         return does_have
-    
+
     def get(self, key: str, default: Any = _undefined) -> Any:
         """
         Attempts to get a key from the current structure.
-        
+
         :param str key: Key Mapping of the value
         :param Any default: Default fallback value
-        
+
         :raises KeyError: if the key isn't found and a default isn't specified
         """
-        
+
         if not self.has(key) and default is _undefined:
             raise KeyError(f"Key \"{key}\" not found in structure")
-        
-        return self.dict.get(key, default)  
+
+        return self.dict.get(key, default)
 
     def find_element(self, key: str, id: str, convert: Any) -> Any:
         """
@@ -115,13 +116,17 @@ class Struct:
             raise KeyError(f"Failed to find {key} with id: \"{id}\"")
         return account
 
-    def requires(self, keys: List[str]):
+    def requires(self, keys: List[str] | str):
         """
         Wrapper for the :meth utils.helper.requires: method
 
         :param keys: List of keys that this object requires
         :type keys: List[str]
         """
+        
+        if isinstance(keys, str):
+            keys = [keys]
+        
         return requires(self, keys)
 
     def filtered(self, keys: List[str]) -> dict:
@@ -157,3 +162,34 @@ class Struct:
             except (TypeError, OverflowError):
                 continue
         return result
+
+    def update(self, update_dict: dict = {}):
+        """
+        Updates the current structure with new values while respecting restricted keys.
+
+        :param dict update_dict: Dictionary containing updated values
+        """
+        restrict: List[str] = []
+
+        if hasattr(self, "restrict"):
+            restrict = self.restrict
+
+        def is_restricted(key_path):
+            """Checks if a given key path is restricted."""
+            for item in restrict:
+                if key_path == item or key_path.startswith(item + "."):
+                    return True
+            return False
+
+        def recursive_update(original, new_data, parent_key=""):
+            """Recursively updates nested dictionaries."""
+            for key, value in new_data.items():
+                key_path = f"{parent_key}.{key}" if parent_key else key
+                if is_restricted(key_path):
+                    continue
+                if isinstance(value, dict) and isinstance(original.get(key), dict):
+                    recursive_update(original[key], value, key_path)
+                else:
+                    original[key] = value
+
+        recursive_update(self.dict, update_dict)

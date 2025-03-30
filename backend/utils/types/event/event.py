@@ -162,6 +162,8 @@ class Event(Struct):
     :param reactions: Event Reaction Data
     :type reactions: EventReactions    
     """
+    
+    restrict = ["id", "reactions.likes", "admins"]
 
     def __init__(self, obj=None, **kwargs):
         # __ Type Annotation __
@@ -172,6 +174,7 @@ class Event(Struct):
         self.content: EventContent
         self.announcement: EventAnnouncement
         self.reactions: EventReactions
+        self.admins: List[str]
 
         super().__init__(obj, **kwargs)
 
@@ -190,6 +193,7 @@ class Event(Struct):
         self.dict.setdefault("content", EventContent())
         self.dict.setdefault("announcement", EventAnnouncement())
         self.dict.setdefault("reactions", EventReactions())
+        self.dict.setdefault("admins", [])
 
     @property
     def present(self) -> bool:
@@ -206,6 +210,7 @@ class Event(Struct):
         Returns a client-safe dict so that we don't get any security concerns
         """
         _dict = dict(self.sanitized()) # Copy
-        del _dict["announcement"]["author"]
+        del _dict["announcement"]["author"] # Remove author, since author is probably a admin
+        del _dict["announcement"]["admins"] # Remove admins list.
         _dict["reactions"]["likes"] = len(_dict["reactions"]["likes"])        
         return _dict
