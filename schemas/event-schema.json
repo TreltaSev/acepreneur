@@ -5,7 +5,7 @@
 		"color": "#FDC7F8",
 		"image": {
 			"url": "https://image.png",
-			"class": "cant-use-tailwind---maybe",
+			"_class": "cant-use-tailwind---maybe",
 			"style": "border-radius:50%;"
 		}
 	},
@@ -13,11 +13,10 @@
 	"content": {
 		"blueprint": "<section></section><section></section>"
 	},
-    "tags": ["gaming", "tournament", "prizes"],
     "announcement": {
-        "content": "Winner Announced!\nNext round starts in 20 minutes",
+        "text": "Winner Announced!\nNext round starts in 20 minutes",
         "author": "user-oa0o0WI02nn",
-		"time": ""
+		"time": 2190371209378
     },
     "reactions": {
         "likes": [
