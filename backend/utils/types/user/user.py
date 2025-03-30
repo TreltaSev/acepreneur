@@ -1,3 +1,4 @@
+import secrets
 from utils.types import Struct
 from siblink import Config
 
@@ -35,7 +36,7 @@ class User(Struct):
         """
         Sets the defaults for this object
         """
-        self.dict.setdefault("id", None)
+        self.dict.setdefault("id", f"user-{secrets.token_hex(16)}")
         self.dict.setdefault("name", "User Name")
         self.dict.setdefault("likes", [])
 

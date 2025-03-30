@@ -73,7 +73,7 @@ class RefactoredRoute:
     except Exception as error:
       if hasattr(error, "json"):
         error: HighLevelException
-        return error.json
+        return error.json, 400
       console.fail(f"Error @ {f.__code__}")
       traceback.print_exc()
-      return HighLevelException(f"Unregistered Error within {f.__name__}", name="RefactoredRoute.py").json
+      return HighLevelException(f"Unregistered Error within {f.__name__}", name="RefactoredRoute.py").json, 512

@@ -1,3 +1,4 @@
+from utils.mongo import MongoClient
 from utils.types import Struct
 from typing import List
 import datetime
@@ -14,7 +15,7 @@ class EventReactions(Struct):
 
     def __init__(self, obj=None, **kwargs):
         # __ Type Annotation __
-        self.likes: List[str]
+        self.likes: List[str] | int
 
         super().__init__(obj, **kwargs)
 
@@ -141,6 +142,8 @@ class Event(Struct):
     """
     Object to store event data
 
+    :param str id: Identification of the event
+    
     :param str name: Name of the event
 
     :param str description: Description of the event
@@ -179,10 +182,30 @@ class Event(Struct):
         """
         Sets the defaults for this object
         """
+        self.dict.setdefault("id", f"event-{secrets.token_hex(16)}")
         self.dict.setdefault("name", "Event Name")
         self.dict.setdefault("description", "Event Description")
         self.dict.setdefault("card", EventCard())
-        self.dict.setdefault("slug", f"event-{secrets.token_urlsafe(8)}")
+        self.dict.setdefault("slug", self.id)
         self.dict.setdefault("content", EventContent())
         self.dict.setdefault("announcement", EventAnnouncement())
         self.dict.setdefault("reactions", EventReactions())
+
+    @property
+    def present(self) -> bool:
+        """
+        Checks if the event is present within the database
+        
+        :rtype: bool
+        """
+        return bool(MongoClient.events.find_one({"id": self.id}))
+    
+    @property
+    def client_safe(self) -> dict:
+        """
+        Returns a client-safe dict so that we don't get any security concerns
+        """
+        _dict = dict(self.sanitized()) # Copy
+        del _dict["announcement"]["author"]
+        _dict["reactions"]["likes"] = len(_dict["reactions"]["likes"])        
+        return _dict
