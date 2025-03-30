@@ -24,11 +24,12 @@ userCallback = blueprint.refactor_route(
 
 
 @userCallback.on("POST")
+@getHeaders(["Admin-Token"])
 @getJson
-async def user_POST(json_struct: Struct, *args, **kwargs):
+async def user_POST(json_struct: Struct, headers: Struct, *args, **kwargs):
     json_struct.requires(["name"])
     name: str = json_struct.dict.pop("name")
-    user: User = User(name=name)
+    user: User = User(name=name, headers=headers)
     user = insertUser(user)
     return user.sanitized()
 
@@ -44,8 +45,8 @@ async def user_GET(headers: Struct, user: User, *args, **kwargs):
 
 @userCallback.on("DELETE")
 @getHeaders(["Bearer"], explicit=True)
-async def oauth2_user_delete(headers: Struct, *args, **kwargs):
-    MongoClient.users.find_one_and_delete({"user": headers.Bearer})
+async def user_DELETE(headers: Struct, *args, **kwargs):
+    MongoClient.users.find_one_and_delete({"id": headers.Bearer})
     return {
         "message": f"Deleted session of token: {headers.Bearer}"
     }

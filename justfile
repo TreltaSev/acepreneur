@@ -59,3 +59,9 @@ push MESSAGE:
     git add .
     git commit -m "{{MESSAGE}}"
     git push
+
+
+# Set up node-red for api testing
+api-test:
+    docker rm -f eday-nodered 
+    docker run -it -p 1880:1880 -v eday-nodered:/data --name eday-nodered nodered/node-red

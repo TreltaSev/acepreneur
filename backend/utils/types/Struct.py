@@ -2,6 +2,8 @@ from utils.helper import find, requires
 from typing import Any, List
 import json
 
+_undefined = object()
+
 class Struct:
     """
     Converts a nested dictionary object into a discoverable object
@@ -43,6 +45,49 @@ class Struct:
             else:
                 result[key] = value
         return result
+
+    def has(self, key: str, fail: bool = False) -> bool:
+        """
+        Checks if the current structure contains a certain key
+
+        :param str key: The Key mapping of the object in question
+        :param bool fail: If this is true, raise `KeyError` on fail
+        :returns bool: If the object has the key
+
+        :raises KeyError: If `fail` is true and the key isn't found
+
+
+        ## Example
+        ```python
+        structure: Struct = Struct({"key_in_question": None})
+
+        structure.has("key_in_question") # True
+        structure.has("key-in-question") # False
+        structure.has("key-in-question", fail=True) # KeyError
+        ```
+        """
+
+        does_have = hasattr(self, key)
+
+        if not does_have and fail:
+            raise KeyError(f"Structure Does not contain the key {key}")
+
+        return does_have
+    
+    def get(self, key: str, default: Any = _undefined) -> Any:
+        """
+        Attempts to get a key from the current structure.
+        
+        :param str key: Key Mapping of the value
+        :param Any default: Default fallback value
+        
+        :raises KeyError: if the key isn't found and a default isn't specified
+        """
+        
+        if not self.has(key) and default is _undefined:
+            raise KeyError(f"Key \"{key}\" not found in structure")
+        
+        return self.dict.get(key, default)  
 
     def find_element(self, key: str, id: str, convert: Any) -> Any:
         """
@@ -94,11 +139,11 @@ class Struct:
             Dictionary containing only the specified keys that exist in the object.
         """
         return {key: self.dict[key] for key in keys if key in self.dict}
-    
+
     def sanitized(self) -> dict:
         """
         Filters the object to include only keys with JSON serializable values.
-        
+
         Returns
         -------
         dict

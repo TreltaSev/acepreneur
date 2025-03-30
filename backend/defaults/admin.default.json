@@ -1,0 +1,6 @@
+{
+    "admin": {
+        "active": true,
+        "secret": "YOUR SECRET HERE"
+    }
+}

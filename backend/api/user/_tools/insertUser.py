@@ -43,6 +43,6 @@ def insertUser(user: User) -> User:
             user.id = f"user-{secrets.token_hex(16)}"
         
         # User doesn't exist in database, create it
-        MongoClient.users.insert_one(user.dict)
+        MongoClient.users.insert_one(user.sanitized())
         
     return user

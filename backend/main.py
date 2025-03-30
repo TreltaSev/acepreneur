@@ -39,6 +39,11 @@ try:
                 f'Missing Key File, have: {key_file} as path', severity=Severity.Fatal)
             raise AttributeError('Key File')
 
+    if Config.admin.active:
+        if Config.admin.secret == "YOUR SECRET HERE":
+            Logger.__log__(
+                f"Admin Secret Unchanged, Maybe change it to something that isn't \"{Config.admin.secret}\"?", Severity.Warning)
+
 
 except AttributeError as e:
     print("You seem to be missing some keys in your config.\n", e)
