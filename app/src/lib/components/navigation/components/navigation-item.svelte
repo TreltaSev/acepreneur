@@ -11,8 +11,8 @@
 		class: className,
 
 		// --- Default Classes
-		itemClass = $bindable('w-35 items-center justify-center'),
-		iconClass = $bindable(``),
+		itemClass = $bindable('items-center justify-center w-[7vw] aspect-square text-inherit'),
+		iconClass = $bindable(`size-full mb-3 text-inherit shrink-0`),
 
 		// --- User Defined Classes
 		classIcon = $bindable(``),
@@ -42,11 +42,13 @@
 	}
 </script>
 
-<Flex.Col class={itemCls} {onclick}>
+<Flex.Col class={cn(itemCls, !icon && iconCls)} {onclick}>
 	<!-- Icon Renderer -->
-	<Flex.Col class={iconCls}>
-		{@render icon?.()}
-	</Flex.Col>
+	{#if icon}
+		<Flex.Col class={iconCls}>
+			{@render icon?.()}
+		</Flex.Col>
+	{/if}
 
 	{@render children?.()}
 </Flex.Col>
