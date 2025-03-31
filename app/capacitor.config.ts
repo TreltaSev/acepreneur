@@ -1,8 +1,8 @@
 import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
-  appId: 'com.dt-acepreneur.app',
-  appName: 'acepreneur',
+  appId: 'com.eday.app',
+  appName: 'eday',
   webDir: 'www',
   plugins: {
     "CapacitorBarCodeScanner": {
@@ -10,6 +10,9 @@ const config: CapacitorConfig = {
         "permissions": ["android.permission.CAMERA"]
       } 
     }
+  },
+  ios: {
+    scheme: "AcePreneur"
   }
 };
 

@@ -16,7 +16,7 @@ def capacitor_pods
   pod 'CapacitorDialog', :path => '../../node_modules/@capacitor/dialog'
 end
 
-target 'App' do
+target 'AcePreneur' do
   capacitor_pods
   # Add your Pods here
 end
