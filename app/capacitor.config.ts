@@ -10,9 +10,6 @@ const config: CapacitorConfig = {
         "permissions": ["android.permission.CAMERA"]
       } 
     }
-  },
-  ios: {
-    scheme: "AcePreneur"
   }
 };
 
