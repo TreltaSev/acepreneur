@@ -30,13 +30,12 @@
 		fonts, colors, and breakpoints into this project
 */
 @theme {
-
 	/* For example, we can define out lato font like so */
 	--font-lato: Lato, Tahoma, sans-serif;
 
 	/* Colors as well */
-	--color-primary: #8658F1;
-	--color-secondary: #803F98;
+	--color-primary: #8658f1;
+	--color-secondary: #803f98;
 }
 
 /*
@@ -66,6 +65,37 @@
 		border-color: inherit;
 		-webkit-box-shadow: none;
 		box-shadow: none;
+	}
+}
+
+@layer base {
+	h1 {
+		@apply font-medium leading-none;
+		font-size: 4rem;
+	}
+
+	h2 {
+		@apply text-5xl font-normal;
+	}
+
+	h3 {
+		@apply font-normal;
+		font-size: 2rem;
+	}
+
+	h4 {
+		@apply text-2xl font-normal;
+	}
+
+	p {
+		font-size: 2.5rem;
+	}
+
+	/* [0, sm) */
+	@media (width < 40rem) {
+		html {
+			font-size: 10px;
+		}
 	}
 }
 

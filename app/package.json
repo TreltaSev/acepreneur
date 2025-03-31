@@ -41,7 +41,10 @@
 	},
 	"dependencies": {
 		"@capacitor/android": "^7.0.1",
+		"@capacitor/barcode-scanner": "^2.0.3",
+		"@capacitor/camera": "^7.0.0",
 		"@capacitor/core": "^7.0.1",
+		"@capacitor/dialog": "^7.0.0",
 		"@capacitor/ios": "^7.0.1",
 		"@tailwindcss/cli": "^4.0.6",
 		"@tailwindcss/vite": "^4.0.6",

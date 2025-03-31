@@ -11,11 +11,14 @@
 	import { cn } from '@lib/utils';
 	import { Item, type Props } from '..';
 
+	// Capacitor Plugins
+	import { CapacitorBarcodeScanner } from '@capacitor/barcode-scanner';
+
 	let {
 		children,
 		class: className,
 		navigationClass = $bindable(
-			`h-20 justify-between items-end self-center w-full h-fit box-border fixed bottom-[5%] px-[5%] text-black/60`
+			`h-20 justify-between items-end self-center w-full h-fit box-border fixed bottom-0 text-black/60 z-999 border-t border-black/50 p-[5%] bg-white`
 		)
 	}: Props = $props();
 
@@ -24,37 +27,46 @@
 	$effect(() => {
 		navigationCls = cn(navigationClass, className);
 	});
+
+	async function qr_button_onclick() {
+		const qr_res = await CapacitorBarcodeScanner.scanBarcode({
+			hint: 0,
+			cameraDirection: 1,
+			scanOrientation: 1
+		});
+		console.log(qr_res.ScanResult);
+	}
 </script>
 
 <Flex.Row class={navigationCls}>
 	{@render children?.()}
 
-	<Item href="">
+	<Item href="/events">
 		{#snippet icon()}
 			<IconCalendar class="size-full" />
 		{/snippet}
 	</Item>
 
-	<Item href="">
+	<Item href="/map">
 		{#snippet icon()}
 			<IconMap class="size-full" />
 		{/snippet}
 	</Item>
 
 	<Flex.Col
-		href=""
 		class="bg-primary text-white aspect-square min-w-20 w-[20vw] rounded-full shrink-0 items-center justify-center"
+		onclick={qr_button_onclick}
 	>
 		<IconQRCode class="size-[50%] shrink-0" />
 	</Flex.Col>
 
-	<Item href="">
+	<Item href="/programs">
 		{#snippet icon()}
 			<IconFolder class="size-full" />
 		{/snippet}
 	</Item>
 
-	<Item href="" class="text-inherit">
+	<Item href="/settings" class="text-inherit">
 		{#snippet icon()}
 			<IconSettings class="size-full" />
 		{/snippet}
