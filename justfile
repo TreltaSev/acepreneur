@@ -41,6 +41,12 @@ android:
     just sync
     npx cap open android
 
+# Starts the web version of the app
+[working-directory: './app']
+web:
+    just build
+    bun run dev
+
 # Initialize this project with a package manager
 [working-directory: './app']
 setup PACKAGE_MANAGER='bun':
