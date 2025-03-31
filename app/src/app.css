@@ -39,4 +39,39 @@
 	--color-secondary: #803F98;
 }
 
-@custom-variant dark (&:where(.dark, .dark *));
+/*
+------------------ COMPONENTS ------------------ 
+    ~Usage~
+	These stylings are used for one specific svelte-kit component
+*/
+@layer components {
+	.animate {
+		@apply ease-in-out;
+		transition-duration: 300ms;
+	}
+
+	.animate-all {
+		* {
+			@apply ease-in-out;
+			transition-duration: 300ms;
+		}
+	}
+
+	.no-scrollbar::-webkit-scrollbar {
+		display: none;
+	}
+
+	input.strip-focus:focus {
+		outline: none;
+		border-color: inherit;
+		-webkit-box-shadow: none;
+		box-shadow: none;
+	}
+}
+
+@custom-variant s_xs (&:where(.s_xs, .s_xs *));
+@custom-variant s_sm (&:where(.s_sm, .s_sm *));
+@custom-variant s_md (&:where(.s_md, .s_md *));
+@custom-variant s_lg (&:where(.s_lg, .s_lg *));
+@custom-variant s_xl (&:where(.s_xl, .s_xl *));
+@custom-variant s_2xl (&:where(.s_2xl, .s_2xl *));

@@ -1,10 +1,31 @@
 <script lang="ts">
-    let { children } = $props();
+	import { onMount } from 'svelte';
 
-    import "../app.css"
+	let { children } = $props();
 
-    import { global_mode$ } from '@lib/stores/mode';
-	let mode$ = global_mode$.mode$;
+	import '../app.css';
+
+	import { setMediaCtx } from '@lib/ctx/media_size/media_size_ctx';
+	const { media$, set_media } = setMediaCtx(); // Set Media Ctx
+
+
+	// Setup reactive media sizing
+	onMount(() => {
+		const callback = () => set_media();
+		window.addEventListener('resize', callback);
+		callback(); // Run Once
+
+		media$.subscribe((v) => {
+			if (typeof document !== 'undefined') {
+				document.documentElement.className = ''; // Clear Document ClassName
+				document.documentElement.classList.toggle(`s_${v}`);
+			}
+		});
+
+		return () => {
+			window.removeEventListener('resize', callback);
+		};
+	});
 
 	// Apply the class on subscription update
 	// mode$.subscribe((v) => {
@@ -12,14 +33,11 @@
 	// 		document.documentElement.classList.toggle('dark', v === 'dark');
 	// 	}
 	// });
-
 </script>
 
 <div class="white size-full">
-    {@render children?.()}
-</div> 
-
-
+	{@render children?.()}
+</div>
 
 <style>
 	:global(html, body) {
