@@ -106,3 +106,8 @@
 @custom-variant s_lg (&:where(.s_lg, .s_lg *));
 @custom-variant s_xl (&:where(.s_xl, .s_xl *));
 @custom-variant s_2xl (&:where(.s_2xl, .s_2xl *));
+
+
+@custom-variant p_web (&:where(.p_web, .p_web *));
+@custom-variant p_ios (&:where(.p_ios, .p_ios *));
+@custom-variant p_android (&:where(.p_android, .p_android *));

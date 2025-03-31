@@ -56,8 +56,8 @@ export function setMediaCtx() {
 	};
 }
 
-type GetReturn = ReturnType<typeof setMediaCtx>;
+type GetMediaReturn = ReturnType<typeof setMediaCtx>;
 export function getMediaCtx() {
 	const { NAME } = getNavigationData();
-	return getContext<GetReturn>(NAME);
+	return getContext<GetMediaReturn>(NAME);
 }
