@@ -18,7 +18,7 @@
 		children,
 		class: className,
 		navigationClass = $bindable(
-			`h-20 justify-between items-end self-center w-full h-fit box-border fixed bottom-0 text-black/60 z-999 border-t border-black/50 p-[5%] bg-white`
+			`s_2xl:hidden s_xl:hidden s_lg:hidden h-[12%] box-border pt-2 justify-between items-end px-[5%] self-center w-full box-border fixed bottom-0 text-black/60 z-999 border-t border-black/50 bg-white`
 		)
 	}: Props = $props();
 
@@ -54,7 +54,7 @@
 	</Item>
 
 	<Flex.Col
-		class="bg-primary text-white aspect-square min-w-20 w-[20vw] rounded-full shrink-0 items-center justify-center"
+		class="bg-primary text-white aspect-square h-[70%] mb-[4%] rounded-full shrink-0 items-center justify-center"
 		onclick={qr_button_onclick}
 	>
 		<IconQRCode class="size-[50%] shrink-0" />

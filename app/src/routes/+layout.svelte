@@ -7,7 +7,7 @@
 
 	import { setMediaCtx } from '@lib/ctx/media_size/media_size_ctx';
 	import { Navigation } from '@root/lib/components';
-	import { Container } from '@ui';
+	import { Container, Flex } from '@ui';
 	import { get } from 'svelte/store';
 	const { media$, set_media } = setMediaCtx(); // Set Media Ctx
 
@@ -38,8 +38,10 @@
 	// });
 </script>
 
-<div class="white size-full flex flex-col">
-	{@render children?.()}
+<div class="white size-full flex flex-col items-center">
+	<Flex.Col class="size-full s_2xl:w-[50%]">
+		{@render children?.()}
+	</Flex.Col>
 
 	<Navigation.Root />
 </div>

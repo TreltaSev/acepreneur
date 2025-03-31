@@ -1,23 +1,41 @@
 <script lang="ts">
 	// --- Logic ---
 	import { cn } from '@lib/utils';
-	import { type Props, Colors, Sizes } from '..';
+	import { type Props, Colors, Shapes, Sizes } from '..';
+	import { Container } from '@root/lib/ui';
 
 	let {
 		children,
 		class: className,
 		color = $bindable('black'),
 		size = $bindable('base'),
+		mode = $bindable('fill'),
+		shape = $bindable('rounded'),
+		text = $bindable(undefined),
 		...rest
 	}: Props = $props();
 
-	let colorCls = Colors[color];
+	let colorCls = cn(mode == 'fill' && 'bg-current', mode == 'outline' && 'border border-2');
+
 	let sizeCls = Sizes[size];
-	let buttonCls = cn(`rounded-md cursor-pointer w-fit items-center justify-center`, colorCls, sizeCls)
+	let shapeCls = Shapes[shape];
+
+	let buttonCls = cn(
+		`cursor-pointer w-fit`,
+		colorCls,
+		sizeCls,
+		shapeCls
+	);
 </script>
 
 <button class={cn(buttonCls, className)} {...rest}>
-	{@render children?.()}
+	<Container class={cn("items-center justify-center flex flex-row gap-4 [&_>_svg]:size-7", mode== 'fill' && 'text-white')}>
+		{@render children?.()}
+
+		{#if text}
+			<h3 class="leading-none text-current text-[1.5rem]">{text}</h3>
+		{/if}
+	</Container>
 </button>
 
 <!--@component

@@ -13,7 +13,7 @@
 		class: className,
 
 		// --- Default Classes
-		itemClass = $bindable('items-center justify-center w-[7vw] aspect-square text-inherit'),
+		itemClass = $bindable('items-center justify-center h-[40%] mb-[5%] aspect-square text-inherit'),
 		iconClass = $bindable(`size-full mb-3 text-inherit shrink-0 animate`),
 
 		// --- User Defined Classes

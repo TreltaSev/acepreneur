@@ -4,10 +4,10 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2025-03-01T20:42:55.426703400Z">
+        <DropdownSelection timestamp="2025-03-31T19:32:23.178089Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=C:\Users\Trelta\.android\avd\Pixel_6_API_33.avd" />
+              <DeviceId pluginId="Default" identifier="serial=192.168.1.154:38795;connection=8ac04b87" />
             </handle>
           </Target>
         </DropdownSelection>
