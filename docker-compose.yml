@@ -28,7 +28,6 @@ services:
     networks:
       - docker-network
     depends_on:
-      - frontend
       - backend
     restart: on-failure
   
