@@ -44,6 +44,8 @@ services:
     command: 
       - '--logpath'
       - '/var/log/mongodb/mongod.log'
+      - '--config'
+      - '/etc/mongo/mongo.conf'
   
 
 volumes:
