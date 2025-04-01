@@ -13,6 +13,7 @@
 
 	// Capacitor Plugins
 	import { CapacitorBarcodeScanner } from '@capacitor/barcode-scanner';
+	import qrCodeResponseHandler from '@root/lib/internal/qr/qr';
 
 	let {
 		children,
@@ -34,7 +35,8 @@
 			cameraDirection: 1,
 			scanOrientation: 1
 		});
-		console.log(qr_res.ScanResult);
+
+		qrCodeResponseHandler.run(qr_res.ScanResult)
 	}
 </script>
 

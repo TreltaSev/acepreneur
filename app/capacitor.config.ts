@@ -9,6 +9,9 @@ const config: CapacitorConfig = {
       "android": {
         "permissions": ["android.permission.CAMERA"]
       } 
+    },
+    CapacitorHttp: {
+      enabled: true,
     }
   }
 };

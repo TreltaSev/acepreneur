@@ -17,16 +17,17 @@ export class User {
         }
 
         // Identification not specified, request a new one
-        const response = await fetch_backend("/user", jsonform("POST"));
+        const response = await fetch_backend("/user", jsonform("POST"));    
+
+
+        console.log(response)
 
         if (response.status != 200) {
-            console.error("Failed to request identity", await response.text())
+            console.error("Failed to request identity", response.data)
             return;
         }
 
-        const user = await response.json();
-
-        set_local("identification", user.id)
+        set_local("identification", response.data.id)
     }
 
     public async get_events() {

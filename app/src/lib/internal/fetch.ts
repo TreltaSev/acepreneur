@@ -1,25 +1,28 @@
+import { CapacitorHttp, type HttpOptions, type HttpResponse } from '@capacitor/core';
 import { get_local, has_local } from './object';
 
-const vite_api_url = import.meta.env.API_URL || 'https://localhost';
+const vite_api_url = import.meta.env.VITE_API_URL || 'https://localhost';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
-export function jsonform(method: string, object: BodyInit | null = null): RequestInit {
-	const _obj: RequestInit = {
+export function jsonform(method: string, object: BodyInit | null = null): Omit<HttpOptions, 'url'> {
+	const _obj: Omit<HttpOptions, 'url'> = {
 		method: method,
 		headers: {
 			'Content-Type': 'application/json'
 		},
-		mode: 'cors'
+		webFetchExtra: {
+			mode: 'cors'
+		}
 	};
 
 	if (object) {
-		_obj.body = JSON.stringify(object);
+		_obj.data = JSON.stringify(object);
 	}
 
 	return _obj;
 }
 
-export function authform(method: string, object: BodyInit | null = null): RequestInit {
+export function authform(method: string, object: BodyInit | null = null): Omit<HttpOptions, 'url'> {
 	const _obj = jsonform(method, object);
 
 	if (!has_local('identification') || get_local("identification") == "undefined") {
@@ -99,14 +102,14 @@ export class HandledResponse {
  * @returns
  */
 export async function fetch_base(
-	route: string,
-	request_init?: RequestInit
-): Promise<HandledResponse> {
+	pathname: string,
+	request_init?: Omit<HttpOptions, 'url'>
+): Promise<HttpResponse> {
 	if (!request_init) {
 		request_init = jsonform('GET', null);
 	}
-	const request = await fetch(route, request_init);
-	const response = new HandledResponse(request);
+
+	const response = await CapacitorHttp.request({...request_init, url: `${vite_api_url}/api${pathname}`})
 	return response;
 }
 
@@ -118,13 +121,13 @@ export async function fetch_base(
  */
 export async function fetch_backend(
 	pathname: string,
-	request_init?: RequestInit
-): Promise<HandledResponse> {
+	request_init?: Omit<HttpOptions, 'url'>
+): Promise<HttpResponse> {
 	if (!request_init) {
 		request_init = jsonform('GET', null);
 	}
-	const request = await fetch(`${vite_api_url}/api${pathname}`, request_init);
-	const response = new HandledResponse(request);
+
+	const response = await CapacitorHttp.request({...request_init, url: `${vite_api_url}/api${pathname}`})
 	return response;
 }
 

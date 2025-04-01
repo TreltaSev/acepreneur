@@ -1,10 +1,15 @@
 <script>
 	// --- Components ---
 	import { Button } from '@components';
+	import qrCodeResponseHandler from '@root/lib/internal/qr/qr';
 
 	// --- Icons ---
 	import IconQRCode from '~icons/solar/qr-code-bold';
 	import IconTrash from '~icons/solar/trash-bin-trash-bold';
+
+	async function qr_prompt() {
+		await qrCodeResponseHandler.prompt();
+	}
 </script>
 
 <main>
@@ -18,7 +23,7 @@
 				<h4>Set your current user id to test specific functions</h4>
 			</summary>
 
-			<Button class="text-black/80" mode="outline" text="Scan">
+			<Button class="text-black/80" mode="outline" text="Scan" onclick={qr_prompt}>
 				<IconQRCode />
 			</Button>
 		</article>

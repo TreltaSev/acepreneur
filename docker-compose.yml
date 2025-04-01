@@ -8,7 +8,7 @@ services:
       - MONGO_URL=${MONGO_URL}
       - BASE_URL=${BASE_URL}
     volumes:
-      - ${SSL_PATH:-./.ssl}:/etc/ssl/ff:ro
+      - ${SSL_PATH:-./.ssl}:/etc/ssl/com:ro
       - ./siblink.config.json:/etc/config/siblink.config.json
     networks:
       - docker-network
