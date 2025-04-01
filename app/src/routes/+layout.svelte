@@ -1,15 +1,16 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-
-	let { children } = $props();
-
 	import '../app.css';
 
-	import { Navigation } from '@root/lib/components';
-	import { Container, Flex } from '@ui';
-	import { get } from 'svelte/store';
-	import { Capacitor } from '@capacitor/core';
+	// --- Components ---
+	import { Flex } from '@ui';
+	import { Navigation } from '@components';
+
+	// --- Logic ---
 	import { setPlatformCtx, setMediaCtx } from '@root/lib/ctx';
+	import { onMount } from 'svelte';
+	import { SafeArea } from '@capacitor-community/safe-area';
+
+	let { children } = $props();
 
 	const { media$, set_media } = setMediaCtx(); // Set Media Ctx
 	const { platform$ } = setPlatformCtx();
@@ -21,6 +22,16 @@
 			}
 		});
 	}
+
+	SafeArea.enable({
+		config: {
+			customColorsForSystemBars: true,
+			statusBarColor: '#00000000', // transparent
+			statusBarContent: 'light',
+			navigationBarColor: '#00000000', // transparent
+			navigationBarContent: 'light'
+		}
+	});
 
 	// Setup reactive media sizing
 	onMount(() => {
@@ -46,17 +57,10 @@
 			window.removeEventListener('resize', callback);
 		};
 	});
-
-	// Apply the class on subscription update
-	// mode$.subscribe((v) => {
-	// 	if (typeof document !== 'undefined') {
-	// 		document.documentElement.classList.toggle('dark', v === 'dark');
-	// 	}
-	// });
 </script>
 
 <div class="white size-full flex flex-col items-center">
-	<Flex.Col class="size-full s_2xl:w-[50%] p_ios:pt-12 p_android:pt-4">
+	<Flex.Col class="size-full s_2xl:w-[50%] pt-[var(--safe-area-inset-top)]">
 		{@render children?.()}
 	</Flex.Col>
 
