@@ -10,12 +10,13 @@
 	import { onMount } from 'svelte';
 	import { SafeArea } from '@capacitor-community/safe-area';
 	import { App } from '@capacitor/app';
-	import { applyAction } from '$app/forms';
+	import { afterNavigate } from '$app/navigation';
 
 	let { children } = $props();
 
 	const { media$, set_media } = setMediaCtx(); // Set Media Ctx
 	const { platform$ } = setPlatformCtx();
+	let location = $state('Hi there');
 
 	function remove_variant(start: string) {
 		document.documentElement.classList.forEach((cls) => {
@@ -37,6 +38,7 @@
 
 	// Setup reactive media sizing
 	onMount(() => {
+		// --- Context APIS --- //
 		const callback = () => set_media();
 		window.addEventListener('resize', callback);
 		callback(); // Run Once
@@ -55,25 +57,33 @@
 			}
 		});
 
+		// --- Capacitor Native Listeners --- //
+
+		// Back Arrow
+		App.addListener('backButton', () => {
+			if (window.location.pathname == '/events') {
+				App.exitApp();
+				return;
+			}
+			window.history.back();
+		});
+
 		return () => {
 			window.removeEventListener('resize', callback);
 		};
 	});
 
-	// --- Capacitor Native Listeners --- //
+	afterNavigate(() => {
+		location = window.location as unknown as string;
+	});
 
-	// Back Arrow
-	App.addListener("backButton", () => {
-		if (window.location.pathname == "/events") {
-			App.exitApp();
-			return;
-		}
-		window.history.back();
-	})
+	const apiUrl = import.meta.env.VITE_API_URL
 </script>
 
 <div class="white size-full flex flex-col items-center">
 	<Flex.Col class="size-full s_2xl:w-[50%] pt-[var(--safe-area-inset-top)]">
+		<span>{location}</span>
+		<span>{apiUrl}</span>
 		{@render children?.()}
 	</Flex.Col>
 
