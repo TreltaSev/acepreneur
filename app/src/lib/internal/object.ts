@@ -1,3 +1,5 @@
+import { Preferences } from '@capacitor/preferences';
+
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export function removeUndefined<T extends object>(obj: T): T {
 	const result = {} as T;
@@ -59,9 +61,57 @@ export function extract_keys(data: any, ...keys: string[]): any[] {
 }
 
 export function is_function(object: any): boolean {
-	return typeof object === "function"
+	return typeof object === 'function';
 }
 
 export function is_valid_color(value: string): boolean {
 	return /^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(value);
+}
+
+/**
+ * Stores a preference value using Capacitor's Preferences API.
+ * The stored data persists even when the app is closed and reopened.
+ *
+ * @param {string} key - The key under which the preference is stored.
+ * @param {string} value - The value to store for the given key.
+ *
+ * @returns {Promise<void>} A promise that resolves when the preference has been successfully stored.
+ */
+export async function set_preference(key: string, value: string): Promise<void> {
+	console.debug(`Setting preference:${key} to ${value}`)
+	await Preferences.set({
+		key,
+		value
+	});
+}
+
+/**
+ * Checks if a preference exists by attempting to retrieve it.
+ *
+ * @param {string} key - The key of the preference to check for existence.
+ *
+ * @returns {Promise<boolean>} A promise that resolves to `true` if the preference exists, otherwise `false`.
+ */
+export async function has_preference(key: string): Promise<boolean> {
+	return (await get_preference(key)) !== null;
+}
+
+/**
+ * Retrieves a stored preference value.
+ *
+ * @param {string} key - The key of the preference to retrieve.
+ *
+ * @returns {Promise<string | null>} A promise that resolves to the stored value for the given key, or `null` if the preference does not exist.
+ */
+export async function get_preference(key: string): Promise<string | null> {
+	return (await Preferences.get({ key })).value;
+}
+
+/**
+ * Clears all stored preferences in the app.
+ *
+ * @returns {Promise<void>} A promise that resolves when all preferences have been successfully cleared.
+ */
+export async function clear_preferences(): Promise<void> {
+	return await Preferences.clear();
 }

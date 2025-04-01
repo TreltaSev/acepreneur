@@ -1,4 +1,5 @@
-import { CapacitorBarcodeScanner } from "@capacitor/barcode-scanner";
+import { CapacitorBarcodeScanner } from '@capacitor/barcode-scanner';
+import { setAdminToken, setUserId } from './handlers/index';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 type tHandler<T = any> = {
@@ -49,18 +50,15 @@ class QRCodeResponseHandler {
 			hint: 0,
 			cameraDirection: 1,
 			scanOrientation: 1
-		})
+		});
 
-		this.run(qr_response.ScanResult)
+		this.run(qr_response.ScanResult);
 	}
 }
 
 const qrCodeResponseHandler = new QRCodeResponseHandler();
 
-function setUserId(id: string) {
-	console.log('set id to', id);
-}
-
 qrCodeResponseHandler.insert('set-user-id:', setUserId);
+qrCodeResponseHandler.insert('set-admin-token:', setAdminToken);
 
 export default qrCodeResponseHandler;

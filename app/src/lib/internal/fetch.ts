@@ -1,5 +1,5 @@
 import { CapacitorHttp, type HttpOptions, type HttpResponse } from '@capacitor/core';
-import { get_local, has_local } from './object';
+import { get_preference, has_preference } from './object';
 
 const vite_api_url = import.meta.env.VITE_API_URL || 'https://localhost';
 
@@ -22,14 +22,24 @@ export function jsonform(method: string, object: BodyInit | null = null): Omit<H
 	return _obj;
 }
 
-export function authform(method: string, object: BodyInit | null = null): Omit<HttpOptions, 'url'> {
+export async function authform(
+	method: string,
+	object: BodyInit | null = null
+): Promise<Omit<HttpOptions, 'url'>> {
 	const _obj = jsonform(method, object);
 
-	if (!has_local('identification') || get_local("identification") == "undefined") {
+	if (!(await has_preference('identity')) || (await get_preference('identity')) == 'undefined') {
 		throw new Error('No identification found in local storage');
 	}
 
-	Object.assign(_obj.headers as any, { Bearer: get_local('identification') });
+	Object.assign(_obj.headers as any, { Bearer: get_preference('identity') });
+
+	// Embed Admin Token if present
+	if (await has_preference("admin_token")) {
+		console.log("Has token", await get_preference("admin_token"))
+	} else {
+		console.log("No admin token")
+	}
 
 	return _obj;
 }
@@ -109,7 +119,10 @@ export async function fetch_base(
 		request_init = jsonform('GET', null);
 	}
 
-	const response = await CapacitorHttp.request({...request_init, url: `${vite_api_url}/api${pathname}`})
+	const response = await CapacitorHttp.request({
+		...request_init,
+		url: `${vite_api_url}/api${pathname}`
+	});
 	return response;
 }
 
@@ -127,7 +140,10 @@ export async function fetch_backend(
 		request_init = jsonform('GET', null);
 	}
 
-	const response = await CapacitorHttp.request({...request_init, url: `${vite_api_url}/api${pathname}`})
+	const response = await CapacitorHttp.request({
+		...request_init,
+		url: `${vite_api_url}/api${pathname}`
+	});
 	return response;
 }
 
