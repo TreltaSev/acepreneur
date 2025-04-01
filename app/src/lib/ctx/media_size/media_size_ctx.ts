@@ -34,8 +34,8 @@ export function createMediaData() {
 	};
 }
 
-export function getNavigationData() {
-	const NAME = 'navigation-data' as const;
+export function getMediaData() {
+	const NAME = 'media-data' as const;
 
 	return {
 		NAME
@@ -43,7 +43,7 @@ export function getNavigationData() {
 }
 
 export function setMediaCtx() {
-	const { NAME } = getNavigationData();
+	const { NAME } = getMediaData();
 
 	const media = {
 		...createMediaData()
@@ -58,6 +58,6 @@ export function setMediaCtx() {
 
 type GetMediaReturn = ReturnType<typeof setMediaCtx>;
 export function getMediaCtx() {
-	const { NAME } = getNavigationData();
+	const { NAME } = getMediaData();
 	return getContext<GetMediaReturn>(NAME);
 }
