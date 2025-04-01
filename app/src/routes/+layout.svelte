@@ -27,9 +27,9 @@
 		config: {
 			customColorsForSystemBars: true,
 			statusBarColor: '#00000000', // transparent
-			statusBarContent: 'light',
+			statusBarContent: 'dark',
 			navigationBarColor: '#00000000', // transparent
-			navigationBarContent: 'light'
+			navigationBarContent: 'dark'
 		}
 	});
 
