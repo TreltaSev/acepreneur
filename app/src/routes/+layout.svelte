@@ -9,6 +9,8 @@
 	import { setPlatformCtx, setMediaCtx } from '@root/lib/ctx';
 	import { onMount } from 'svelte';
 	import { SafeArea } from '@capacitor-community/safe-area';
+	import { App } from '@capacitor/app';
+	import { applyAction } from '$app/forms';
 
 	let { children } = $props();
 
@@ -57,6 +59,17 @@
 			window.removeEventListener('resize', callback);
 		};
 	});
+
+	// --- Capacitor Native Listeners --- //
+
+	// Back Arrow
+	App.addListener("backButton", () => {
+		if (window.location.pathname == "/events") {
+			App.exitApp();
+			return;
+		}
+		window.history.back();
+	})
 </script>
 
 <div class="white size-full flex flex-col items-center">
