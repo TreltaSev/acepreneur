@@ -2,28 +2,30 @@
 import { getContext, setContext } from 'svelte';
 import { get, writable, type Writable } from 'svelte/store';
 import { User } from './user';
+import { Preferences } from '@capacitor/preferences';
+import { get_preference, set_preference } from '@root/lib/internal';
 
 export function createIdentificationData() {
 	const identity$: Writable<string | null> = writable(null);
-	const user: User = new User
+	const user: User = new User();
 
-	identity$.subscribe((current_identity) => {
+	identity$.subscribe(async (current_identity) => {
 		if (!current_identity) return;
-		localStorage.setItem("identification", current_identity)
-	})
+		await set_preference('identity', current_identity);
+	});
 
-	setInterval(() => {
-		if (typeof window === 'undefined' || !localStorage) return;
+	setInterval(async () => {
+		if (typeof window === 'undefined' || !Preferences) return;
 		try {
-			const userIdentification = localStorage.getItem('identification');
-			if (get(identity$) != userIdentification) {
-				identity$.set(userIdentification);
+			const userIdentity = await get_preference('identity');
+			if (get(identity$) != userIdentity) {
+				identity$.set(userIdentity);
 			}
 		} catch (error) {
 			console.warn(`Error`, error);
 			return;
 		}
-	}, 10);
+	}, 50);
 
 	return {
 		identity$,

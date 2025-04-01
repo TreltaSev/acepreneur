@@ -78,7 +78,7 @@ export function is_valid_color(value: string): boolean {
  * @returns {Promise<void>} A promise that resolves when the preference has been successfully stored.
  */
 export async function set_preference(key: string, value: string): Promise<void> {
-	console.debug(`Setting preference:${key} to ${value}`)
+	console.debug(`Setting preference:${key} to ${value}`);
 	await Preferences.set({
 		key,
 		value
@@ -114,4 +114,15 @@ export async function get_preference(key: string): Promise<string | null> {
  */
 export async function clear_preferences(): Promise<void> {
 	return await Preferences.clear();
+}
+
+/**
+ * Deletes a stored preference by key.
+ *
+ * @param {string} key - The key of the preference to remove.
+ *
+ * @returns {Promise<void>} A promise that resolves when the preference has been successfully deleted.
+ */
+export async function delete_preference(key: string): Promise<void> {
+	return await Preferences.remove({ key });
 }

@@ -1,14 +1,21 @@
 <script>
 	// --- Components ---
 	import { Button } from '@components';
+	import { getIdentityCtx } from '@root/lib/ctx';
 	import qrCodeResponseHandler from '@root/lib/internal/qr/qr';
 
 	// --- Icons ---
 	import IconQRCode from '~icons/solar/qr-code-bold';
 	import IconTrash from '~icons/solar/trash-bin-trash-bold';
 
+	const { identity$, user } = getIdentityCtx();
+
 	async function qr_prompt() {
 		await qrCodeResponseHandler.prompt();
+	}
+
+	async function delete_user() {
+		await user.refresh_identity();
 	}
 </script>
 
@@ -35,7 +42,7 @@
 			</summary>
 
 			<aside>
-				<Button class="text-red" mode="outline" text="Delete">
+				<Button class="text-red" mode="outline" text="Delete" onclick={delete_user}>
 					<IconTrash />
 				</Button>
 			</aside>
@@ -44,7 +51,7 @@
 		<article>
 			<summary>
 				<h3>Current User ID</h3>
-				<h4>user-c6d09d5fddfdc1c56a983a53e0f8a0d9</h4>
+				<h4>{$identity$}</h4>
 			</summary>
 		</article>
 	</section>
@@ -63,7 +70,7 @@
 			</summary>
 
 			<aside>
-				<Button class="text-black/80" mode="outline" text="Scan">
+				<Button class="text-black/80" mode="outline" text="Scan" onclick={qr_prompt}>
 					<IconQRCode />
 				</Button>
 			</aside>

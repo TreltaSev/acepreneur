@@ -4,6 +4,15 @@ import { get_preference, has_preference } from './object';
 const vite_api_url = import.meta.env.VITE_API_URL || 'https://localhost';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
+
+/**
+ * Creates a basic HTTP request object with JSON headers.
+ * 
+ * @param {string} method - HTTP method (e.g., 'GET', 'POST', etc.).
+ * @param {BodyInit | null} object - Optional request body.
+ * 
+ * @returns {Omit<HttpOptions, 'url'>} An HTTP options object without the URL.
+ */
 export function jsonform(method: string, object: BodyInit | null = null): Omit<HttpOptions, 'url'> {
 	const _obj: Omit<HttpOptions, 'url'> = {
 		method: method,
@@ -22,40 +31,59 @@ export function jsonform(method: string, object: BodyInit | null = null): Omit<H
 	return _obj;
 }
 
+/**
+ * Creates an authenticated HTTP request object.
+ * 
+ * Adds user identity and admin token (if available) as headers.
+ * 
+ * @param {string} method - HTTP method (e.g., 'GET', 'POST', etc.).
+ * @param {BodyInit | null} object - Optional request body.
+ * 
+ * @throws {Error} If no user identity is found in preferences.
+ * 
+ * @returns {Promise<Omit<HttpOptions, 'url'>>} An authenticated HTTP options object.
+ */
 export async function authform(
 	method: string,
 	object: BodyInit | null = null
 ): Promise<Omit<HttpOptions, 'url'>> {
 	const _obj = jsonform(method, object);
 
-	if (!(await has_preference('identity')) || (await get_preference('identity')) == 'undefined') {
+	// Ensure identity is available
+	if (!(await has_preference('identity')) || (await get_preference('identity')) === 'undefined') {
 		throw new Error('No identification found in local storage');
 	}
 
-	Object.assign(_obj.headers as any, { Bearer: get_preference('identity') });
+	// Add user identity token
+	Object.assign(_obj.headers as any, { Bearer: await get_preference('identity') });
 
-	// Embed Admin Token if present
+	// Add admin token if present
 	if (await has_preference("admin_token")) {
-		console.log("Has token", await get_preference("admin_token"))
-	} else {
-		console.log("No admin token")
+		Object.assign(_obj.headers as any, { "Admin-Token": await get_preference("admin_token") });
 	}
 
 	return _obj;
 }
 
+/**
+ * Wrapper for handling HTTP responses.
+ */
 export class HandledResponse {
 	public request: Response | undefined;
 
 	/**
-	 * Handles the response from a request
-	 * @param request Request Object
+	 * Constructs a HandledResponse from a given request.
+	 * 
+	 * @param {Promise<Response> | Response} request - The request response object.
+	 * 
+	 * @throws {TypeError} If the request is invalid.
 	 */
 	constructor(request: Promise<Response> | Response) {
 		if (!request) {
 			throw new TypeError('Request Invalid');
 		}
 
+		// Handle promises and store response when resolved
 		if (typeof (request as Promise<Response>).then === 'function') {
 			(request as Promise<Response>)
 				.then((res) => {
@@ -70,34 +98,39 @@ export class HandledResponse {
 	}
 
 	/**
-	 * Returns a boolean representing if the response object is a json object
+	 * Checks if the response is a JSON object.
+	 * 
+	 * @returns {boolean} `true` if the response contains JSON, otherwise `false`.
 	 */
-	get isjson() {
+	get isjson(): boolean {
 		if (!this.request) return false;
 		const contentType = this.request.headers.get('content-type');
-		if (contentType && contentType.includes('application/json')) {
-			return true;
-		}
-		return false;
+		return contentType ? contentType.includes('application/json') : false;
 	}
 
-	get status() {
+	/**
+	 * Gets the response status code.
+	 * 
+	 * @returns {number | undefined} The HTTP status code.
+	 */
+	get status(): number | undefined {
 		return this.request?.status;
 	}
 
 	/**
-	 * Returns the json from the request object
-	 * @returns Json object or null if request is invalid or isn't json
+	 * Parses the response body as JSON.
+	 * 
+	 * @returns {Promise<any | null>} The parsed JSON object or `null` if invalid.
 	 */
-	public async json(): Promise<null | any> {
-		if (!this.request) return null;
-		if (!this.isjson) return null;
+	public async json(): Promise<any | null> {
+		if (!this.request || !this.isjson) return null;
 		return await this.request.clone().json();
 	}
 
 	/**
-	 * Returns the text from the request object
-	 * @returns Text object or null if request is invalid
+	 * Gets the response body as a text string.
+	 * 
+	 * @returns {Promise<string | null>} The response text or `null` if invalid.
 	 */
 	public async text(): Promise<string | null> {
 		if (!this.request) return null;
@@ -106,10 +139,12 @@ export class HandledResponse {
 }
 
 /**
- * Very low level fetch request
- * @param route
- * @param request_init
- * @returns
+ * Performs a low-level HTTP request using CapacitorHttp.
+ * 
+ * @param {string} pathname - API route.
+ * @param {Omit<HttpOptions, 'url'>} [request_init] - Optional request parameters.
+ * 
+ * @returns {Promise<HttpResponse>} The HTTP response.
  */
 export async function fetch_base(
 	pathname: string,
@@ -127,10 +162,14 @@ export async function fetch_base(
 }
 
 /**
- * Higher level fetch request that sends a request to the env-specified api_url
- * @param pathname
- * @param request_init
- * @returns
+ * Sends a high-level HTTP request to the API server.
+ * 
+ * This function is similar to `fetch_base` but follows environment-defined API settings.
+ * 
+ * @param {string} pathname - API route.
+ * @param {Omit<HttpOptions, 'url'>} [request_init] - Optional request parameters.
+ * 
+ * @returns {Promise<HttpResponse>} The HTTP response.
  */
 export async function fetch_backend(
 	pathname: string,
@@ -148,11 +187,15 @@ export async function fetch_backend(
 }
 
 /**
- * Throws an error if the response object isn't a json type.
- * @param response Json response
- * @returns
+ * Ensures the response is a JSON object before parsing.
+ * 
+ * @param {HandledResponse} response - The response to parse.
+ * 
+ * @throws {TypeError} If the response is not JSON.
+ * 
+ * @returns {Promise<any>} The parsed JSON response.
  */
-export async function parse_json(response: HandledResponse) {
+export async function parse_json(response: HandledResponse): Promise<any> {
 	if (!response.isjson) throw new TypeError('Response not json object: ' + response.request?.text);
 	return await response.json();
 }
