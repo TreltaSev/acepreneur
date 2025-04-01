@@ -1,20 +1,41 @@
-<script>
+<script lang="ts">
 	// --- Components ---
-	import { Button } from '@components';
-	import { getIdentityCtx } from '@root/lib/ctx';
-	import qrCodeResponseHandler from '@root/lib/internal/qr/qr';
+	import { Button, Toggle } from '@components'; // Importing reusable button and toggle components
+	import { getIdentityCtx } from '@root/lib/ctx'; // Fetching user identity context
+	import { get_preference, set_preference } from '@root/lib/internal'; // Methods to get/set user preferences
+	import qrCodeResponseHandler from '@root/lib/internal/qr/qr'; // QR code handling logic
+	import { onMount } from 'svelte'; // Lifecycle function for initialization
 
 	// --- Icons ---
-	import IconQRCode from '~icons/solar/qr-code-bold';
-	import IconTrash from '~icons/solar/trash-bin-trash-bold';
+	import IconQRCode from '~icons/solar/qr-code-bold'; // QR code icon
+	import IconTrash from '~icons/solar/trash-bin-trash-bold'; // Trash/delete icon
 
+	// Get user identity context
 	const { identity$, user } = getIdentityCtx();
 
+	// Reactive state for admin access status
+	let active_admin: boolean | null = $state(null);
+
+	// Function to handle QR code prompt for scanning user ID or admin token
 	async function qr_prompt() {
 		await qrCodeResponseHandler.prompt();
 	}
 
+	// Function to delete the current user ID and refresh identity
 	async function delete_user() {
+		await user.refresh_identity();
+	}
+
+	// Load admin access preference on mount
+	onMount(async () => {
+		active_admin = JSON.parse((await get_preference('admin_active')) || 'false');		
+	});
+
+	// Update admin access state and save preference
+	async function onupdate(value: boolean) {
+		console.info("update")
+		active_admin = value;
+		set_preference('admin_active', JSON.stringify(value));
 		await user.refresh_identity();
 	}
 </script>
@@ -22,12 +43,15 @@
 <main>
 	<h1>Settings</h1>
 
+	<!-- User Settings Section -->
 	<section>
 		<h2>User</h2>
+
+		<!-- Change User ID -->
 		<article>
 			<summary>
 				<h3>Change User ID</h3>
-				<h4>Set your current user id to test specific functions</h4>
+				<h4>Set your current user ID to test specific functions</h4>
 			</summary>
 
 			<Button class="text-black/80" mode="outline" text="Scan" onclick={qr_prompt}>
@@ -35,10 +59,11 @@
 			</Button>
 		</article>
 
+		<!-- Delete User ID -->
 		<article>
 			<summary>
 				<h3>Delete User ID</h3>
-				<h4>Delete your current user id and refresh to get a new one</h4>
+				<h4>Delete your current user ID and refresh to get a new one</h4>
 			</summary>
 
 			<aside>
@@ -48,6 +73,7 @@
 			</aside>
 		</article>
 
+		<!-- Display Current User ID -->
 		<article>
 			<summary>
 				<h3>Current User ID</h3>
@@ -58,8 +84,11 @@
 
 	<hr />
 
+	<!-- Developer Settings Section -->
 	<section>
 		<h2>Developer</h2>
+
+		<!-- Developer Admin Token -->
 		<article>
 			<summary>
 				<h3>Developer Admin Token</h3>
@@ -76,15 +105,14 @@
 			</aside>
 		</article>
 
+		<!-- Enable Admin Access -->
 		<article>
 			<summary>
 				<h3>Enable Admin Access</h3>
-				<h4>Toggle Admin Access towards resources, when toggled, refreshes the current user id.</h4>
+				<h4>Toggle Admin Access towards resources. When toggled, refreshes the current user ID.</h4>
 			</summary>
 			<aside>
-				<Button class="text-black/80" mode="outline" text="Scan">
-					<IconQRCode />
-				</Button>
+				<Toggle {onupdate} value={active_admin || false} />
 			</aside>
 		</article>
 	</section>

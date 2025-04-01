@@ -7,13 +7,13 @@ const vite_api_url = import.meta.env.VITE_API_URL || 'https://localhost';
 
 /**
  * Creates a basic HTTP request object with JSON headers.
- * 
+ *
  * @param {string} method - HTTP method (e.g., 'GET', 'POST', etc.).
  * @param {BodyInit | null} object - Optional request body.
- * 
+ *
  * @returns {Omit<HttpOptions, 'url'>} An HTTP options object without the URL.
  */
-export function jsonform(method: string, object: BodyInit | null = null): Omit<HttpOptions, 'url'> {
+export async function jsonform(method: string, object: BodyInit | null = null): Promise<Omit<HttpOptions, 'url'>> {
 	const _obj: Omit<HttpOptions, 'url'> = {
 		method: method,
 		headers: {
@@ -24,6 +24,11 @@ export function jsonform(method: string, object: BodyInit | null = null): Omit<H
 		}
 	};
 
+	// Add admin token if present
+	if (await has_preference('admin_token')) {
+		Object.assign(_obj.headers as any, { 'Admin-Token': await get_preference('admin_token') });
+	}
+
 	if (object) {
 		_obj.data = JSON.stringify(object);
 	}
@@ -33,21 +38,21 @@ export function jsonform(method: string, object: BodyInit | null = null): Omit<H
 
 /**
  * Creates an authenticated HTTP request object.
- * 
+ *
  * Adds user identity and admin token (if available) as headers.
- * 
+ *
  * @param {string} method - HTTP method (e.g., 'GET', 'POST', etc.).
  * @param {BodyInit | null} object - Optional request body.
- * 
+ *
  * @throws {Error} If no user identity is found in preferences.
- * 
+ *
  * @returns {Promise<Omit<HttpOptions, 'url'>>} An authenticated HTTP options object.
  */
 export async function authform(
 	method: string,
 	object: BodyInit | null = null
 ): Promise<Omit<HttpOptions, 'url'>> {
-	const _obj = jsonform(method, object);
+	const _obj = await jsonform(method, object);
 
 	// Ensure identity is available
 	if (!(await has_preference('identity')) || (await get_preference('identity')) === 'undefined') {
@@ -58,8 +63,8 @@ export async function authform(
 	Object.assign(_obj.headers as any, { Bearer: await get_preference('identity') });
 
 	// Add admin token if present
-	if (await has_preference("admin_token")) {
-		Object.assign(_obj.headers as any, { "Admin-Token": await get_preference("admin_token") });
+	if (await has_preference('admin_token')) {
+		Object.assign(_obj.headers as any, { 'Admin-Token': await get_preference('admin_token') });
 	}
 
 	return _obj;
@@ -73,9 +78,9 @@ export class HandledResponse {
 
 	/**
 	 * Constructs a HandledResponse from a given request.
-	 * 
+	 *
 	 * @param {Promise<Response> | Response} request - The request response object.
-	 * 
+	 *
 	 * @throws {TypeError} If the request is invalid.
 	 */
 	constructor(request: Promise<Response> | Response) {
@@ -99,7 +104,7 @@ export class HandledResponse {
 
 	/**
 	 * Checks if the response is a JSON object.
-	 * 
+	 *
 	 * @returns {boolean} `true` if the response contains JSON, otherwise `false`.
 	 */
 	get isjson(): boolean {
@@ -110,7 +115,7 @@ export class HandledResponse {
 
 	/**
 	 * Gets the response status code.
-	 * 
+	 *
 	 * @returns {number | undefined} The HTTP status code.
 	 */
 	get status(): number | undefined {
@@ -119,7 +124,7 @@ export class HandledResponse {
 
 	/**
 	 * Parses the response body as JSON.
-	 * 
+	 *
 	 * @returns {Promise<any | null>} The parsed JSON object or `null` if invalid.
 	 */
 	public async json(): Promise<any | null> {
@@ -129,7 +134,7 @@ export class HandledResponse {
 
 	/**
 	 * Gets the response body as a text string.
-	 * 
+	 *
 	 * @returns {Promise<string | null>} The response text or `null` if invalid.
 	 */
 	public async text(): Promise<string | null> {
@@ -140,10 +145,10 @@ export class HandledResponse {
 
 /**
  * Performs a low-level HTTP request using CapacitorHttp.
- * 
+ *
  * @param {string} pathname - API route.
  * @param {Omit<HttpOptions, 'url'>} [request_init] - Optional request parameters.
- * 
+ *
  * @returns {Promise<HttpResponse>} The HTTP response.
  */
 export async function fetch_base(
@@ -151,7 +156,7 @@ export async function fetch_base(
 	request_init?: Omit<HttpOptions, 'url'>
 ): Promise<HttpResponse> {
 	if (!request_init) {
-		request_init = jsonform('GET', null);
+		request_init = await jsonform('GET', null);
 	}
 
 	const response = await CapacitorHttp.request({
@@ -163,12 +168,12 @@ export async function fetch_base(
 
 /**
  * Sends a high-level HTTP request to the API server.
- * 
+ *
  * This function is similar to `fetch_base` but follows environment-defined API settings.
- * 
+ *
  * @param {string} pathname - API route.
  * @param {Omit<HttpOptions, 'url'>} [request_init] - Optional request parameters.
- * 
+ *
  * @returns {Promise<HttpResponse>} The HTTP response.
  */
 export async function fetch_backend(
@@ -176,7 +181,7 @@ export async function fetch_backend(
 	request_init?: Omit<HttpOptions, 'url'>
 ): Promise<HttpResponse> {
 	if (!request_init) {
-		request_init = jsonform('GET', null);
+		request_init = await jsonform('GET', null);
 	}
 
 	const response = await CapacitorHttp.request({
@@ -188,11 +193,11 @@ export async function fetch_backend(
 
 /**
  * Ensures the response is a JSON object before parsing.
- * 
+ *
  * @param {HandledResponse} response - The response to parse.
- * 
+ *
  * @throws {TypeError} If the response is not JSON.
- * 
+ *
  * @returns {Promise<any>} The parsed JSON response.
  */
 export async function parse_json(response: HandledResponse): Promise<any> {

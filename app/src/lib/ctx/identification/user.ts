@@ -23,9 +23,8 @@ export class User {
 		}
 
 		// No identity found, request a new one from the backend
-		const response = await fetch_backend('/user', jsonform('POST'));
+		const response = await fetch_backend('/user', await jsonform('POST'));
 
-		console.log(response, "..."); // Debugging response
 
 		// Handle non-200 response status
 		if (response.status !== 200) {
