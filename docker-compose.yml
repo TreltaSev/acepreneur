@@ -1,6 +1,6 @@
 services:
   backend:
-    image: ff_qb
+    image: dev_trel_backend
     build:
       context: backend
       dockerfile: ./Dockerfile
