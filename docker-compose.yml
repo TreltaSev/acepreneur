@@ -9,7 +9,7 @@ services:
       - BASE_URL=${BASE_URL}
     volumes:
       - ${SSL_PATH:-./.ssl}:/etc/ssl/com:ro
-      - ./siblink.config.json:/etc/config/siblink.config.json
+      - ./backend/siblink.config.json:/backend/siblink.config.json
     networks:
       - docker-network
     depends_on:
