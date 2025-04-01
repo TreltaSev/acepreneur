@@ -27,7 +27,7 @@ async def qr_GET(data, *args, **kwargs):
     _qrcode = qr.make_image(image_factory=StyledPilImage, module_drawer=RoundedModuleDrawer(1))
     _qrcode_img = _qrcode.convert("RGBA")
 
-    _logo = Image.open((Config.root / "../assets/logo/4x_qr_sec.png").absolute()).convert("RGBA")
+    _logo = Image.open((Config.root / "./assets/logo/4x_qr_sec.png").absolute()).convert("RGBA")
     width, height = _qrcode_img.size
 
     logo_size = int(width * 0.28)
