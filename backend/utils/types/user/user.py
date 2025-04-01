@@ -15,7 +15,6 @@ class User(Struct):
     ```
 
     :param str id: User Id, starts with user-*
-    :param str name: User given name, full name. Like "John Doe"
     :param likes: List of objects user has liked
     :type likes: List[str]
     """
@@ -23,7 +22,6 @@ class User(Struct):
     def __init__(self, obj=None, **kwargs):
         # __ Type Annotation __
         self.id: str | None
-        self.name: str
         self.likes: str
 
         super().__init__(obj, **kwargs)
@@ -37,7 +35,6 @@ class User(Struct):
         Sets the defaults for this object
         """
         self.dict.setdefault("id", f"user-{secrets.token_hex(16)}")
-        self.dict.setdefault("name", "User Name")
         self.dict.setdefault("likes", [])
 
     def __handle_admin(self, **kwargs):

@@ -6,7 +6,7 @@
 	import { Navigation } from '@components';
 
 	// --- Logic ---
-	import { setPlatformCtx, setMediaCtx } from '@root/lib/ctx';
+	import { setPlatformCtx, setMediaCtx, setIdentificationCtx } from '@root/lib/ctx';
 	import { onMount } from 'svelte';
 	import { SafeArea } from '@capacitor-community/safe-area';
 	import { App } from '@capacitor/app';
@@ -16,6 +16,7 @@
 
 	const { media$, set_media } = setMediaCtx(); // Set Media Ctx
 	const { platform$ } = setPlatformCtx();
+	const { user } = setIdentificationCtx();
 	let location = $state('Hi there');
 
 	function remove_variant(start: string) {
@@ -38,6 +39,7 @@
 
 	// Setup reactive media sizing
 	onMount(() => {
+		user.request_identity();
 		// --- Context APIS --- //
 		const callback = () => set_media();
 		window.addEventListener('resize', callback);
@@ -73,11 +75,17 @@
 		};
 	});
 
+
+	/* Testing Requests */
+	onMount(async () => {
+		// user.get_events()
+	})
+
 	afterNavigate(() => {
 		location = window.location as unknown as string;
 	});
 
-	const apiUrl = import.meta.env.VITE_API_URL
+	const apiUrl = import.meta.env.VITE_API_URL;
 </script>
 
 <div class="white size-full flex flex-col items-center">

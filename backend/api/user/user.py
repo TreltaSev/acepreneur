@@ -17,11 +17,8 @@ userCallback = blueprint.refactor_route(
 
 @userCallback.on("POST")
 @getHeaders(["Admin-Token"])
-@getJson
-async def user_POST(json_struct: Struct, headers: Struct, *args, **kwargs):
-    json_struct.requires(["name"])
-    name: str = json_struct.dict.pop("name")
-    user: User = User(name=name, headers=headers)
+async def user_POST(headers: Struct, *args, **kwargs):
+    user: User = User(headers=headers)
     user = insertUser(user)
     return user.sanitized()
 

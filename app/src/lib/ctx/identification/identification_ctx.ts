@@ -1,14 +1,14 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { getContext, setContext } from 'svelte';
 import { get, writable, type Writable } from 'svelte/store';
+import { User } from './user';
 
 export function createIdentificationData() {
 	const identity$: Writable<string | null> = writable(null);
+	const user: User = new User
 
 	identity$.subscribe((current_identity) => {
 		if (!current_identity) return;
-
-		console.info("Update identity")
 		localStorage.setItem("identification", current_identity)
 	})
 
@@ -26,7 +26,8 @@ export function createIdentificationData() {
 	}, 10);
 
 	return {
-		x$: identity$
+		identity$,
+		user
 	};
 }
 

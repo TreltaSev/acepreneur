@@ -6,12 +6,15 @@ from utils.logger import Logger
 from utils.types import Severity
 from utils.package.cloakquart.Quart import app
 from pyucc import colors
+from quart_cors import cors
 
 Logger(defined_level="Info", **{"show_timestamp_by_default": True})
 Logger.__log__("Server Starting...", severity=Severity.Info)
 
 app.register_blueprints()
 app.determine_environment()
+
+app = cors(app, allow_origin="*")
 
 # Validate Config
 try:
