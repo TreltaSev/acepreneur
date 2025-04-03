@@ -25,7 +25,7 @@ export async function jsonform(method: string, object: BodyInit | null = null): 
 	};
 
 	// Add admin token if present
-	if (await has_preference('admin_token')) {
+	if (await has_preference('admin_token') && await get_preference("admin_active")) {
 		Object.assign(_obj.headers as any, { 'Admin-Token': await get_preference('admin_token') });
 	}
 
