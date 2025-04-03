@@ -25,7 +25,7 @@
 			justify-between items-end 
 			px-[5%] w-full 
 			box-border 
-			text-black/60 z-999 border-t border-black/50 bg-white  pb-[var(--safe-area-inset-bottom)]`
+			text-black/60 z-999 border-t border-black/50 bg-white  pb-[var(--safe-area-inset-bottom)] p_ios:pb-20 `
 		)
 	}: Props = $props();
 
