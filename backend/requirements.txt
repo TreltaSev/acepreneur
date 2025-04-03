@@ -8,6 +8,7 @@ click==8.1.7
 colorama==0.4.6
 cryptography==44.0.0
 dnspython==2.7.0
+dotenv==0.9.9
 Flask==3.1.0
 google-auth==2.37.0
 google-auth-oauthlib==1.2.1
@@ -31,6 +32,7 @@ pycparser==2.22
 PyJWT==2.10.1
 pymongo==4.10.1
 pypng==0.20220715.0
+python-dotenv==1.1.0
 pyucc==1.7
 qrcode==8.0
 Quart==0.19.9

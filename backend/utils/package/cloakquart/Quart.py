@@ -14,9 +14,9 @@ from utils.types import Severity
 from utils.exception import HighLevelException
 from utils.package.cloakquart.Blueprint import Blueprint
 
-from typing import Any, Callable
+from typing import Callable
 
-from pyucc import console, colors
+from pyucc import colors
 
 import traceback
 

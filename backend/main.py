@@ -1,7 +1,22 @@
-import sys
-import uvicorn
 from siblink import Config
 import pathlib
+import os
+from dotenv import dotenv_values
+
+@Config.load_predetermined
+def _before_serving():
+    project_root: pathlib.Path = pathlib.Path(Config.root / '../')
+    Config.env = {
+        **dotenv_values(project_root / ".env"),
+        **dotenv_values(project_root / ".env.production.local")
+    }
+    os.environ.update(Config.env)  # Make sure os.gen_env works well
+
+_before_serving()
+
+
+import uvicorn
+
 from utils.logger import Logger
 from utils.types import Severity
 from utils.package.cloakquart.Quart import app
@@ -11,10 +26,16 @@ from quart_cors import cors
 Logger(defined_level="Info", **{"show_timestamp_by_default": True})
 Logger.__log__("Server Starting...", severity=Severity.Info)
 
-app.register_blueprints()
-app.determine_environment()
 
+
+
+app.register_blueprints()
+
+app.determine_environment()
 app = cors(app, allow_origin="*")
+
+
+
 
 # Validate Config
 try:

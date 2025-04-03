@@ -2,7 +2,7 @@ import os
 import pymongo
 import pymongo.collection
 import pymongo.database
-
+from pyucc import console
 
 class MongoClient:
     client: pymongo.MongoClient = pymongo.MongoClient(os.getenv("MONGO_URL") or "mongodb://localhost:27017/")
