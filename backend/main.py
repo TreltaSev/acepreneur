@@ -5,10 +5,7 @@ from dotenv import dotenv_values
 
 @Config.load_predetermined
 def _before_serving():
-    print("-----")
     project_root: pathlib.Path = pathlib.Path(Config.root / '../')
-    print((project_root / ".env").absolute().resolve())
-    print((project_root / ".env.production.local").absolute().resolve())
     Config.env = {
         **dotenv_values(project_root / ".env"),
         **dotenv_values(project_root / ".env.production.local")
