@@ -2,7 +2,7 @@ import type { CapacitorConfig } from '@capacitor/cli';
 
 const config: CapacitorConfig = {
   appId: 'com.eday.app',
-  appName: 'eday',
+  appName: 'AcePreneur',
   webDir: 'www',
   plugins: {
     "CapacitorBarCodeScanner": {
