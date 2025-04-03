@@ -75,6 +75,12 @@ api-test:
 dc:
     docker compose up -d --build
 
+# Stops the docker compose
+[working-directory: './']
+dc-down:
+    docker compose down
+
+
 # Compose only a specific service
 [working-directory: './']
 dc-spec SERVICE:
