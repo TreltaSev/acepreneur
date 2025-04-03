@@ -22,6 +22,7 @@ from utils.types import Severity
 from utils.package.cloakquart.Quart import app
 from pyucc import colors
 from quart_cors import cors
+from utils.mongo import MongoClient
 
 Logger(defined_level="Info", **{"show_timestamp_by_default": True})
 Logger.__log__("Server Starting...", severity=Severity.Info)
@@ -79,5 +80,11 @@ if not __name__ == "__main__":
         f"__name__ must be __main__, instead is \"{__name__}\". Consider the command {colors.vibrant_blue}`siblink run ./backend`", Severity.Fatal)
     quit()
 
+
+@app.before_serving
+def _before_serving():
+    print(MongoClient.client.address)
+    MongoClient.refresh_client()
+    print(MongoClient.client.address)
 
 uvicorn.run(app, **app.uvicorn_config)
