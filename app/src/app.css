@@ -23,6 +23,62 @@
 	src: url('fonts/DM Mono.ttf') format('truetype');
 }
 
+@font-face {
+	font-family: 'Ubuntu';
+	src: url('fonts/ubuntu/Ubuntu-Regular.ttf') format('truetype');
+	font-weight: 400;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Ubuntu';
+	src: url('fonts/ubuntu/Ubuntu-Bold.ttf') format('truetype');
+	font-weight: 700;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Ubuntu';
+	src: url('fonts/ubuntu/Ubuntu-BoldItalic.ttf') format('truetype');
+	font-weight: 700;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Ubuntu';
+	src: url('fonts/ubuntu/Ubuntu-Italic.ttf') format('truetype');
+	font-weight: 400;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Ubuntu';
+	src: url('fonts/ubuntu/Ubuntu-Light.ttf') format('truetype');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Ubuntu';
+	src: url('fonts/ubuntu/Ubuntu-LightItalic.ttf') format('truetype');
+	font-weight: 300;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: 'Ubuntu';
+	src: url('fonts/ubuntu/Ubuntu-Medium.ttf') format('truetype');
+	font-weight: 500;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Ubuntu';
+	src: url('fonts/ubuntu/Ubuntu-MediumItalic.ttf') format('truetype');
+	font-weight: 500;
+	font-style: italic;
+}
+
 /*
 ------------------ THEME ------------------ 
     ~Usage~
@@ -32,11 +88,12 @@
 @theme {
 	/* For example, we can define out lato font like so */
 	--font-lato: Lato, Tahoma, sans-serif;
+	--font-ubuntu: Ubuntu, sans-serif;
 
 	/* Colors as well */
 	--color-primary: #8658f1;
 	--color-secondary: #803f98;
-	--color-red: #FB8567;
+	--color-red: #fb8567;
 }
 
 /*
@@ -70,6 +127,25 @@
 }
 
 @layer base {
+	html {
+		font-family: var(--font-ubuntu);
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6,
+	p,
+	span,
+	div,
+	a,
+	button,
+	input,
+	textarea {
+		font-family: var(--font-ubuntu);
+	}
 	h1 {
 		@apply font-medium leading-none;
 		font-size: 4rem;
@@ -106,7 +182,6 @@
 @custom-variant s_lg (&:where(.s_lg, .s_lg *));
 @custom-variant s_xl (&:where(.s_xl, .s_xl *));
 @custom-variant s_2xl (&:where(.s_2xl, .s_2xl *));
-
 
 @custom-variant p_web (&:where(.p_web, .p_web *));
 @custom-variant p_ios (&:where(.p_ios, .p_ios *));
