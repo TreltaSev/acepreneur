@@ -35,7 +35,7 @@
 	async function onupdate(value: boolean) {
 		console.info("update")
 		active_admin = value;
-		set_preference('admin_active', JSON.stringify(value));
+		await set_preference('admin_active', JSON.stringify(value));
 		await user.refresh_identity();
 	}
 </script>
