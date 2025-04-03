@@ -89,14 +89,6 @@
 </script>
 
 <div class="white size-full flex flex-col items-center">
-	<!-- <Flex.Col class="h-full">
-		<Flex.Col class="size-full s_2xl:w-[50%] box-border pt-[var(--safe-area-inset-top)]  bg-red-200">
-			<span>{location}</span>
-			<span>{apiUrl}</span>
-			{@render children?.()}
-		</Flex.Col>
-	</Flex.Col> -->
-
 	<Flex.Col class="size-full s_2xl:w-[50%] pt-[var(--safe-area-inset-top)] overflow-y-auto">
 		{@render children?.()}
 	</Flex.Col>
