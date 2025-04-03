@@ -1,4 +1,3 @@
-set shell := ["powershell.exe", "/c"]
 
 [working-directory: './app']
 default:
