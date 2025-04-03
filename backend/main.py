@@ -5,6 +5,7 @@ from dotenv import dotenv_values
 
 @Config.load_predetermined
 def _before_serving():
+    print("-----")
     project_root: pathlib.Path = pathlib.Path(Config.root / '../')
     print((project_root / ".env").absolute().resolve())
     print((project_root / ".env.production.local").absolute().resolve())
@@ -81,12 +82,5 @@ if not __name__ == "__main__":
     Logger.__log__(
         f"__name__ must be __main__, instead is \"{__name__}\". Consider the command {colors.vibrant_blue}`siblink run ./backend`", Severity.Fatal)
     quit()
-
-
-@app.before_serving
-def _before_serving():
-    print(MongoClient.client.address)
-    MongoClient.refresh_client()
-    print(MongoClient.client.address)
 
 uvicorn.run(app, **app.uvicorn_config)
