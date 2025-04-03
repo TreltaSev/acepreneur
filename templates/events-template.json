@@ -1,0 +1,36 @@
+[
+  {
+    "name": "Esports Tournament",
+    "description": "The Game Design and Web Development classes will be hosting a gaming tournament. Try your hand at several different games including: Super Smash Bros, Fortnite, and Mario Kart. The winners will be eligible for prizes!",
+    "card": {
+      "color": "#FDC7F8",
+      "image": {
+        "url": "https://image.png",
+        "_class": "",
+        "style": "border-radius:50%;"
+      }
+    },
+    "slug": "esports-tournament",
+    "content": {
+      "blueprint": "<section>some</section><section>section</section>"
+    },
+    "id": "event-esports-tournament"
+  },
+  {
+    "name": "Plant Sale",
+    "description": "Come fill your gardens with perennials, annuals, herbs, and vegetables started by our fantastic Horticulture and Landscaping program students! We have hundreds of plant varieties available including great pollinators and native Virginia species.",
+    "card": {
+      "color": "#ADB97B",
+      "image": {
+        "url": "https://image.png",
+        "_class": "",
+        "style": ""
+      }
+    },
+    "slug": "plant-sale",
+    "content": {
+      "blueprint": "<section>some</section><section>section2</section>"
+    },
+    "id": "event-plant-sale"
+  }
+]
