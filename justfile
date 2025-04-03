@@ -70,3 +70,17 @@ push MESSAGE:
 api-test:
     docker rm -f eday-nodered 
     docker run -it -p 1880:1880 -v eday-nodered:/data --name eday-nodered nodered/node-red
+
+# Compose the whole project normally
+[working-directory: './']
+docker-compose:
+    docker compose up -d --build
+
+# Compose only a specific service
+[working-directory: './']
+docker-compose-spec SERVICE:
+    docker compose up --build {{SERVICE}}
+
+# Compose only a specific service using a alternative file
+docker-compose-spec-alt SERVICE ALT:
+    docker compose -f docker-compose.yml -f docker-compose-{{ALT}}.yml up --build {{SERVICE}}
