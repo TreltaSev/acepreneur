@@ -6,6 +6,8 @@ from pyucc import console
 
 
 class MongoClient:
+    print(os.getenv("MONGO_URL") or "mongodb://localhost:27017/")
+    print(os.getenv("MONGO_URL"))
     client: pymongo.MongoClient = pymongo.MongoClient(os.getenv("MONGO_URL") or "mongodb://localhost:27017/")
     database: pymongo.database.Database = client["eday"]
 
