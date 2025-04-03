@@ -6,6 +6,7 @@
 
     onMount(async () => {
         const events = await user.get_events();
+        console.log(events)
     })
 </script>
 

@@ -210,6 +210,7 @@ class Event(Struct):
         Returns a client-safe dict so that we don't get any security concerns
         """
         _dict = dict(self.sanitized()) # Copy
+        _dict.setdefault("announcement", EventAnnouncement())
         _dict["announcement"].pop("author", None) # Remove author, since author is probably a admin
         _dict["announcement"].pop("admins", None) # Remove admins list.
         _dict["reactions"]["likes"] = len(_dict["reactions"]["likes"])        
