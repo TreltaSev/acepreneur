@@ -1,3 +1,5 @@
 services:
   backend:
+    stdin_open: true
+    tty: true
     command: sh
