@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8'?>
 <resources>
-    <string name="app_name">eday</string>
-    <string name="title_activity_main">eday</string>
+    <string name="app_name">AcePreneur</string>
+    <string name="title_activity_main">acepreneur</string>
     <string name="package_name">com.eday.app</string>
     <string name="custom_url_scheme">com.eday.app</string>
 </resources>
