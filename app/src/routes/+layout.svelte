@@ -11,6 +11,7 @@
 	import { SafeArea } from '@capacitor-community/safe-area';
 	import { App } from '@capacitor/app';
 	import { afterNavigate } from '$app/navigation';
+	import Container from '@root/lib/ui/container/components/container.svelte';
 
 	let { children } = $props();
 
@@ -75,11 +76,10 @@
 		};
 	});
 
-
 	/* Testing Requests */
 	onMount(async () => {
 		// user.get_events()
-	})
+	});
 
 	afterNavigate(() => {
 		location = window.location as unknown as string;
@@ -89,9 +89,15 @@
 </script>
 
 <div class="white size-full flex flex-col items-center">
-	<Flex.Col class="size-full s_2xl:w-[50%] pt-[var(--safe-area-inset-top)]">
-		<span>{location}</span>
-		<span>{apiUrl}</span>
+	<!-- <Flex.Col class="h-full">
+		<Flex.Col class="size-full s_2xl:w-[50%] box-border pt-[var(--safe-area-inset-top)]  bg-red-200">
+			<span>{location}</span>
+			<span>{apiUrl}</span>
+			{@render children?.()}
+		</Flex.Col>
+	</Flex.Col> -->
+
+	<Flex.Col class="size-full s_2xl:w-[50%] pt-[var(--safe-area-inset-top)] overflow-y-auto">
 		{@render children?.()}
 	</Flex.Col>
 

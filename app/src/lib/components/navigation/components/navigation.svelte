@@ -19,7 +19,13 @@
 		children,
 		class: className,
 		navigationClass = $bindable(
-			`s_2xl:hidden s_xl:hidden s_lg:hidden h-[15%] box-border pt-2 justify-between items-end px-[5%] self-center w-full box-border fixed bottom-0 text-black/60 z-999 border-t border-black/50 bg-white  pb-[var(--safe-area-inset-bottom)]`
+			`s_2xl:hidden s_xl:hidden s_lg:hidden 
+			min-h-[15%] h-[15%] 
+			box-border pt-2 
+			justify-between items-end 
+			px-[5%] w-full 
+			box-border 
+			text-black/60 z-999 border-t border-black/50 bg-white  pb-[var(--safe-area-inset-bottom)]`
 		)
 	}: Props = $props();
 
@@ -36,7 +42,7 @@
 			scanOrientation: 1
 		});
 
-		qrCodeResponseHandler.run(qr_res.ScanResult)
+		qrCodeResponseHandler.run(qr_res.ScanResult);
 	}
 </script>
 
