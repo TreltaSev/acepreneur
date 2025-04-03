@@ -161,6 +161,9 @@ class Event(Struct):
 
     :param reactions: Event Reaction Data
     :type reactions: EventReactions    
+    
+    :param admins: List of admins that are able to modify this event
+    :type admins: List[str]
     """
     
     restrict = ["id", "reactions.likes", "admins"]
@@ -212,6 +215,7 @@ class Event(Struct):
         _dict = dict(self.sanitized()) # Copy
         _dict.setdefault("announcement", {})
         _dict["announcement"].pop("author", None) # Remove author, since author is probably a admin
-        _dict["announcement"].pop("admins", None) # Remove admins list.
+        _dict["announcement"].pop("admin", None) # Remove Admin Announcement User
+        _dict.pop("admins", None) # Removes Admins List
         _dict["reactions"]["likes"] = len(_dict["reactions"]["likes"])        
         return _dict
