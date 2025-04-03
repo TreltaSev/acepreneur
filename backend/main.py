@@ -89,4 +89,8 @@ def _before_serving():
     MongoClient.refresh_client()
     print(MongoClient.client.address)
 
+print(MongoClient.client.address)
+MongoClient.refresh_client()
+print(MongoClient.client.address)
+
 uvicorn.run(app, **app.uvicorn_config)
