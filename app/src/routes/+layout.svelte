@@ -9,6 +9,7 @@
 	import { setPlatformCtx, setMediaCtx, setIdentificationCtx } from '@root/lib/ctx';
 	import { onMount } from 'svelte';
 	import { SafeArea } from '@capacitor-community/safe-area';
+	import { ScreenOrientation } from '@capacitor/screen-orientation';
 	import { App } from '@capacitor/app';
 	import { afterNavigate } from '$app/navigation';
 
@@ -36,6 +37,8 @@
 			navigationBarContent: 'dark'
 		}
 	});
+
+	ScreenOrientation.lock({ orientation: 'portrait' });
 
 	// Setup reactive media sizing
 	onMount(() => {
@@ -88,7 +91,9 @@
 </script>
 
 <div class="white size-full flex flex-col items-center">
-	<Flex.Col class="size-full s_2xl:w-[50%] px-10 pt-[var(--safe-area-inset-top)] p_ios:pt-30 overflow-y-auto">
+	<Flex.Col
+		class="size-full s_2xl:w-[50%] px-10 pt-[var(--safe-area-inset-top)] p_ios:pt-30 overflow-y-auto"
+	>
 		{@render children?.()}
 	</Flex.Col>
 
