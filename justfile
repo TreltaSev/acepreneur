@@ -81,5 +81,12 @@ dc-spec SERVICE:
     docker compose up --build {{SERVICE}}
 
 # Compose only a specific service using a alternative file
+[working-directory: './']
 dc-spec-alt SERVICE ALT:
     docker compose -f docker-compose.yml -f docker-compose-{{ALT}}.yml up -d --build {{SERVICE}}
+
+# Builds a specific service with an alt file while also sh into it.
+[working-directory: './']
+dc-spec-int SERVICE ALT:
+    just dc-spec-alt {{SERVICE}} {{ALT}}
+    docker exec -it {{SERVICE}} sh
