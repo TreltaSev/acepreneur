@@ -88,7 +88,7 @@
 </script>
 
 <div class="white size-full flex flex-col items-center">
-	<Flex.Col class="size-full s_2xl:w-[50%] pt-[var(--safe-area-inset-top)] p_ios:pt-40 overflow-y-auto">
+	<Flex.Col class="size-full s_2xl:w-[50%] px-10 pt-[var(--safe-area-inset-top)] p_ios:pt-30 overflow-y-auto">
 		{@render children?.()}
 	</Flex.Col>
 

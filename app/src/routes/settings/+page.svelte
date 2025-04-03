@@ -123,7 +123,6 @@
 	main {
 		@apply flex flex-col box-border;
 		gap: calc(var(--spacing) * 9);
-		padding: calc(var(--spacing) * 10);
 		overflow-y: auto;
 	}
 
