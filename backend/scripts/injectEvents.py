@@ -42,7 +42,7 @@ pTemplatesDirectory = Path(Config.root / "../templates/")
 pEventsTemplate = pTemplatesDirectory / "events-template.json"
 
 # Parse events template
-events = [Event(event).sanitized() for event in json.loads(pEventsTemplate.read_text())]
+events = [Event(event).unwrap for event in json.loads(pEventsTemplate.read_text())]
 
 console.done("Parsed Events Template")
 
