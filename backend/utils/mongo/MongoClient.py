@@ -1,13 +1,16 @@
 import os
+import json
 import pymongo
 import pymongo.collection
 import pymongo.database
 from pyucc import console
-
+from siblink import Config
+from utils.types import Struct
 
 class MongoClient:
     print(os.getenv("MONGO_URL") or "mongodb://localhost:27017/")
     print(os.getenv("MONGO_URL"))
+    print(json.dumps(Struct(Config.__dict__).sanitized(), indent=4))
     client: pymongo.MongoClient = pymongo.MongoClient(os.getenv("MONGO_URL") or "mongodb://localhost:27017/")
     database: pymongo.database.Database = client["eday"]
 
