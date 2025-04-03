@@ -88,5 +88,5 @@ dc-alt ALT SERVICE="":
 # Builds a specific service with an alt file while also sh into it.
 [working-directory: './']
 dc-int ALT SERVICE="":
-    just dc-spec-alt {{ALT}} {{SERVICE}} 
+    just dc-alt {{ALT}} {{SERVICE}} 
     docker exec -it {{SERVICE}} sh
