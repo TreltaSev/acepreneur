@@ -72,14 +72,14 @@ api-test:
 
 # Compose the whole project normally
 [working-directory: './']
-docker-compose:
+dc:
     docker compose up -d --build
 
 # Compose only a specific service
 [working-directory: './']
-docker-compose-spec SERVICE:
+dc-spec SERVICE:
     docker compose up --build {{SERVICE}}
 
 # Compose only a specific service using a alternative file
-docker-compose-spec-alt SERVICE ALT:
-    docker compose -f docker-compose.yml -f docker-compose-{{ALT}}.yml up --build {{SERVICE}}
+dc-spec-alt SERVICE ALT:
+    docker compose -f docker-compose.yml -f docker-compose-{{ALT}}.yml up -d --build {{SERVICE}}
