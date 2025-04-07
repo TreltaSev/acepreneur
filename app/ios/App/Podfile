@@ -17,7 +17,6 @@ def capacitor_pods
   pod 'CapacitorCamera', :path => '../../node_modules/@capacitor/camera'
   pod 'CapacitorDialog', :path => '../../node_modules/@capacitor/dialog'
   pod 'CapacitorPreferences', :path => '../../node_modules/@capacitor/preferences'
-  pod 'CapacitorScreenOrientation', :path => '../../node_modules/@capacitor/screen-orientation'
 end
 
 target 'AcePreneur' do

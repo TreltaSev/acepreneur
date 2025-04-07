@@ -19,6 +19,3 @@ project(':capacitor-dialog').projectDir = new File('../node_modules/@capacitor/d
 
 include ':capacitor-preferences'
 project(':capacitor-preferences').projectDir = new File('../node_modules/@capacitor/preferences/android')
-
-include ':capacitor-screen-orientation'
-project(':capacitor-screen-orientation').projectDir = new File('../node_modules/@capacitor/screen-orientation/android')
