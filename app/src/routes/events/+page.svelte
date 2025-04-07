@@ -1,16 +1,18 @@
 <script lang="ts">
 
     // --- Components ---
+	import { EventCard } from './_components';
 
     // --- Logic ---
 	import { getIdentityCtx } from '@root/lib/ctx';
+	import type { Event } from '@internal/types';
 	import { onMount } from 'svelte';
 
     // Gathering user object from the identity context
 	const { user } = getIdentityCtx();
 
     // Reactive States to handle what should be rendered
-	let cached_events: any = $state([]);
+	let cached_events: Event[] = $state([]);
 	let loaded: boolean = $state(false);
 
     // Fetch the events on load
@@ -36,5 +38,9 @@
 	{:else}
 		<!-- Events found, display events-->
 		<span>Events found</span>
+
+		{#each cached_events as event}
+			<EventCard data={event}/>
+		{/each}
 	{/if}
 {/if}
