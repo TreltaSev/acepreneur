@@ -1,6 +1,6 @@
 import { delete_preference, get_preference, has_preference, set_preference } from '@internal';
 import { authform, fetch_backend, jsonform } from '@internal/fetch';
-
+import { type Event } from '@internal/types';
 
 export class User {
 	constructor() {}
@@ -67,11 +67,10 @@ export class User {
 	 * 
 	 * Sends a GET request to the backend to retrieve event data.
 	 * 
-	 * @returns {Promise<void>} A promise that resolves when the events are fetched.
+	 * @returns {Promise<Event[]>} A promise that resolves when the events are fetched.
 	 */
-	public async get_events(): Promise<void> {
+	public async get_events(): Promise<Event[]> {
 		const response = await fetch_backend('/events', await authform('GET'));
-
 		return response.data.events || []
 	}
 }

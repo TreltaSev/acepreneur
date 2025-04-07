@@ -33,6 +33,6 @@ export type Event = {
         time: string;
     };
     reactions: {
-        likes: number[];
+        likes: number | string[];
     }
 }
