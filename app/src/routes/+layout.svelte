@@ -12,6 +12,7 @@
 	import { ScreenOrientation } from '@capacitor/screen-orientation';
 	import { App } from '@capacitor/app';
 	import { afterNavigate } from '$app/navigation';
+	import { Capacitor } from '@capacitor/core';
 
 	let { children } = $props();
 
@@ -38,7 +39,16 @@
 		}
 	});
 
-	ScreenOrientation.lock({ orientation: 'portrait' });
+	/* Native ONLY */
+	if (Capacitor.isNativePlatform()) {
+		try {
+			ScreenOrientation.lock({ orientation: 'portrait' });
+		} catch (error) {
+			console.warn(`[screen-orientation] Browser does not support the screen orientation api.`);
+		}
+	} else {
+		console.warn(`[screen-orientation] Orientation lock skipped: not a native platform`);
+	}
 
 	// Setup reactive media sizing
 	onMount(() => {
@@ -78,16 +88,9 @@
 		};
 	});
 
-	/* Testing Requests */
-	onMount(async () => {
-		// user.get_events()
-	});
-
 	afterNavigate(() => {
 		location = window.location as unknown as string;
 	});
-
-	const apiUrl = import.meta.env.VITE_API_URL;
 </script>
 
 <div class="white size-full flex flex-col items-center">
