@@ -99,7 +99,7 @@ Types you can use:
 
 Thankfully it shouldn't be that hard to stick to these guidelines if you use the just commands
 ```bash
-just push "feat(scope): Adding Things" "This is a very long description"
+bash scripts/push.sh "feat(scope): Adding Things" "This is a very long description"
 ```
 
 ---
