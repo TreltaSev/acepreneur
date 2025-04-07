@@ -1,5 +1,6 @@
-import { delete_preference, get_preference, has_preference, set_preference } from '@root/lib/internal';
-import { authform, fetch_backend, jsonform } from '@root/lib/internal/fetch';
+import { delete_preference, get_preference, has_preference, set_preference } from '@internal';
+import { authform, fetch_backend, jsonform } from '@internal/fetch';
+
 
 export class User {
 	constructor() {}
@@ -71,6 +72,6 @@ export class User {
 	public async get_events(): Promise<void> {
 		const response = await fetch_backend('/events', await authform('GET'));
 
-		console.log(response, ";[["); // Debugging response
+		return response.data.events || []
 	}
 }
