@@ -18,7 +18,7 @@ export type Event = {
         color: string;
         image: {
             url: string;
-            class?: string;
+            _class?: string;
             style?: string;
         }
     };
