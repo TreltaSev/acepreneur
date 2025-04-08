@@ -5,9 +5,8 @@
     "card": {
       "color": "#FDC7F8",
       "image": {
-        "url": "https://image.png",
-        "_class": "",
-        "style": "border-radius:50%;"
+        "url": "https://i.imgur.com/kW0tYhv.png",
+        "style": "object-position: 50% 5%;"
       }
     },
     "slug": "esports-tournament",
@@ -22,7 +21,7 @@
     "card": {
       "color": "#ADB97B",
       "image": {
-        "url": "https://image.png",
+        "url": "https://i.imgur.com/MCKnGfO.png",
         "_class": "",
         "style": ""
       }

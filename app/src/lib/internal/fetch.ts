@@ -184,6 +184,8 @@ export async function fetch_backend(
 		request_init = await jsonform('GET', null);
 	}
 
+	console.warn(vite_api_url)
+
 	const response = await CapacitorHttp.request({
 		...request_init,
 		url: `${vite_api_url}/api${pathname}`

@@ -94,6 +94,7 @@
 	--color-primary: #8658f1;
 	--color-secondary: #803f98;
 	--color-red: #fb8567;
+	--color-app: var(--color-primary);
 }
 
 /*

@@ -31,8 +31,9 @@ _load_env()
 
 # Refresh & Load Client
 MongoClient.refresh_client()
-
+MongoClient.database
 # Clear Collection
+
 MongoClient.events.delete_many({})
 
 console.done("Cleared Events Collection")
