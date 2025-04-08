@@ -11,6 +11,7 @@ from siblink import Config
 from dotenv import dotenv_values
 from utils.mongo import MongoClient
 from utils.types.event import Event
+from pymongo.errors import CollectionInvalid
 
 console.start("Injecting Events")
 
@@ -29,10 +30,17 @@ def _load_env():
 
 _load_env()
 
+# Create Events Collection if it doesn't exist
+try:
+    MongoClient.database.create_collection("events")
+except CollectionInvalid as e:
+    pass
+
 # Refresh & Load Client
 MongoClient.refresh_client()
-MongoClient.database
 # Clear Collection
+
+
 
 MongoClient.events.delete_many({})
 
