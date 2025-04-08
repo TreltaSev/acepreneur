@@ -18,7 +18,7 @@ export type Event = {
         color: string;
         image: {
             url: string;
-            class?: string;
+            _class?: string;
             style?: string;
         }
     };
@@ -33,6 +33,6 @@ export type Event = {
         time: string;
     };
     reactions: {
-        likes: number[];
+        likes: number | string[];
     }
 }

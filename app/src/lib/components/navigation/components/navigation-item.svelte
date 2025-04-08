@@ -65,7 +65,7 @@
 	})
 </script>
 
-<a class={cn(itemCls, !icon && iconCls, active && 'text-primary')} {href} {...rest}>
+<a class={cn(itemCls, !icon && iconCls, active && 'text-app')} {href} {...rest}>
 	<!-- Icon Renderer -->
 	{#if icon}
 		<Flex.Col class={iconCls}>
