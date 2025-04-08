@@ -40,14 +40,16 @@
 	});
 
 	/* Native ONLY */
-	if (Capacitor.isNativePlatform()) {
-		try {
-			ScreenOrientation.lock({ orientation: 'portrait' });
-		} catch (error) {
-			console.warn(`[screen-orientation] Browser does not support the screen orientation api.`);
+	if (typeof window !== 'undefined') {
+		if (Capacitor.isNativePlatform()) {
+			try {
+				ScreenOrientation.lock({ orientation: 'portrait' });
+			} catch (error) {
+				console.warn(`[screen-orientation] Browser does not support the screen orientation api.`);
+			}
+		} else {
+			console.warn(`[screen-orientation] Orientation lock skipped: not a native platform`);
 		}
-	} else {
-		console.warn(`[screen-orientation] Orientation lock skipped: not a native platform`);
 	}
 
 	// Setup reactive media sizing
