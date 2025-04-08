@@ -1,0 +1,4 @@
+services:
+  mongodb:
+    volumes:
+      - ./ff_mongo_insecure.conf:/etc/mongo/mongo.conf:rw
