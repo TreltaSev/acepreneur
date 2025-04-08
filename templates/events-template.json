@@ -31,5 +31,22 @@
       "blueprint": "<section>some</section><section>section2</section>"
     },
     "id": "event-plant-sale"
+  },
+  {
+    "name": "Blood Drive",
+    "description": "Our Sports Medicine Students will be hosting a blood drive with the Virginia Red Cross. This will be a great opportunity to give back to our community and potentially help to save a life.",
+    "card": {
+      "color": "#ED1429",
+      "image": {
+        "url": "https://i.imgur.com/MCKnGfO.png",
+        "_class": "",
+        "style": ""
+      }
+    },
+    "slug": "blood-drive",
+    "content": {
+      "blueprint": "<section>some</section><section>section2</section>"
+    },
+    "id": "event-blood-drive"
   }
 ]
