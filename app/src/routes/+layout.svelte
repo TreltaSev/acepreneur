@@ -1,26 +1,41 @@
 <script lang="ts">
+	// Global CSS import
 	import '../app.css';
 
-	// --- Components ---
+	// --- UI Components ---
 	import { Flex } from '@ui';
 	import { Navigation } from '@components';
 
-	// --- Logic ---
-	import { setPlatformCtx, setMediaCtx, setIdentificationCtx } from '@root/lib/ctx';
+	// --- Context setup functions for shared app state ---
+	import { setPlatformCtx, setMediaCtx, setIdentificationCtx, setColorCtx } from '@root/lib/ctx';
+
+	// Svelte lifecycle
 	import { onMount } from 'svelte';
+
+	// Native device functionality via Capacitor
 	import { SafeArea } from '@capacitor-community/safe-area';
 	import { ScreenOrientation } from '@capacitor/screen-orientation';
 	import { App } from '@capacitor/app';
 	import { afterNavigate } from '$app/navigation';
 	import { Capacitor } from '@capacitor/core';
 
+	// `children` will be rendered as a slot from routes using this layout
 	let { children } = $props();
 
-	const { media$, set_media } = setMediaCtx(); // Set Media Ctx
+	// Setup shared contexts and extract key reactive stores
+	const { media$, set_media } = setMediaCtx();
 	const { platform$ } = setPlatformCtx();
 	const { user } = setIdentificationCtx();
+	const { color$ } = setColorCtx(); // Initialize global color context
+
+	// Store current location string (updated after navigation)
 	let location = $state('Hi there');
 
+	/**
+	 * Utility function to remove all document class names that start with a given prefix.
+	 * This is used to clear media (`s_`) or platform (`p_`) variants before applying new ones.
+	 * @param start Prefix string to match class names against.
+	 */
 	function remove_variant(start: string) {
 		document.documentElement.classList.forEach((cls) => {
 			if (cls.startsWith(start)) {
@@ -29,19 +44,21 @@
 		});
 	}
 
+	// Enable transparent system bars and dark content for status/navigation
 	SafeArea.enable({
 		config: {
 			customColorsForSystemBars: true,
-			statusBarColor: '#00000000', // transparent
+			statusBarColor: '#00000000',
 			statusBarContent: 'dark',
-			navigationBarColor: '#00000000', // transparent
+			navigationBarColor: '#00000000',
 			navigationBarContent: 'dark'
 		}
 	});
 
-	/* Native ONLY */
+	/* Only run native-specific logic in the browser context */
 	if (typeof window !== 'undefined') {
 		if (Capacitor.isNativePlatform()) {
+			// Lock screen orientation to portrait on native devices
 			try {
 				ScreenOrientation.lock({ orientation: 'portrait' });
 			} catch (error) {
@@ -52,60 +69,75 @@
 		}
 	}
 
-	// Setup reactive media sizing
+	// Setup logic to run once the component is mounted
 	onMount(() => {
-		user.request_identity();
-		// --- Context APIS --- //
+		user.request_identity(); // Trigger identity detection (e.g., login state)
+
+		// Recalculate media size when the window resizes
 		const callback = () => set_media();
 		window.addEventListener('resize', callback);
-		callback(); // Run Once
+		callback(); // Run once initially
 
+		// Dynamically update media class on document
 		media$.subscribe((v) => {
 			if (typeof document !== 'undefined') {
-				remove_variant('s_'); // Remove Media Sizing Document ClassName
+				remove_variant('s_');
 				document.documentElement.classList.toggle(`s_${v}`);
 			}
 		});
 
+		// Dynamically update platform class on document
 		platform$.subscribe((v) => {
 			if (typeof document !== 'undefined') {
-				remove_variant('p_'); // Remove Platform Document ClassName
+				remove_variant('p_');
 				document.documentElement.classList.toggle(`p_${v}`);
 			}
 		});
 
-		// --- Capacitor Native Listeners --- //
-
-		// Back Arrow
+		// Listen for native back button events (Android)
 		App.addListener('backButton', () => {
 			if (window.location.pathname == '/events') {
-				App.exitApp();
+				App.exitApp(); // Exit app from /events route
 				return;
 			}
-			window.history.back();
+			window.history.back(); // Otherwise go back
 		});
 
+		// Keep --app-color reactive
+		color$.subscribe((color) => {
+			const fallback = getComputedStyle(document.documentElement).getPropertyValue('--color-primary')?.trim();
+			document.documentElement.style.setProperty('--color-app', color ?? fallback);
+		});
+
+		// Cleanup resize listener on unmount
 		return () => {
 			window.removeEventListener('resize', callback);
 		};
 	});
 
+	// Update internal location state when navigating pages
 	afterNavigate(() => {
 		location = window.location as unknown as string;
+		color$.set(null)
 	});
 </script>
 
+<!-- App container with full height and white background -->
 <div class="white size-full flex flex-col items-center">
+	<!-- Content column with responsive width and padding based on media and platform -->
 	<Flex.Col
 		class="size-full s_2xl:w-[50%] px-10 pt-[var(--safe-area-inset-top)] p_ios:pt-30 p_web:pt-10 overflow-y-auto"
 	>
+		<!-- Render child route content -->
 		{@render children?.()}
 	</Flex.Col>
 
+	<!-- Persistent navigation bar at the bottom -->
 	<Navigation.Root />
 </div>
 
 <style>
+	/* Ensure root HTML and body fill the entire viewport */
 	:global(html, body) {
 		width: 100%;
 		height: 100%;

@@ -62,7 +62,7 @@
 	</Item>
 
 	<Flex.Col
-		class="bg-primary text-white aspect-square h-[70%] mb-[4%] rounded-full shrink-0 items-center justify-center"
+		class="bg-app text-white aspect-square h-[70%] mb-[4%] rounded-full shrink-0 items-center justify-center animate"
 		onclick={qr_button_onclick}
 	>
 		<IconQRCode class="size-[50%] shrink-0" />
