@@ -73,4 +73,9 @@ export class User {
 		const response = await fetch_backend('/events', await authform('GET'));
 		return response.data.events || []
 	}
+
+	public async get_event(slug: string): Promise<Event | undefined> {
+		const response = await fetch_backend(`/event/event-${slug}`, await authform('GET'));
+		return response.data.event || undefined
+	}
 }

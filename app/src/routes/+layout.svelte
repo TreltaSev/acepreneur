@@ -64,8 +64,7 @@
 			} catch (error) {
 				console.warn(`[screen-orientation] Browser does not support the screen orientation api.`);
 			}
-		} else {
-			console.warn(`[screen-orientation] Orientation lock skipped: not a native platform`);
+	} else {
 		}
 	}
 
