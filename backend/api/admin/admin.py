@@ -1,4 +1,5 @@
-
+# Database
+from siblink import Config
 
 from utils.package import cloakquart
 from utils.types import Struct, User
@@ -27,11 +28,11 @@ async def admin_is_GET(user: User, *args, **kwargs):
         "state": is_admin
     }
     
-# @adminRefactor.on("POST")
-# @getJson
-# async def admin_is_POST(json_struct: Struct, *args, **kwargs):
-#     json_struct.requires(['secret'])
-#     return {
-#         "status": json_struct.secret == Config.admin.secret
-#     }
+@adminRefactor.on("POST")
+@getJson
+async def admin_is_POST(json_struct: Struct, *args, **kwargs):
+    json_struct.requires(['secret'])
+    return {
+        "status": json_struct.secret == Config.admin.secret
+    }
     
