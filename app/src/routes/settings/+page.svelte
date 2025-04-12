@@ -15,6 +15,7 @@
 
 	// Reactive state for admin access status
 	let active_admin: boolean | null = $state(null);
+	let is_admin: boolean | null = $state(null)
 
 	// Function to handle QR code prompt for scanning user ID or admin token
 	async function qr_prompt() {
@@ -116,6 +117,8 @@
 			</aside>
 		</article>
 	</section>
+
+	<!-- If User is Dev Admin -->
 </main>
 
 <style scoped>
