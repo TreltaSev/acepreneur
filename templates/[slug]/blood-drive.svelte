@@ -23,3 +23,11 @@ card.image.style="object-fit:contain;"
     compare to people at the same age and height.
   </h4>
 </section>
+
+<section style="margin-top:20px;">
+  <h3>What's Your Vert?</h3>
+  <h4 style="opacity:60%;">
+    Students will complete the standing broad jump, vertical jump, and 3 cone
+    drill. They will receive a copy of their scores! $3 per entry.
+  </h4>
+</section>

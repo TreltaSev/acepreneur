@@ -2,10 +2,10 @@
 name="Plant Sale"
 description="Come fill your gardens with perennials, annuals, herbs, and vegetables started by our fantastic Horticulture and Landscaping program students! We have hundreds of plant varieties available including great pollinators and native Virginia species."
 slug="plant-sale"
-id="event-plant-sale"
 card.color="#ADB97B"
 card.image.url="https://i.imgur.com/MCKnGfO.png"
 order=1
+program=horticulture
 -->
 
 <section>
