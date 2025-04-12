@@ -26,6 +26,10 @@
 	async function flop() {
 		// If admin secret is not valid, force toggle to be false
 		console.log(active_admin, admin_toggled);
+
+		setTimeout(() => {
+			console.log(active_admin, "............")
+		}, 3000);
 		if (!active_admin) {
 			admin_toggled = false;
 		}
