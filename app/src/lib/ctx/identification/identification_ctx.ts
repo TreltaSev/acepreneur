@@ -7,6 +7,8 @@ import { get_preference, set_preference } from '@root/lib/internal';
 
 export function createIdentificationData() {
 	const identity$: Writable<string | null> = writable(null);
+	const dev_admin$: Writable<boolean | null> = writable(null);
+
 	const user: User = new User();
 
 	identity$.subscribe(async (current_identity) => {
@@ -21,6 +23,12 @@ export function createIdentificationData() {
 			if (get(identity$) != userIdentity) {
 				identity$.set(userIdentity);
 			}
+
+			const dev_admin = JSON.parse(await get_preference("dev-admin") || 'false') as boolean
+			if (get(dev_admin$) != dev_admin) {
+				console.log("setting to ", dev_admin)
+				dev_admin$.set(dev_admin)
+			}
 		} catch (error) {
 			console.warn(`Error`, error);
 			return;
@@ -29,6 +37,7 @@ export function createIdentificationData() {
 
 	return {
 		identity$,
+		dev_admin$,
 		user
 	};
 }

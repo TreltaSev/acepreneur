@@ -11,11 +11,26 @@
 	import IconTrash from '~icons/solar/trash-bin-trash-bold'; // Trash/delete icon
 
 	// Get user identity context
-	const { identity$, user } = getIdentityCtx();
+	const { identity$, dev_admin$, user } = getIdentityCtx();
 
 	// Reactive state for admin access status
 	let active_admin: boolean | null = $state(null);
-	let is_admin: boolean | null = $state(null)
+	dev_admin$.subscribe((c) => (active_admin = c));
+
+	// True whenever the admin toggle is toggled
+	let admin_toggled: boolean | null = $derived(active_admin);
+
+	$effect(() => {
+		console.log(`Active admin is ${active_admin}`)
+	})
+
+	async function flop() {
+		// If admin secret is not valid, force toggle to be false
+		console.log(active_admin, admin_toggled)
+		if (!active_admin) {
+			admin_toggled = false
+		}
+	}
 
 	// Function to handle QR code prompt for scanning user ID or admin token
 	async function qr_prompt() {
@@ -27,15 +42,9 @@
 		await user.refresh_identity();
 	}
 
-	// Load admin access preference on mount
-	onMount(async () => {
-		active_admin = JSON.parse((await get_preference('admin_active')) || 'false');		
-	});
-
 	// Update admin access state and save preference
 	async function onupdate(value: boolean) {
-		console.info("update")
-		active_admin = value;
+		admin_toggled = value;
 		await set_preference('admin_active', JSON.stringify(value));
 		await user.refresh_identity();
 	}
@@ -113,7 +122,7 @@
 				<h4>Toggle Admin Access towards resources. When toggled, refreshes the current user ID.</h4>
 			</summary>
 			<aside>
-				<Toggle {onupdate} value={active_admin || false} />
+				<Toggle {onupdate} value={admin_toggled || false} ontrue={flop}/>
 			</aside>
 		</article>
 	</section>

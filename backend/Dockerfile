@@ -13,7 +13,7 @@ RUN git clone https://github.com/TreltaSev/siblink.git && \
 # Set PATH to use the siblink command
 ENV PATH="${PATH}:/root/.local/bin"
 
-# Copy requirements and init early
+# Copy requirements and init early!
 WORKDIR /backend
 COPY requirements.txt .
 RUN siblink init
