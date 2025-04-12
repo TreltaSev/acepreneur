@@ -45,10 +45,12 @@
 	// Update admin access state and save preference
 	async function onupdate(value: boolean) {
 		admin_toggled = value;
-		await set_preference('admin_active', JSON.stringify(value));
-
 		
-		await user.refresh_identity();
+
+		if (await user.admin_valid()) {
+			await set_preference('admin_active', JSON.stringify(value));
+			await user.refresh_identity();
+		}
 	}
 </script>
 

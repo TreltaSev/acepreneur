@@ -60,6 +60,7 @@ export class User {
 		if (admin_response.status !== 200) return false;
 
 		// Return admin response
+		console.log(`admin_response: ${admin_response.data.status || false}`)
 		return admin_response.data.status || false
 	}
 
