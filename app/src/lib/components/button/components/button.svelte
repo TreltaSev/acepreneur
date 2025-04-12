@@ -12,6 +12,8 @@
 		mode = $bindable('fill'),
 		shape = $bindable('rounded'),
 		text = $bindable(undefined),
+		href = $bindable(undefined),
+		onclick = $bindable(() => {}),
 		...rest
 	}: Props = $props();
 
@@ -26,9 +28,26 @@
 		sizeCls,
 		shapeCls
 	);
+
+	let anchor_ref: HTMLAnchorElement | undefined = $state(undefined)
+
+	function handleClick(event: MouseEvent) {
+		// Run onclick specified if exists
+		if (onclick) {onclick(event as any)};
+		
+		if (!anchor_ref) return;
+
+		// Simulate Click
+		anchor_ref.click();
+
+	}
 </script>
 
-<button class={cn(buttonCls, className)} {...rest}>
+<!-- svelte-ignore element_invalid_self_closing_tag -->
+<!-- svelte-ignore a11y_consider_explicit_label -->
+<a {href} class="hidden" bind:this={anchor_ref}/>
+
+<button class={cn(buttonCls, className)} {...rest} onclick={handleClick}>
 	<Container class={cn("items-center justify-center flex flex-row gap-4 [&_>_svg]:size-7", mode== 'fill' && 'text-white')}>
 		{@render children?.()}
 

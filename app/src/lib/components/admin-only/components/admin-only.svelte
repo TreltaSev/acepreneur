@@ -20,7 +20,7 @@
 	});
 </script>
 
-{#if active_admin}
+{#if active_admin == true}
 	<div class={adminOnlyCls}>
 		{@render children?.()}
 	</div>
