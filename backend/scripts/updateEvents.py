@@ -49,7 +49,7 @@ def set_nested(d, keys, value):
     d[keys[-1]] = value
     
 
-_file = Path(Config.root / "../templates/[slug]").glob("*.svelte")
+_file = Path(Config.root / "../templates/event/[slug]").glob("*.svelte")
 
 parsed = []
 
