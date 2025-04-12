@@ -1,10 +1,11 @@
+
+
 from utils.package import cloakquart
 from utils.types import Struct, User
 from utils.json import getJson
 from utils.req import getHeaders, getUser
 
-# Database
-from siblink import Config
+
 
 
 blueprint = cloakquart.Blueprint("api:@admin", __name__)
@@ -26,11 +27,11 @@ async def admin_is_GET(user: User, *args, **kwargs):
         "state": is_admin
     }
     
-@adminRefactor.on("POST")
-@getJson
-async def admin_is_POST(json_struct: Struct, *args, **kwargs):
-    json_struct.requires(['secret'])
-    return {
-        "status": json_struct.secret == Config.admin.secret
-    }
+# @adminRefactor.on("POST")
+# @getJson
+# async def admin_is_POST(json_struct: Struct, *args, **kwargs):
+#     json_struct.requires(['secret'])
+#     return {
+#         "status": json_struct.secret == Config.admin.secret
+#     }
     
