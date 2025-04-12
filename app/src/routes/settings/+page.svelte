@@ -46,6 +46,8 @@
 	async function onupdate(value: boolean) {
 		admin_toggled = value;
 		await set_preference('admin_active', JSON.stringify(value));
+
+		
 		await user.refresh_identity();
 	}
 </script>

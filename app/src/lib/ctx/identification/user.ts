@@ -1,4 +1,3 @@
-import type { PromptOptions } from '@capacitor/dialog';
 import { delete_preference, get_preference, has_preference, set_preference } from '@internal';
 import { authform, fetch_backend, jsonform } from '@internal/fetch';
 import { type Event } from '@internal/types';
@@ -60,9 +59,8 @@ export class User {
 
 		if (admin_response.status !== 200) return false;
 
-		// Response was recieved
-		
-		return true;
+		// Return admin response
+		return admin_response.data.status || false
 	}
 
 	/**
