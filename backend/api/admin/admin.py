@@ -1,12 +1,9 @@
 from utils.package import cloakquart
-from utils.types import Struct
+from utils.types import Struct, User
 from utils.json import getJson
 from utils.req import getHeaders, getUser
 
 # Database
-from utils.mongo import MongoClient
-from utils.types import User
-
 from siblink import Config
 
 
