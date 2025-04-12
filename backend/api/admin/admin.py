@@ -13,7 +13,7 @@ blueprint = cloakquart.Blueprint("api:@admin", __name__)
 @blueprint.route("/api/admin/is", methods=["GET"])
 @getHeaders(["Bearer"], explicit=True)
 @getUser()
-async def admin_is_GET(user: User):
+async def admin_is_GET(user: User, *args, **kwargs):
     """
     Checks if the request holder is a admin.
     """

@@ -37,12 +37,12 @@ export class User {
 		// Store the received identity in preferences
 		await set_preference('identity', response.data.id);
 
-		// // Check if new identity includes dev admin perms
-		// const admin_response = await fetch_backend("/admin/is", await authform('GET'))
-		// if (admin_response.status == 200) {
-		// 	console.warn(`Setting Admin to ${admin_response.data.state || false}`)
-		// 	await set_preference("dev-admin", admin_response.data.state || false)
-		// }
+		// Check if new identity includes dev admin perms
+		const admin_response = await fetch_backend("/admin/is", await authform('GET'))
+		if (admin_response.status == 200) {
+			console.warn(`Setting Admin to ${admin_response.data.state || false}`)
+			await set_preference("dev-admin", admin_response.data.state || false)
+		}
 	}
 
 	/**
