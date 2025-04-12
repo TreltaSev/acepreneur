@@ -18,6 +18,8 @@ async def admin_is_GET(user: User, *args, **kwargs):
     Checks if the request holder is a admin.
     """
     
+    print("Hi there :0")
+    
     is_admin = user.get("admin", False)
     
     return {
