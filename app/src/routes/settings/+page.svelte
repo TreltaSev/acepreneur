@@ -48,7 +48,7 @@
 		
 
 		if (await user.admin_valid()) {
-			await set_preference('admin_active', JSON.stringify(value));
+			await set_preference('dev-admin', JSON.stringify(value));
 			await user.refresh_identity();
 		}
 	}
@@ -126,7 +126,7 @@
 				<h4>Toggle Admin Access towards resources. When toggled, refreshes the current user ID.</h4>
 			</summary>
 			<aside>
-				<Toggle {onupdate} value={admin_toggled || false} ontrue={flop}/>
+				<Toggle {onupdate} value={admin_toggled || false} ontrue={flop} onfalse={flop}/>
 			</aside>
 		</article>
 	</section>
