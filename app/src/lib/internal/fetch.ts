@@ -1,7 +1,7 @@
 import { CapacitorHttp, type HttpOptions, type HttpResponse } from '@capacitor/core';
 import { get_preference, has_preference } from './object';
 
-const vite_api_url = import.meta.env.VITE_API_URL || 'https://localhost';
+const vite_api_url = import.meta.env.VITE_API_URL || 'https://finalfinance.us';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
