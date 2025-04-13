@@ -64,7 +64,7 @@
 			} catch (error) {
 				console.warn(`[screen-orientation] Browser does not support the screen orientation api.`);
 			}
-	} else {
+		} else {
 		}
 	}
 
@@ -76,6 +76,10 @@
 		const callback = () => set_media();
 		window.addEventListener('resize', callback);
 		callback(); // Run once initially
+
+		if (typeof navigator !== 'undefined' && 'serviceWorker' in navigator) {
+			navigator.serviceWorker.register('/service-worker.js');
+		}
 
 		// Dynamically update media class on document
 		media$.subscribe((v) => {
@@ -104,7 +108,9 @@
 
 		// Keep --app-color reactive
 		color$.subscribe((color) => {
-			const fallback = getComputedStyle(document.documentElement).getPropertyValue('--color-primary')?.trim();
+			const fallback = getComputedStyle(document.documentElement)
+				.getPropertyValue('--color-primary')
+				?.trim();
 			document.documentElement.style.setProperty('--color-app', color ?? fallback);
 		});
 
@@ -117,9 +123,17 @@
 	// Update internal location state when navigating pages
 	afterNavigate(() => {
 		location = window.location as unknown as string;
-		color$.set(null)
+		color$.set(null);
 	});
 </script>
+
+<svelte:head>
+	<link rel="manifest" href="/manifest.webmanifest" />
+	<meta name="theme-color" content="#0084ff" />
+	<meta name="mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<link rel="apple-touch-icon" href="/icons/icon-192x192.png" />
+</svelte:head>
 
 <!-- App container with full height and white background -->
 <div class="white size-full flex flex-col items-center">
