@@ -18,12 +18,12 @@ export default defineConfig(({ mode }) => {
 				srcDir: 'src',
 				filename: 'service-worker.js',
 				manifest: {
-					name: 'Final Finance',
-					short_name: 'Finance',
+					name: 'Acepreneur',
+					short_name: 'App',
 					start_url: '/',
 					display: 'standalone',
 					background_color: '#ffffff',
-					theme_color: '#0084ff',
+					theme_color: '#8658F1',
 					icons: [
 						{
 							src: '/icons/icon-192.png',
