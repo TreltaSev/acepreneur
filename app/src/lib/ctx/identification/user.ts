@@ -103,6 +103,7 @@ export class User {
 
 	public async get_event(slug: string): Promise<Event | undefined> {
 		const response = await fetch_backend(`/event/event-${slug}`, await authform('GET'));
+		response.data.event = {...response.data.event, asAdmin: response.data.event.asAdmin} as Event;
 		return response.data.event || undefined;
 	}
 }

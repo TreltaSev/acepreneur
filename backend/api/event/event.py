@@ -63,8 +63,11 @@ async def event_GET(user: User, _id: str, *args, **kwargs):
     else:
         event = event.sanitized()
 
+    as_admin: bool = user.get("admin", False) or (user.id in event.admins)
+    
     return {
-        "event": event
+        "event": event,
+        "asAdmin": as_admin
     }
 
 

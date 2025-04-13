@@ -35,5 +35,6 @@ export type Event = {
     };
     reactions: {
         likes: number | string[];
-    }
+    };
+    admins?: string[]
 }

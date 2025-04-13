@@ -11,10 +11,11 @@
 
 	// Slug data object
 	import { page } from '$app/state';
+	import { get } from 'svelte/store';
 	const slug = page.params.slug;
 
 	// Gather user object from the identity context
-	const { user } = getIdentityCtx();
+	const { user,  identity$} = getIdentityCtx();
 
     // Get Color Context
 	const { color$ } = getColorCtx();
@@ -23,6 +24,8 @@
 	// Reactive State to store event information
 	let event: Event | undefined = $state(undefined);
 	let load_state = $state(new State());
+
+	let asAdmin: boolean = $state(false);
 
 	// Fetch the specified event on load
 	onMount(async () => {
@@ -37,6 +40,8 @@
         color$.set(event.card.color)
 
 		load_state.flagLoaded();
+
+		asAdmin = (event as any).asAdmin as boolean
 	});
 </script>
 
@@ -51,8 +56,7 @@
 {#if load_state.value == 'loaded' && event}
 	<Flex.Col class="gap-8 blueprint-content-container">
 		<Flex.Col class="gap-8">
-
-            <!-- Event Image-->
+			<!-- Event Image-->
 			<img
 				src={event.card.image.url}
 				alt={`background of ${event.name}`}
@@ -60,39 +64,43 @@
 				style={event.card.image.style}
 			/>
 
-            <!-- Event Name and Description -->
+			<!-- Event Name and Description -->
 			<Flex.Col>
 				<h3>{event.name}</h3>
 				<h4>{event.description}</h4>
 			</Flex.Col>
 
-
-            <!-- Announcement Goes Here -->
+			<!-- Announcement Goes Here -->
 		</Flex.Col>
 
-        <!-- Page Content Goes Here -->
+		<!-- Page Content Goes Here -->
 		<Flex.Col class="pb-8">
 			{@html event?.content.blueprint}
 		</Flex.Col>
+
+		{#if asAdmin}
+			<span>as admin...</span>
+		{:else}
+			<span>Not as admin</span>
+		{/if}
 	</Flex.Col>
 {/if}
 
 <style>
-    :global(.blueprint-content-container) {
-
+	:global(.blueprint-content-container) {
 		& h4 {
 			opacity: 60%;
 		}
 
-        & button {
-            @apply w-full;
-            padding-top: calc(var(--spacing) * 4);
-            padding-bottom: calc(var(--spacing) * 4);
-            color: white;
-            font-size: large;
-            border-radius: calc(var(--spacing) * 4);
-            background-color: var(--color-app);
-            margin-top: calc(var(--spacing) * 4);
-        }
-    }
+		& button {
+			@apply w-full;
+			padding-top: calc(var(--spacing) * 4);
+			padding-bottom: calc(var(--spacing) * 4);
+			color: white;
+			font-size: large;
+			border-radius: calc(var(--spacing) * 4);
+			background-color: var(--color-app);
+			margin-top: calc(var(--spacing) * 4);
+		}
+	}
 </style>
