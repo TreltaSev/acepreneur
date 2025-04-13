@@ -1,6 +1,7 @@
 <script lang="ts">
 	// --- Components ---
 	import { Flex } from '@root/lib/ui';
+	import { Edit } from './_components';
 
 	// --- Logic ---
 	import { onMount } from 'svelte';
@@ -11,7 +12,6 @@
 
 	// Slug data object
 	import { page } from '$app/state';
-	import { get } from 'svelte/store';
 	const slug = page.params.slug;
 
 	// Gather user object from the identity context
@@ -38,10 +38,8 @@
 
 		event = fetched_event;
         color$.set(event.card.color)
-
+		asAdmin = (event as any).asAdmin as boolean
 		load_state.flagLoaded();
-		console.log(event)
-		asAdmin = false
 	});
 </script>
 
@@ -54,7 +52,7 @@
 {/if}
 
 {#if load_state.value == 'loaded' && event}
-	<Flex.Col class="gap-8 blueprint-content-container">
+	<Flex.Col class="gap-8 blueprint-content-container relative">
 		<Flex.Col class="gap-8">
 			<!-- Event Image-->
 			<img
@@ -79,9 +77,7 @@
 		</Flex.Col>
 
 		{#if asAdmin}
-			<span>as admin...</span>
-		{:else}
-			<span>Not as admin</span>
+			<Edit/>
 		{/if}
 	</Flex.Col>
 {/if}
