@@ -40,8 +40,8 @@
         color$.set(event.card.color)
 
 		load_state.flagLoaded();
-
-		asAdmin = (event as any).asAdmin as boolean
+		console.log(event)
+		asAdmin = false
 	});
 </script>
 
