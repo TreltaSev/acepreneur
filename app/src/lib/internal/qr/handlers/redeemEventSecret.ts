@@ -7,5 +7,7 @@ export async function redeemEventSecret(token: string) {
 	if (response.data.added) {
 		console.log(`[redeemEventSecret] Event ${response.data.event} added`);
 	}
+
+    
 	await goto(`/settings/ake-event-admin/${response.data.event.slug}/success`);
 }

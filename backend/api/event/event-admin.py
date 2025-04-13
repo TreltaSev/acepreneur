@@ -71,7 +71,9 @@ async def event_admin_redeem_GET(user: User, _secret: str, *args, **kwargs):
         {"$addToSet": {"admins": user.id}}
     )
     was_added = user.id in MongoClient.events.find_one({"slug": secret.slug}).get("admins", [])
-    
+
+    print("reposnse", json.dumps({"added": was_added,
+                                  "event": event.sanitized()}, indent=4))
 
     return {
         "added": was_added,
