@@ -57,6 +57,7 @@ async def event_GET(user: User, _id: str, *args, **kwargs):
 
     event = Event(Search)
     as_admin: bool = user.get("admin", False) or (user.id in event.admins)
+    event.asAdmin = as_admin
     
     # If not admin, sanitize results considerably
     if not user.get("admin", False):
@@ -67,7 +68,7 @@ async def event_GET(user: User, _id: str, *args, **kwargs):
     
     
     print("as admin", as_admin)
-    event.asAdmin = as_admin
+    
     
     return {
         "event": event,
