@@ -24,7 +24,7 @@ services:
       context: app
       dockerfile: ./Dockerfile
     volumes:
-      - ./.env:/.env
+      - ./.env:/app/.env
     networks:
       - docker-network
 
