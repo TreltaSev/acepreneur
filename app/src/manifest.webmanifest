@@ -1,6 +1,6 @@
 {
     "name": "Acepreneur",
-    "short_name": "App",
+    "short_name": "Acepreneur App",
     "start_url": "/",
     "display": "standalone",
     "background_color": "#ffffff",
