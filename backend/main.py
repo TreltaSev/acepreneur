@@ -29,11 +29,10 @@ Logger.__log__("Server Starting...", severity=Severity.Info)
 
 
 
-
-app.register_blueprints()
-
-app.determine_environment()
 app = cors(app, allow_origin="*")
+app.register_blueprints()
+app.determine_environment()
+
 
 
 

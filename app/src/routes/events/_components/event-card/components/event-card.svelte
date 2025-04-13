@@ -51,7 +51,7 @@
 		 */
 		const options: IntersectionObserverInit = {
 			root: null,
-			threshold: 0.9
+			threshold: 1
 		};
 
 		const observer = new IntersectionObserver(callback, options);

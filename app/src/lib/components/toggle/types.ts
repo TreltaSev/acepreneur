@@ -7,7 +7,8 @@ export type tToggleProps = HTMLAttributes<HTMLDivElement> & {
     toggleClass?: ClassValue,
     
     // Extra Props Here:
-    value?: boolean
+    value?: boolean;
+    valueDependent?: boolean;
 
     // Callback Functions
     onupdate?: (value: boolean) => void;

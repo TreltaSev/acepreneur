@@ -64,8 +64,7 @@
 			} catch (error) {
 				console.warn(`[screen-orientation] Browser does not support the screen orientation api.`);
 			}
-		} else {
-			console.warn(`[screen-orientation] Orientation lock skipped: not a native platform`);
+	} else {
 		}
 	}
 
@@ -126,7 +125,7 @@
 <div class="white size-full flex flex-col items-center">
 	<!-- Content column with responsive width and padding based on media and platform -->
 	<Flex.Col
-		class="size-full s_2xl:w-[50%] px-10 pt-[var(--safe-area-inset-top)] p_ios:pt-30 p_web:pt-10 overflow-y-auto"
+		class="size-full s_2xl:w-[50%] px-10 pt-[calc(var(--safe-area-inset-top)_+_1rem)] p_ios:pt-30 p_web:pt-10 overflow-y-auto"
 	>
 		<!-- Render child route content -->
 		{@render children?.()}

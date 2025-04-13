@@ -35,7 +35,15 @@ async def user_GET(headers: Struct, user: User, *args, **kwargs):
 @userCallback.on("DELETE")
 @getHeaders(["Bearer"], explicit=True)
 async def user_DELETE(headers: Struct, *args, **kwargs):
+    # Delete the user from the users collection
     MongoClient.users.find_one_and_delete({"id": headers.Bearer})
+    
+    # Remove the user from the admins array in all events
+    MongoClient.events.update_many(
+        {"admins": headers.Bearer},
+        {"$pull": {"admins": headers.Bearer}}
+    )
+    
     return {
-        "message": f"Deleted session of token: {headers.Bearer}"
+        "message": f"Deleted session of token: {headers.Bearer} and removed user from all events"
     }

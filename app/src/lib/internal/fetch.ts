@@ -25,7 +25,7 @@ export async function jsonform(method: string, object: BodyInit | null = null): 
 	};
 
 	// Add admin token if present
-	if (await has_preference('admin_token') && (await get_preference("admin_active") == "true")) {
+	if (await has_preference('admin_token') && (await get_preference("dev-admin") == "true")) {
 		Object.assign(_obj.headers as any, { 'Admin-Token': await get_preference('admin_token') });
 	}
 
@@ -183,8 +183,6 @@ export async function fetch_backend(
 	if (!request_init) {
 		request_init = await jsonform('GET', null);
 	}
-
-	console.warn(vite_api_url)
 
 	const response = await CapacitorHttp.request({
 		...request_init,

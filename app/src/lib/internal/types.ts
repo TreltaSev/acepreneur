@@ -12,6 +12,7 @@ export type User = {
  * Event type that the client would see, likes are sanitized.
  */
 export type Event = {
+	order?: number;
     name: string;
     description: string;
     card: {
@@ -34,5 +35,6 @@ export type Event = {
     };
     reactions: {
         likes: number | string[];
-    }
+    };
+    admins?: string[]
 }

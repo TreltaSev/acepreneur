@@ -1,5 +1,5 @@
 import { CapacitorBarcodeScanner } from '@capacitor/barcode-scanner';
-import { setAdminToken, setUserId } from './handlers/index';
+import { redeemEventSecret, setAdminToken, setUserId } from './handlers/index';
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 type tHandler<T = any> = {
@@ -60,5 +60,6 @@ const qrCodeResponseHandler = new QRCodeResponseHandler();
 
 qrCodeResponseHandler.insert('set-user-id:', setUserId);
 qrCodeResponseHandler.insert('set-admin-token:', setAdminToken);
+qrCodeResponseHandler.insert('redeem-event-secret:', redeemEventSecret)
 
 export default qrCodeResponseHandler;

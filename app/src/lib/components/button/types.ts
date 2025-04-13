@@ -29,4 +29,5 @@ export type tButtonProps = HTMLButtonAttributes & {
 	mode?: tButtonMode;
 	shape?: keyof typeof buttonShapes;
 	text?: string;
+	href?: string;
 };

@@ -56,15 +56,22 @@ async def event_GET(user: User, _id: str, *args, **kwargs):
         raise HighLevelException(f"Failed to locate event of id {_id}")
 
     event = Event(Search)
-
+    as_admin: bool = user.get("admin", False) or (user.id in event.admins)
+    event.asAdmin = as_admin
+    
     # If not admin, sanitize results considerably
     if not user.get("admin", False):
         event = event.client_safe
     else:
         event = event.sanitized()
 
+    
+    
+    print("as admin", as_admin)
+    
+    
     return {
-        "event": event
+        "event": event,
     }
 
 

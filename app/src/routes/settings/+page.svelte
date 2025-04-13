@@ -1,20 +1,30 @@
 <script lang="ts">
 	// --- Components ---
-	import { Button, Toggle } from '@components'; // Importing reusable button and toggle components
+	import { AdminOnly, Button, Toggle } from '@components'; // Importing reusable button and toggle components
 	import { getIdentityCtx } from '@root/lib/ctx'; // Fetching user identity context
 	import { get_preference, set_preference } from '@root/lib/internal'; // Methods to get/set user preferences
 	import qrCodeResponseHandler from '@root/lib/internal/qr/qr'; // QR code handling logic
-	import { onMount } from 'svelte'; // Lifecycle function for initialization
 
 	// --- Icons ---
 	import IconQRCode from '~icons/solar/qr-code-bold'; // QR code icon
 	import IconTrash from '~icons/solar/trash-bin-trash-bold'; // Trash/delete icon
 
 	// Get user identity context
-	const { identity$, user } = getIdentityCtx();
+	const { identity$, dev_admin$, user } = getIdentityCtx();
 
 	// Reactive state for admin access status
 	let active_admin: boolean | null = $state(null);
+	dev_admin$.subscribe((c) => (active_admin = c));
+
+	// True whenever the admin toggle is toggled
+	let admin_toggled: boolean | null = $derived(active_admin);
+
+	async function flop() {
+		// If admin secret is not valid, force toggle to be false
+		if (!active_admin) {
+			admin_toggled = false;
+		}
+	}
 
 	// Function to handle QR code prompt for scanning user ID or admin token
 	async function qr_prompt() {
@@ -26,21 +36,25 @@
 		await user.refresh_identity();
 	}
 
-	// Load admin access preference on mount
-	onMount(async () => {
-		active_admin = JSON.parse((await get_preference('admin_active')) || 'false');		
-	});
-
 	// Update admin access state and save preference
 	async function onupdate(value: boolean) {
-		console.info("update")
-		active_admin = value;
-		await set_preference('admin_active', JSON.stringify(value));
-		await user.refresh_identity();
+		admin_toggled = value;
+
+		console.error(`UPDATE: VALUE: ${value}`);
+
+		if (await user.admin_valid()) {
+			console.log(
+				`Admin token is valid: ${value} ${typeof value} ${JSON.stringify(value)} ${typeof JSON.stringify(value)}`
+			);
+			await set_preference('dev-admin', JSON.stringify(value));
+			await user.refresh_identity();
+		} else {
+			console.log(`Admin token is invalid: ${value} ${typeof value} ${JSON.stringify(value)}`);
+		}
 	}
 </script>
 
-<main>
+<main class="pb-20 overflow-y-visible">
 	<h1>Settings</h1>
 
 	<!-- User Settings Section -->
@@ -77,7 +91,7 @@
 		<article>
 			<summary>
 				<h3>Current User ID</h3>
-				<h4>{$identity$}</h4>
+				<h4>{$identity$ || 'Generating'}</h4>
 			</summary>
 		</article>
 	</section>
@@ -112,10 +126,33 @@
 				<h4>Toggle Admin Access towards resources. When toggled, refreshes the current user ID.</h4>
 			</summary>
 			<aside>
-				<Toggle {onupdate} value={active_admin || false} />
+				<Toggle {onupdate} value={admin_toggled || false} ontrue={flop} />
 			</aside>
 		</article>
 	</section>
+
+	<AdminOnly>
+		<!-- Events Settings Section -->
+		<section>
+			<h2>Events</h2>
+
+			<!-- Event Admin Setup -->
+			<article>
+				<summary>
+					<h3>Event Admin Setup</h3>
+					<h4>
+						Generate a QR Code for a specific event that someone can scan and become a event-admin
+					</h4>
+				</summary>
+
+				<aside>
+					<Button class="text-black/80" mode="outline" text="Gen" href="/settings/make-event-admin">
+						<IconQRCode />
+					</Button>
+				</aside>
+			</article>
+		</section>
+	</AdminOnly>
 </main>
 
 <style scoped>

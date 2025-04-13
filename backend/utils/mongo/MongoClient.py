@@ -15,6 +15,7 @@ class MongoClient:
     logs: pymongo.collection.Collection = database["logs"]
     users: pymongo.collection.Collection = database["users"]
     events: pymongo.collection.Collection = database["events"]
+    secrets: pymongo.collection.Collection = database["secrets"]
     
     @classmethod
     def refresh_client(cls):
