@@ -17,6 +17,17 @@ services:
       - docker-network
     depends_on:
       - mongodb
+  frontend:
+    container_name: frontend
+    image: dev_trel_frontend
+    build:
+      context: app
+      dockerfile: ./Dockerfile
+    volumes:
+      - ./.env:/.env
+    networks:
+      - docker-network
+
 
   nginx:
     image: nginx:latest
@@ -27,7 +38,6 @@ services:
     ports:
       - '80:80'
       - '443:443'
-      - '8000:8000'
     networks:
       - docker-network
     depends_on:
