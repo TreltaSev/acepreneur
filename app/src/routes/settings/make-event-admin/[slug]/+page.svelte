@@ -10,7 +10,7 @@
 
 	// Slug data object
 	import { page } from '$app/state';
-	import { authform } from '@root/lib/internal/fetch';
+	import { authform, fetch_backend } from '@root/lib/internal/fetch';
 	const slug = page.params.slug;
 
 	// Gather user object from the identity context
@@ -19,11 +19,18 @@
 	// Reactive State to store event information
 	let event: Event | undefined = $state(undefined);
 	let load_state = $state(new State());
+	const api_url = import.meta.env.VITE_API_URL
+
+	let code_url: string | undefined = $state(undefined)
 
 	// Fetch the specified event on load
 	onMount(async () => {
-		const response = await fetch('/api/event/admin/generate', await authform('POST', { slug } as unknown as BodyInit));
-		console.log(response)
+		const response = await fetch_backend('/event/admin/generate', await authform('POST', { slug } as unknown as BodyInit));
+		if (response.status != 200) return;
+		const code = response.data.secret.secret;
+		const url = `${api_url}/api/qr/redeem-event-secret:${code}`
+		code_url = url
+		load_state.value="loaded"
 	});
 </script>
 
@@ -37,5 +44,7 @@
 {/if}
 
 {#if load_state.value == 'loaded'}
-	<span>QR Code:</span>
+	<h1>Generated QR Code</h1>
+	<h3>For {slug}</h3>
+	<img alt="qr-code" src={code_url}/>
 {/if}

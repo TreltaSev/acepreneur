@@ -61,6 +61,10 @@ class Secret(Struct):
         Converts the `expiresAt` string to a `datetime` object.
         """
         return datetime.strptime(self.expiresAt, "%Y-%m-%d %H:%M:%S.%f")
+    
+    @property
+    def expired(self) -> bool:
+        return self.expiresAtDatetime < datetime.now()
 
     def isExpired(self):
         """

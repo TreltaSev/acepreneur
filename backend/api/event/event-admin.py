@@ -56,6 +56,10 @@ async def event_admin_redeem_GET(user: User, _secret: str, *args, **kwargs):
     secret = Secret(Search)
     
     print(json.dumps(secret.sanitized(), indent=4))
+    
+    if (secret.expired):
+        print("Expired")
+        secret.delete()
 
     return {
         "hi": "there"
