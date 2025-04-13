@@ -15,7 +15,6 @@ eventAdmin = blueprint.refactor_route(
     "/api/event/admin/redeem/<_secret>", methods=["GET"])
 
 
-
 @blueprint.route("/api/event/admin/generate", methods=["POST"])
 @getHeaders(["Bearer"], explicit=True)
 @getUser()
@@ -54,13 +53,27 @@ async def event_admin_redeem_GET(user: User, _secret: str, *args, **kwargs):
         raise HighLevelException(f"Failed to locate secret")
 
     secret = Secret(Search)
-    
+
     print(json.dumps(secret.sanitized(), indent=4))
-    
+
     if (secret.expired):
-        print("Expired")
         secret.delete()
 
+    EventSearch = MongoClient.events.find_one({"slug": secret.slug})
+
+    if not EventSearch:
+        raise HighLevelException(f"Failed to locate event")
+
+    event = Event(EventSearch)
+
+    MongoClient.events.update_one(
+        {"slug": secret.slug},
+        {"$addToSet": {"admins": user.id}}
+    )
+    was_added = user.id in MongoClient.events.find_one({"slug": secret.slug}).get("admins", [])
+    
+
     return {
-        "hi": "there"
+        "added": was_added,
+        "event": event.sanitized()
     }

@@ -1,0 +1,1 @@
+<h2>You are now an admin!</h2>
