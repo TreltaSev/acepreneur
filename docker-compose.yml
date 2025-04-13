@@ -11,7 +11,7 @@ services:
     volumes:
       - ${SSL_PATH:-./.ssl}:/etc/ssl/com:ro
       - ./backend/siblink.config.json:/backend/siblink.config.json
-      - ./.env:/.env
+      - ./.env:/app/.env
       - ./.env.production.local:/.env.production.local
     networks:
       - docker-network
