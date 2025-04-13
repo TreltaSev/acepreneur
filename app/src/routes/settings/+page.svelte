@@ -2,7 +2,7 @@
 	// --- Components ---
 	import { AdminOnly, Button, Toggle } from '@components'; // Importing reusable button and toggle components
 	import { getIdentityCtx } from '@root/lib/ctx'; // Fetching user identity context
-	import { set_preference } from '@root/lib/internal'; // Methods to get/set user preferences
+	import { get_preference, set_preference } from '@root/lib/internal'; // Methods to get/set user preferences
 	import qrCodeResponseHandler from '@root/lib/internal/qr/qr'; // QR code handling logic
 
 	// --- Icons ---
@@ -19,17 +19,8 @@
 	// True whenever the admin toggle is toggled
 	let admin_toggled: boolean | null = $derived(active_admin);
 
-	$effect(() => {
-		console.log(`Active admin is ${active_admin}`);
-	});
-
 	async function flop() {
 		// If admin secret is not valid, force toggle to be false
-		console.log(active_admin, admin_toggled);
-
-		setTimeout(() => {
-			console.log(active_admin, "............")
-		}, 3000);
 		if (!active_admin) {
 			admin_toggled = false;
 		}
@@ -49,9 +40,16 @@
 	async function onupdate(value: boolean) {
 		admin_toggled = value;
 
+		console.error(`UPDATE: VALUE: ${value}`);
+
 		if (await user.admin_valid()) {
+			console.log(
+				`Admin token is valid: ${value} ${typeof value} ${JSON.stringify(value)} ${typeof JSON.stringify(value)}`
+			);
 			await set_preference('dev-admin', JSON.stringify(value));
 			await user.refresh_identity();
+		} else {
+			console.log(`Admin token is invalid: ${value} ${typeof value} ${JSON.stringify(value)}`);
 		}
 	}
 </script>
@@ -93,7 +91,7 @@
 		<article>
 			<summary>
 				<h3>Current User ID</h3>
-				<h4>{$identity$ || "Generating"}</h4>
+				<h4>{$identity$ || 'Generating'}</h4>
 			</summary>
 		</article>
 	</section>
@@ -128,7 +126,7 @@
 				<h4>Toggle Admin Access towards resources. When toggled, refreshes the current user ID.</h4>
 			</summary>
 			<aside>
-				<Toggle {onupdate} value={admin_toggled || false} ontrue={flop} onfalse={flop} />
+				<Toggle {onupdate} value={admin_toggled || false} ontrue={flop} />
 			</aside>
 		</article>
 	</section>

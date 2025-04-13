@@ -24,11 +24,12 @@ export function createIdentificationData() {
 				identity$.set(userIdentity);
 			}
 
-			const dev_admin = JSON.parse((await get_preference('dev-admin')) || 'false') as boolean;
+			if ((await get_preference('dev-admin')) === null) {
+				return;
+			}
+
+			const dev_admin = (await get_preference('dev-admin')) === 'true' ? true : false;
 			if (get(dev_admin$) != dev_admin) {
-				console.log((await get_preference('dev-admin')), "PREFERNECE")
-				console.log(typeof dev_admin$ === 'boolean', typeof dev_admin === 'boolean', 'TYPE CHECK');
-				console.log('setting to ', dev_admin);
 				dev_admin$.set(dev_admin);
 			}
 		} catch (error) {
