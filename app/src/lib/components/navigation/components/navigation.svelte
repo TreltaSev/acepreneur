@@ -19,7 +19,7 @@
 		children,
 		class: className,
 		navigationClass = $bindable(
-			`s_2xl:hidden s_xl:hidden s_lg:hidden 
+			`s_2xl:hidden s_xl:hidden
 			min-h-[13%] h-[10%] 
 			box-border pt-0 
 			justify-between items-end 
