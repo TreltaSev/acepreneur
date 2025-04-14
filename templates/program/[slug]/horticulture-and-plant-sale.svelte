@@ -4,6 +4,6 @@ description="This course prepares students for post-secondary educational career
 slug="horticulture"
 events="plant-sale;water-stand"
 card.color="#ADB97B"
-order=1
 card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744646841/PlantSale3_1_mrk9ts.png"
+order=1
 -->
