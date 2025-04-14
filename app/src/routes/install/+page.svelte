@@ -31,9 +31,20 @@
 
 {#if load_state.value == 'loaded'}
 	{#if onAndroid}
-		<span>The easy lane, heres a download link:</span>
+        <h2>We're downloading the app for you</h2>
+        <h3>After it's been downloaded, install it on your device :)</h3>
 	{:else if oniOS}
-		<span>Heres the tricky part. click this button, we'll ask you for some perms</span>
+		<h1>Hi there...</h1>
+        <h2>If you're seeing this, that means the app wasn't reviewed on time :(</h2>
+        <h3>What does this mean?</h3>
+        <p>Well, in short. It means this app on IOS is severely more restricted and more annoying to setup then if you were on an android device</p>
+        <h3>What can I do?</h3>
+        <p>You can still continue to use this app, but not the way it was intended.</p>
+
+        <!-- Check if on safari -->
+        <h4>At this point, I recommend you use Safari, it looks like you aren't using it right now</h4>
+        <p>You should be prompted to add this device to your home-screen.</p>
+
 	{:else}
 		<span>You're on a computer... THERES NOTHING TO INSTALL!!!</span>
 	{/if}
