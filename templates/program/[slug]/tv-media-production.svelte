@@ -4,5 +4,5 @@ description="Students engage in hands-on digital media production while using in
 slug="tv-media-production"
 events="video-shout-outs;video-coverage"
 card.color="#7678ed"
-card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744465641/fresh-fruit-smoothies-1_wza3ey.png"
+card.image.url="https://res.cloudinary.com/dlzshfcd1/image/upload/v1744645181/TVMedProd_dsuvsq.png"
 -->

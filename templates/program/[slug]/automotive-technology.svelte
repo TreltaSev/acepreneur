@@ -4,5 +4,5 @@ description="Prepares students to explore, handle and perform basic functions in
 slug="automotive-technology"
 events="oil-changes"
 card.color="#f4a261"
-card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744465641/fresh-fruit-smoothies-1_wza3ey.png"
+card.image.url="https://res.cloudinary.com/dlzshfcd1/image/upload/v1744643606/AutoTech_ci13sb.png"
 -->

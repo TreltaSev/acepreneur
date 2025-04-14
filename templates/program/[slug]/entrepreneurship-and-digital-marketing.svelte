@@ -4,5 +4,5 @@ description="Introduces students to starting and managing their own business. Co
 slug="entrepreneurship-digital-marketing"
 events="acepreneurs"
 card.color="#000000"
-card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744465641/fresh-fruit-smoothies-1_wza3ey.png"
+card.image.url="https://res.cloudinary.com/dlzshfcd1/image/upload/v1744645580/Entre_DigMark_yiz2ry.png"
 -->

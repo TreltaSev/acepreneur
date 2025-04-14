@@ -4,5 +4,5 @@ description="Prepares students to practice procedures in a clinical lab setting 
 slug="cosmetology"
 events="manicures"
 card.color="#000000"
-card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744465641/fresh-fruit-smoothies-1_wza3ey.png"
+card.image.url="https://res.cloudinary.com/dlzshfcd1/image/upload/v1744644699/Cosmetology_ohv75z.png"
 -->

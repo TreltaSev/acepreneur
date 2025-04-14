@@ -4,5 +4,5 @@ description="Students learn practices related to managing and operating a broadc
 slug="radio-broadcasting-and-journalism"
 events="live-music"
 card.color="#723d46"
-card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744465641/fresh-fruit-smoothies-1_wza3ey.png"
+card.image.url="https://res.cloudinary.com/dlzshfcd1/image/upload/v1744645859/RadBroad_Journ_nrnpbq.png"
 -->
