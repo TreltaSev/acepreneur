@@ -1,7 +1,7 @@
 <!--@metadata
 name="Commercial Photography"
-description="students are taught industry-relevant technical skills and have the opportunity to work with a variety of technology, including digital cameras, lighting, design software, and editing tools to stage, shoot, process, print, and present professional-grade images while developing a portfolio for a career as a commercial photographer."
-slug="commercial-photography"
+description="Professional Headshots – Available for digital delivery; only $10."
+slug="professional-headshots"
 card.color="#0839A1"
 card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744469580/nikon-d810_yc8b7f.jpg"
 -->
