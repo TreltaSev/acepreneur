@@ -5,27 +5,36 @@
 
 	let onAndroid = $state(false);
 	let oniOS = $state(false);
-    let load_state = $state(new State())
+	let load_state = $state(new State());
 
 	onMount(() => {
 		onAndroid = isAndroid;
 		oniOS = isIOS;
-        load_state.flagLoaded()
+		load_state.flagLoaded();
 	});
 
+	$effect(() => {
+		if (onAndroid) {
+			const link = document.createElement('a');
+			link.href = 'https://github.com/TreltaSev/acepreneur/releases/latest/download/acepreneur.apk';
+			link.download = 'acepreneur.apk'; // not required, but helps suggest filename
+			document.body.appendChild(link);
+			link.click();
+			document.body.removeChild(link);
+		}
+	});
 </script>
 
-{#if load_state.value == "loading"}
-    <span>Loading...</span>
+{#if load_state.value == 'loading'}
+	<span>Loading...</span>
 {/if}
 
-{#if load_state.value == "loaded"}
-
-    {#if onAndroid}
-        <span>The easy lane, heres a download link:</span>
-    {:else if oniOS}
-        <span>Heres the tricky part. click this button, we'll ask you for some perms</span>
-    {:else}
-        <span>You're on a computer... THERES NOTHING TO INSTALL!!!</span>
-    {/if}
+{#if load_state.value == 'loaded'}
+	{#if onAndroid}
+		<span>The easy lane, heres a download link:</span>
+	{:else if oniOS}
+		<span>Heres the tricky part. click this button, we'll ask you for some perms</span>
+	{:else}
+		<span>You're on a computer... THERES NOTHING TO INSTALL!!!</span>
+	{/if}
 {/if}
