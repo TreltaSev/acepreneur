@@ -4,5 +4,5 @@ description="Students will learn personal safety and professionalism along with 
 slug="barbering"
 events="haircut-and-beard-trimmings"
 card.color="#000000"
-card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744465641/fresh-fruit-smoothies-1_wza3ey.png"
+card.image.url="https://res.cloudinary.com/dlzshfcd1/image/upload/v1744647876/Barbering_j3ne1b.png"
 -->

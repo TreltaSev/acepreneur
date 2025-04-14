@@ -4,5 +4,5 @@ description="Culinary Arts provides students with a foundational understanding o
 slug="culinary-arts"
 events="food-combos"
 card.color="#000000"
-card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744465641/fresh-fruit-smoothies-1_wza3ey.png"
+card.image.url="https://res.cloudinary.com/dlzshfcd1/image/upload/v1744649629/Culinary_z8jfip.png"
 -->

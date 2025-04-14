@@ -4,5 +4,5 @@ description="students are taught industry-relevant technical skills and have the
 slug="commercial-photography"
 events="professional-headshots"
 card.color="#7b2cbf"
-card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744465641/fresh-fruit-smoothies-1_wza3ey.png"
+card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744469580/nikon-d810_yc8b7f.jpg"
 -->

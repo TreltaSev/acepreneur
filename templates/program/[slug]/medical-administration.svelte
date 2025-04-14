@@ -4,5 +4,5 @@ description="Students learn how to use medical terminology and apply administrat
 slug="medical-administration"
 events="stpd"
 card.color="#000000"
-card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744465641/fresh-fruit-smoothies-1_wza3ey.png"
+card.image.url="https://res.cloudinary.com/dlzshfcd1/image/upload/v1744653553/MedSysAdmin_utkutr.png"
 -->

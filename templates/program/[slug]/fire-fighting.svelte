@@ -4,5 +4,5 @@ description="Firefighting requires discipline and attention to academic and prof
 slug="fire-fighting"
 events="free-smoke-detectors"
 card.color="#000000"
-card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744465641/fresh-fruit-smoothies-1_wza3ey.png"
+card.image.url="https://res.cloudinary.com/dlzshfcd1/image/upload/v1744650226/FireFighting_iez8ql.png"
 -->

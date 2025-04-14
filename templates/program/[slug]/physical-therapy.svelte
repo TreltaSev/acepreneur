@@ -4,5 +4,5 @@ description="Students learn practices related to managing and operating a broadc
 slug="physical-therapy"
 events="fitness-mobility"
 card.color="#000000"
-card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744465641/fresh-fruit-smoothies-1_wza3ey.png"
+card.image.url="https://res.cloudinary.com/dlzshfcd1/image/upload/v1744652621/Phys_Ther_i473kt.png"
 -->

@@ -4,5 +4,5 @@ description="Introduces students to law, public safety, corrections and security
 slug="criminal-justice"
 events="security"
 card.color="#000000"
-card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744465641/fresh-fruit-smoothies-1_wza3ey.png"
+card.image.url="https://res.cloudinary.com/dlzshfcd1/image/upload/v1744649175/Crim_Just_ht3jdy.png"
 -->

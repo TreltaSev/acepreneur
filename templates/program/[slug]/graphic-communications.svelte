@@ -4,5 +4,5 @@ description="Students gain an overview of digital file preparation, image captur
 slug="graphic-communications"
 events="mothers-day-gifts"
 card.color="#f72585"
-card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744465641/fresh-fruit-smoothies-1_wza3ey.png"
+card.image.url="https://res.cloudinary.com/dlzshfcd1/image/upload/v1744653218/Graphic_Comm_a7p71u.png"
 -->

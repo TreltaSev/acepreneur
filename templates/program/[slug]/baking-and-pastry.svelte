@@ -4,5 +4,5 @@ description="Students apply nutritional principles, plan menus, use business and
 slug="baking-and-pastry"
 events="baking-and-pastry"
 card.color="#000000"
-card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744465641/fresh-fruit-smoothies-1_wza3ey.png"
+card.image.url="https://res.cloudinary.com/dlzshfcd1/image/upload/v1744648816/Baking_Pastry_cso7w0.png"
 -->

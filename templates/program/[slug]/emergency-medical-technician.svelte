@@ -4,7 +4,7 @@ description="Students explore and apply the fundamentals of emergency medical se
 slug="emergency-medical-technician"
 events="cpr-first-aid-basics"
 card.color="#000000"
-card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744465641/fresh-fruit-smoothies-1_wza3ey.png"
+card.image.url="https://res.cloudinary.com/dlzshfcd1/image/upload/v1744649984/EMT_nyommj.png"
 -->
 
 <section>
