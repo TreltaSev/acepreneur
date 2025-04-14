@@ -56,6 +56,8 @@
 		"@capacitor/screen-orientation": "^7.0.1",
 		"@tailwindcss/cli": "^4.0.6",
 		"@tailwindcss/vite": "^4.0.6",
+		"@zxing/browser": "^0.1.5",
+		"mobile-device-detect": "^0.4.3",
 		"svelte-portal": "^2.2.1",
 		"sveltekit-static-page": "file:",
 		"tailwind-merge": "^3.0.1"
