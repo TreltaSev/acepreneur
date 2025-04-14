@@ -20,8 +20,8 @@
 		class: className,
 		navigationClass = $bindable(
 			`s_2xl:hidden s_xl:hidden s_lg:hidden 
-			min-h-[15%] h-[15%] 
-			box-border pt-2 
+			min-h-[13%] h-[10%] 
+			box-border pt-0 
 			justify-between items-end 
 			px-[5%] w-full 
 			box-border 

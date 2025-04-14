@@ -1,6 +1,6 @@
 <script lang="ts">
 	// Global CSS import
-	import '../app.css';
+	import '../../app.css';
 
 	// --- UI Components ---
 	import { Flex } from '@ui';
