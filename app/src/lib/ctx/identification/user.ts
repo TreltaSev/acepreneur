@@ -105,7 +105,7 @@ export class User {
 	 *
 	 * @param slug - The unique identifier (slug) of the event to fetch.
 	 * @returns A promise that resolves to the `Event` object if found, or `undefined` if not.
-	 * 
+	 *
 	 * @throws Will throw an error if the backend request fails.
 	 */
 	public async get_event(slug: string): Promise<Event | undefined> {
@@ -137,5 +137,23 @@ export class User {
 	public async get_program(slug: string): Promise<Program | undefined> {
 		const response = await fetch_backend(`/program/program-${slug}`, await authform('GET'));
 		return (response.data.program as Program) || undefined;
+	}
+
+	public async set_announcement(event_id: string, value: string | undefined) {
+		const response = await fetch_backend(
+			`/event/${event_id}`,
+			await authform('PATCH', { update: { announcement: { text: value } } } as unknown as BodyInit)
+		);
+		return response;
+	}
+
+	public async clear_announcement(event_id: string) {
+		const response = await fetch_backend(
+			`/event/${event_id}`,
+			await authform('PATCH', {
+				update: { announcement: { text: null } }
+			} as unknown as BodyInit)
+		);
+		return response;
 	}
 }

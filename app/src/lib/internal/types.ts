@@ -28,6 +28,14 @@ export type User = {
  * Represents an event with various properties such as metadata, content, and reactions.
  */
 export type Event = {
+
+    /**
+     * Id of the event
+     * Optional
+     */
+    id?: string;
+
+
     /**
      * The order of the event, used for sorting or prioritization.
      * Optional.
@@ -101,7 +109,7 @@ export type Event = {
         /**
          * The content of the announcement.
          */
-        content: string;
+        text: string;
 
         /**
          * The author of the announcement.
