@@ -1,6 +1,6 @@
 <!--@metadata
-name="Commercial Photography"
-description="Professional Headshots – Available for digital delivery; only $10."
+name="Professional Headshots"
+description="Available for digital delivery; only $10."
 slug="professional-headshots"
 card.color="#0839A1"
 card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744469580/nikon-d810_yc8b7f.jpg"
