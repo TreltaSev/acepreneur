@@ -67,7 +67,7 @@
 <!-- Root container with optional highlight styling -->
 <div
 	bind:this={ref_card}
-	class={cn(programCardCls, cn('highlighted', 'bg-red-400'))}
+	class={cn(programCardCls)}
 	data-highlighted
 >
 	<!-- Card Image -->

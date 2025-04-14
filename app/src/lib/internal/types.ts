@@ -150,6 +150,11 @@ export type Program = {
 	 */
 	description: string;
 
+    /**
+     * A list of events that references this program
+     */
+    events: string[];
+
 	/**
 	 * Details about the program's card, including color and image.
 	 */
