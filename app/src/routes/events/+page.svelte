@@ -19,6 +19,11 @@
 	onMount(async () => {
 		const events = await user.get_events();
 		cached_events = events; // Save Events
+
+		cached_events = cached_events.sort((a, b) => {
+			return  a.name.localeCompare(b.name)
+		})
+
 		cached_events = cached_events.sort((a, b) => {
 				return (
 					Number(a.order ?? Infinity) -
