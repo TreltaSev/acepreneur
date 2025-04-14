@@ -34,7 +34,7 @@
 
 </script>
 
-<Flex.Col class={cn(`border-5 border-app bg-white size-30 rounded-full fixed bottom-60 right-10 z-100000 items-center justify-center`)} onclick={edit}>
+<Flex.Col class={cn(`border-5 border-app bg-white size-30 opacity-50 rounded-full fixed bottom-60 right-10 z-100000 items-center justify-center`)} onclick={edit}>
     <IconEdit class="size-[60%] text-app"/>
 </Flex.Col>
 

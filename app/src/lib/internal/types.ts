@@ -129,6 +129,12 @@ export type Event = {
      * Optional.
      */
     admins?: string[];
+
+    /**
+     * Program the specified event is linked to
+     * Optional.
+     */
+    program?: string;
 };
 
 /**

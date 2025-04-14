@@ -68,8 +68,7 @@
 <!-- Root container with optional highlight styling -->
 <div
 	bind:this={ref_card}
-	class={cn(eventCardCls, cn_a.buildx('highlighted', 'bg-red-400'))}
-	data-highlighted
+	class={cn(eventCardCls)}
 >
 	<!-- Card Image -->
 	<img

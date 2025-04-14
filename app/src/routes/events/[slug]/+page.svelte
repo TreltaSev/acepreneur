@@ -2,6 +2,8 @@
 	// --- Components ---
 	import { Flex } from '@root/lib/ui';
 	import { Edit } from './_components';
+	import {ProgramLink} from './_components';
+
 
 	// --- Logic ---
 	import { onMount } from 'svelte';
@@ -40,6 +42,7 @@
         color$.set(event.card.color)
 		asAdmin = (event as any).asAdmin as boolean
 		load_state.flagLoaded();
+		console.log(event)
 	});
 </script>
 
@@ -52,7 +55,7 @@
 {/if}
 
 {#if load_state.value == 'loaded' && event}
-	<Flex.Col class="gap-8 blueprint-content-container relative">
+	<Flex.Col class="gap-8 blueprint-content-container relative pb-16">
 		<Flex.Col class="gap-8">
 			<!-- Event Image-->
 			<img
@@ -75,6 +78,10 @@
 		<Flex.Col class="pb-8">
 			{@html event?.content.blueprint}
 		</Flex.Col>
+
+		{#if event.program}
+			<ProgramLink slug={event.program}/>
+		{/if}
 
 		{#if asAdmin}
 			<Edit/>
