@@ -24,7 +24,7 @@ async def program_GET(*_, **__):
     programs = list(MongoClient.programs.find({}))
 
     return {
-        "programs": programs
+        "programs": [Program(program).sanitized() for program in programs]
     }
 
 
