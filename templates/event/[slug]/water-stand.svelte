@@ -4,4 +4,5 @@ description="Stay refreshed while you shop! The Entrepreneurship class will be s
 slug="water-stand"
 card.color="#baecf9"
 card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744466942/ai-generated-pour-perfection-water-being-poured-into-a-glass-on-blue-photo_zimsew.jpg"
+program="horticulture"
 -->

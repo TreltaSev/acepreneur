@@ -4,4 +4,5 @@ description="Are you ready to dance? Our Radio Broadcasting and Communication pr
 slug="live-music"
 card.color="#161716"
 card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744467189/Radio_eibz2h.jpg"
+program="radio-broadcasting-and-journalism"
 -->

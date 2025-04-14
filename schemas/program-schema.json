@@ -1,0 +1,17 @@
+{
+    "name": "Esports Tournament",
+    "description": "The Game Design and Web Development classes will be hosting a gaming tournament. Try your hand at several different games including: Super Smash Bros, Fortnite, and Mario Kart. The winners will be eligible for prizes!",
+    "card": {
+        "color": "#FDC7F8",
+        "image": {
+            "url": "https://image.png",
+            "_class": "cant-use-tailwind---maybe",
+            "style": "border-radius:50%;"
+        }
+    },
+    "slug": "esports-tournament",
+    "content": {
+        "blueprint": "<section></section><section></section>"
+    },
+    "id": "event-903190hdajlwoid2"
+}

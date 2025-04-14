@@ -4,6 +4,7 @@ description="Stop by for lunch or an early dinner and grab a meal that is loving
 slug="food-combos"
 card.color="#DD8E43"
 card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744368976/food-combos_sqs5ro.png"
+program="culinary-arts"
 -->
 
 <section>

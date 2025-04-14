@@ -5,6 +5,7 @@ slug="blood-drive"
 card.color="#ED1429"
 card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744369356/red-cross_bbfldn.png"
 card.image.style="object-fit:contain;"
+program="sports-med"
 -->
 
 <section>
