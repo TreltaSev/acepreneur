@@ -6,3 +6,5 @@ card.color="#baecf9"
 card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744466942/ai-generated-pour-perfection-water-being-poured-into-a-glass-on-blue-photo_zimsew.jpg"
 program="horticulture"
 -->
+
+<img src="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744656019/12_hpanhj.png" style="width: 100%; object-fit: cover; border-radius: 16px; margin-top:20px;" alt="ima"/>

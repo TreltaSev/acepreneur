@@ -6,3 +6,5 @@ card.color="#4CE099"
 card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744467983/Counting_ok22sq.jpg"
 program="medical-administration"
 -->
+
+<img src="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744656022/16_p851cz.png" style="width: 100%; object-fit: cover; border-radius: 16px; margin-top:20px;" alt="ima"/>

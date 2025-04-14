@@ -15,3 +15,6 @@ program="automotive-technology"
     ><button>Sign Up</button></a
   >
 </section>
+
+<img src="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744656021/15_m7tzuv.png" style="width: 100%; object-fit: cover; border-radius: 16px; margin-top:20px;" alt="ima"/>
+
