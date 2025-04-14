@@ -2,10 +2,6 @@
 	import 'pinch-zoom-element';
 	import { onMount } from 'svelte';
 	let pinchZoom: undefined | any;
-
-   onMount(() => {
-    console.log(pinchZoom)
-   })
 </script>
 
 <pinch-zoom bind:this={pinchZoom}>
@@ -15,7 +11,8 @@
 			alt="a"
 		/>
 
-		<h3 class="absolute -bottom-15 left-0">Too Small? Zoom In!</h3>
+		<h3 class="absolute -bottom-30 left-0">Pinch to move<br/> <a class="text-app" href="https://entrepreneurship-day.github.io/index.html">Visit the website</a></h3>
+        
 	</div>
 </pinch-zoom>
 

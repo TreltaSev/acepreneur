@@ -43,7 +43,6 @@
         color$.set(event.card.color)
 		asAdmin = (event as any).asAdmin as boolean
 		load_state.flagLoaded();
-		console.log(event)
 	});
 </script>
 

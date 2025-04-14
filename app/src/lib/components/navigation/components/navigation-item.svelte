@@ -55,10 +55,8 @@
 	onMount(() => {
 		// Check if state should be active
 		check_active();
-		console.log("on-mount")
 
 		onNavigate(() => {
-			console.log("on-navigate")
 			check_active();
 		})
 

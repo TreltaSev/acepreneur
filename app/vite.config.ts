@@ -6,7 +6,6 @@ import { SvelteKitPWA } from '@vite-pwa/sveltekit';
 
 export default defineConfig(({ mode }) => {
 	const env = loadEnv(mode, '../');
-	console.log(env);
 
 	return {
 		plugins: [
