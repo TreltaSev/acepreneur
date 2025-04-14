@@ -44,5 +44,5 @@ async def program_GET(_id: str, *_, **__):
     program = Program(Search)
 
     return {
-        "program": program,
+        "program": program.sanitized(),
     }
