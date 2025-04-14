@@ -142,16 +142,21 @@
 <!-- App container with full height and white background -->
 <div class="white size-full flex flex-col items-center">
 	<!-- Content column with responsive width and padding based on media and platform -->
-	{#key data.url}
-		<div
-			class="flex flex-col size-full s_2xl:w-[50%] px-10 pt-[calc(var(--safe-area-inset-top)_+_1rem)] p_ios:pt-30 p_web:pt-10 overflow-y-auto animate-all"
-			in:fade={{duration: 300, delay: 300, easing: sineInOut}}
-			out:fade={{duration: 300, easing: sineInOut}}
-			>
+
+	<div
+		class="flex flex-col size-full s_2xl:w-[50%] px-10 pt-[calc(var(--safe-area-inset-top)_+_1rem)] p_ios:pt-30 p_web:pt-10 overflow-y-auto"
+	>
+		{#key data.url}
 			<!-- Render child route content -->
-			{@render children?.()}
-		</div>
-	{/key}
+			<div
+				class="flex flex-col size-full"
+				in:fade={{ duration: 300, delay: 300, easing: sineInOut }}
+				out:fade={{ duration: 300, easing: sineInOut }}
+			>
+				{@render children?.()}
+			</div>
+		{/key}
+	</div>
 
 	<!-- Persistent navigation bar at the bottom -->
 	<Navigation.Root />
