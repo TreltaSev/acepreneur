@@ -36,15 +36,7 @@
 	{:else if oniOS}
 		<h1>Hi there...</h1>
         <h2>If you're seeing this, that means the app wasn't reviewed on time :(</h2>
-        <h3>What does this mean?</h3>
-        <p>Well, in short. It means this app on IOS is severely more restricted and more annoying to setup then if you were on an android device</p>
-        <h3>What can I do?</h3>
-        <p>You can still continue to use this app, but not the way it was intended.</p>
-
-        <!-- Check if on safari -->
-        <h4>At this point, I recommend you use Safari, it looks like you aren't using it right now</h4>
-        <p>You should be prompted to add this device to your home-screen.</p>
-
+        <h4>This means that on iphone, this isn't an official app. so you could just use this website as the app.</h4>	
 	{:else}
 		<span>You're on a computer... THERES NOTHING TO INSTALL!!!</span>
 	{/if}

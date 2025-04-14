@@ -18,9 +18,11 @@
 	import { App } from '@capacitor/app';
 	import { afterNavigate } from '$app/navigation';
 	import { Capacitor } from '@capacitor/core';
+	import { sineInOut } from 'svelte/easing';
+	import { fade } from 'svelte/transition';
 
 	// `children` will be rendered as a slot from routes using this layout
-	let { children } = $props();
+	let { children, data } = $props();
 
 	// Setup shared contexts and extract key reactive stores
 	const { media$, set_media } = setMediaCtx();
@@ -140,12 +142,16 @@
 <!-- App container with full height and white background -->
 <div class="white size-full flex flex-col items-center">
 	<!-- Content column with responsive width and padding based on media and platform -->
-	<Flex.Col
-		class="size-full s_2xl:w-[50%] px-10 pt-[calc(var(--safe-area-inset-top)_+_1rem)] p_ios:pt-30 p_web:pt-10 overflow-y-auto"
-	>
-		<!-- Render child route content -->
-		{@render children?.()}
-	</Flex.Col>
+	{#key data.url}
+		<div
+			class="flex flex-col size-full s_2xl:w-[50%] px-10 pt-[calc(var(--safe-area-inset-top)_+_1rem)] p_ios:pt-30 p_web:pt-10 overflow-y-auto animate-all"
+			in:fade={{duration: 300, delay: 300, easing: sineInOut}}
+			out:fade={{duration: 300, easing: sineInOut}}
+			>
+			<!-- Render child route content -->
+			{@render children?.()}
+		</div>
+	{/key}
 
 	<!-- Persistent navigation bar at the bottom -->
 	<Navigation.Root />
