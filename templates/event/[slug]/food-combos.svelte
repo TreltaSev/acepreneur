@@ -19,3 +19,6 @@ program="culinary-arts"
     cravings. It's a spread you won't want to miss!
   </h4>
 </section>
+
+
+<img src="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744656014/3_o1mgkj.png" style="width: 100%; object-fit: cover; border-radius: 16px; margin-top:20px;" alt="ima"/>

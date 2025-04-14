@@ -7,15 +7,6 @@ card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744465642/ba
 program="baking-and-pastry"
 -->
 
-<section>
-  <h3>Craving something delicious?</h3>
-  <h4>
-    We're offering a sweet and savory selection of treats at the event! Grab a
-    dozen assorted cookies or homemade brownies for just $5. Prefer pastries?
-    Danish croissants are $8 per half dozen. Don't miss out on our freshly baked
-    apple and cherry pies for $12 each.
-    <br /><br />
-    For the pizza fans, we've got frozen pizza dough balls at $2 each and ready-to-go
-    10" pizzas—$10 for cheese, $12 for pepperoni. Come hungry!
-  </h4>
-</section>
+
+
+<img src="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744655354/Screenshot_2025-04-14_142905_dy5odn.png" style="width: 100%; object-fit: cover; border-radius: 16px;" alt="ima"/>

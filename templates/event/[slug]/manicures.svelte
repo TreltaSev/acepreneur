@@ -7,15 +7,12 @@ card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744466495/ma
 program="cosmetology"
 -->
 
-<section>
-  <h3>Need a nail glow-up?</h3>
-  <h4>
-    $10 manicures, done by our talented cosmetology students. Feeling bold? Add
-    designs for just $1 per nail. Look good, feel great—support the next
-    generation of stylists.
-  </h4>
+<section style="margin-bottom: 20px;">
   <a
     href="https://docs.google.com/forms/d/e/1FAIpQLSeS-2e3JGkLNMccZuz7yCt8U_fuIHjUmlv2I6MEN2gg3yhTHA/viewform"
     ><button>Sign Up</button></a
   >
+  
 </section>
+
+<img src="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744656013/1_heswqd.png" style="width: 100%; object-fit: cover; border-radius: 16px;" alt="ima"/> 

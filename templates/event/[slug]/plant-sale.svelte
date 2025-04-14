@@ -16,5 +16,5 @@ program="horticulture"
     find all the supplies you need, from pots to soil. It's a green-thumb event
     you won't want to miss!
   </h4>
-  <a href="https://docs.google.com/presentation/d/1CVmbonOHkXXauIbaeUUvHox64SfEDf_b/edit?slide=id.g34302b56743_0_16#slide=id.g34302b56743_0_16"><button>Learn More</button></a>
+  <a href="https://docs.google.com/presentation/d/1CVmbonOHkXXauIbaeUUvHox64SfEDf_b/edit?slide=id.g34302b56743_0_16#slide=id.g34302b56743_0_16"><button>See our available plants here</button></a>
 </section>
