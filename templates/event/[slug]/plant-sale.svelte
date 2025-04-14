@@ -5,7 +5,7 @@ slug="plant-sale"
 card.color="#ADB97B"
 card.image.url="https://i.imgur.com/MCKnGfO.png"
 order=1
-program=horticulture
+program="horticulture"
 -->
 
 <section>

@@ -5,5 +5,5 @@ slug="game-design-and-web-dev"
 events="esports-tournament"
 card.color="#fca311"
 card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744465641/fresh-fruit-smoothies-1_wza3ey.png"
-order=1
+order=2
 -->

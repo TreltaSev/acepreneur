@@ -4,4 +4,5 @@ description="Our Pharmacy students will be providing tips and information about 
 slug="stpd"
 card.color="#4CE099"
 card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744467983/Counting_ok22sq.jpg"
+program="medical-administration"
 -->
