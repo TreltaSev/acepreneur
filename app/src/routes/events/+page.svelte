@@ -34,8 +34,8 @@
 	});
 </script>
 
+<img src="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744469396/large_7f6bfcb0-9485-4cf6-807c-95cb3c07e087-removebg-preview_yeayq3.png" alt="Card" class="w-full object-cover aspect-2/1 border-2xl"/>
 <h1>Events</h1>
-
 {#if !loaded}
 	<!-- Loading -->
 	<span>We are fetching the events for you!</span>
