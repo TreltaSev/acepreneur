@@ -7,6 +7,7 @@ card.color="#FDC7F8"
 card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744369758/ED_ESports-Tournament_Flyer_z16kog.jpg"
 card.image.style="object-position: 50% 5%;"
 order=2
+program="game-design-and-web-dev"
 -->
 
 <section>
