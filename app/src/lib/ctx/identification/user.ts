@@ -1,6 +1,6 @@
 import { delete_preference, get_preference, has_preference, set_preference } from '@internal';
 import { authform, fetch_backend, jsonform } from '@internal/fetch';
-import { type Event } from '@internal/types';
+import { type Event, type Program } from '@internal/types';
 
 export class User {
 	constructor() {}
@@ -48,9 +48,8 @@ export class User {
 	 * @returns {Promise<boolean>} A promise that resolves with the confirmation of an admin secret being valid
 	 */
 	public async admin_valid(): Promise<boolean> {
-
 		// No admin token to check
-		if (!await has_preference("admin_token")) return false;
+		if (!(await has_preference('admin_token'))) return false;
 
 		const admin_response = await fetch_backend(
 			'/admin/is',
@@ -60,8 +59,8 @@ export class User {
 		if (admin_response.status !== 200) return false;
 
 		// Return admin response
-		console.log(`admin_response: ${admin_response.data.status || false}`)
-		return admin_response.data.status || false
+		console.log(`admin_response: ${admin_response.data.status || false}`);
+		return admin_response.data.status || false;
 	}
 
 	/**
@@ -101,9 +100,42 @@ export class User {
 		return response.data.events || [];
 	}
 
+	/**
+	 * Retrieves an event by its slug from the backend.
+	 *
+	 * @param slug - The unique identifier (slug) of the event to fetch.
+	 * @returns A promise that resolves to the `Event` object if found, or `undefined` if not.
+	 * 
+	 * @throws Will throw an error if the backend request fails.
+	 */
 	public async get_event(slug: string): Promise<Event | undefined> {
 		const response = await fetch_backend(`/event/event-${slug}`, await authform('GET'));
-		response.data.event = {...response.data.event} as Event;
+		response.data.event = { ...response.data.event } as Event;
 		return response.data.event || undefined;
+	}
+
+	/**
+	 * Fetches programs from the backend.
+	 *
+	 * Sends a GET request to the backend to retrieve program data.
+	 *
+	 * @returns {Promise<Program[]>} A promise that resolves when the programs are fetched.
+	 */
+	public async get_programs(): Promise<Program[]> {
+		const response = await fetch_backend('/programs', await authform('GET'));
+		return (response.data.programs as Program[]) || [];
+	}
+
+	/**
+	 * Fetches a specific program by its slug from the backend.
+	 *
+	 * Sends a GET request to the backend to retrieve the program data.
+	 *
+	 * @param {string} slug - The slug of the program to fetch.
+	 * @returns {Promise<Program | undefined>} A promise that resolves with the program data or undefined if not found.
+	 */
+	public async get_program(slug: string): Promise<Program | undefined> {
+		const response = await fetch_backend(`/program/program-${slug}`, await authform('GET'));
+		return (response.data.program as Program) || undefined;
 	}
 }
