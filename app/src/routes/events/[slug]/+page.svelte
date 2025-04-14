@@ -3,6 +3,7 @@
 	import { Flex } from '@root/lib/ui';
 	import { Edit } from './_components';
 	import {ProgramLink} from './_components';
+	import IconAnnounce from '~icons/mingcute/announcement-fill';
 
 
 	// --- Logic ---
@@ -72,6 +73,16 @@
 			</Flex.Col>
 
 			<!-- Announcement Goes Here -->
+			{#if event.announcement.text !== ""}
+				<Flex.Col class="box-border p-8 rounded-3xl text-white gap-4 bg-app">
+					<Flex.Row class="gap-3 items-center ">
+						<!-- Icon -->
+						 <IconAnnounce class="text-white size-8"/>
+						<h3 >Announcements</h3>
+					</Flex.Row>
+					<h4 class="!opacity-100 !text-white/100">{event.announcement.text}</h4>
+				</Flex.Col>
+			{/if}
 		</Flex.Col>
 
 		<!-- Page Content Goes Here -->
