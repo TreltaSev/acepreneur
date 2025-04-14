@@ -1,5 +1,5 @@
 <!--@metadata
-name="Radio Broadcasting and Journalism"
+name="Physical Therapy"
 description="Students learn practices related to managing and operating a broadcasting station. Students examine the radio industry, news reporting, station frameworks and protocols, radio sales and budgeting, and broadcast engineering."
 slug="physical-therapy"
 events="fitness-mobility"
