@@ -5,5 +5,5 @@ slug="horticulture"
 events="plant-sale;water-stand"
 card.color="#ADB97B"
 order=1
-card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744465641/fresh-fruit-smoothies-1_wza3ey.png"
+card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744646841/PlantSale3_1_mrk9ts.png"
 -->
