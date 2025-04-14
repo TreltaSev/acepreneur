@@ -12,7 +12,7 @@ from siblink import Config
 blueprint = cloakquart.Blueprint("api:@qrcode", __name__)
 
 
-@blueprint.route("/api/qr/<data>", methods=["GET"])
+@blueprint.route("/api/qr/<path:data>", methods=["GET"])
 # @getHeaders(["Bearer"], explicit=True)    
 # @getUser()
 async def qr_GET(data, *args, **kwargs):
