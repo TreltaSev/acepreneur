@@ -4,6 +4,7 @@
 	import type { Props } from '..';
 	import { getColorCtx } from '@root/lib/ctx';
 	import { onMount } from 'svelte';
+	import { goto } from '$app/navigation';
 
 	let {
 		children,
@@ -64,11 +65,17 @@
 	});
 </script>
 
+<!-- svelte-ignore a11y_no_static_element_interactions -->
+<!-- Root container with optional highlight styling -->
+<!-- svelte-ignore a11y_click_events_have_key_events -->
 <!-- Root container with optional highlight styling -->
 <div
 	bind:this={ref_card}
 	class={cn(programCardCls)}
 	data-highlighted
+	onclick={() => {
+		goto(`/programs/${data?.slug}`);
+	}}
 >
 	<!-- Card Image -->
 	<img
