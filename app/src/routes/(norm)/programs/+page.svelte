@@ -25,7 +25,7 @@
 		});
 
 		cached_programs = cached_programs.sort((a, b) => {
-			return Number(a.order ?? Infinity) - Number(b.order ?? Infinity);
+			return Number(a.order ?? 10) - Number(b.order ?? 10);
 		});
 		loaded = true; // Stop "Loading"
 	});
