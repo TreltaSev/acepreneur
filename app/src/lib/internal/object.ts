@@ -12,6 +12,17 @@ export function removeUndefined<T extends object>(obj: T): T {
 	return result;
 }
 
+/**
+ * Clamps value between min and max
+ * @param value
+ * @param min
+ * @param max
+ */
+export function clamp(value: number, min: number, max: number): number {
+	return Math.max(min, Math.min(value, max));
+}
+
+
 function raise_on_no_localstorage(): void {
 	if (typeof window === 'undefined')
 		throw new Error("Can't access Local Storage, Window Not Applied");

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { clamp } from '@root/lib/internal';
 	import 'pinch-zoom-element';
 	import { onMount } from 'svelte';
 	let pinchZoom: undefined | any;
