@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { goto } from '$app/navigation';
 	import { Button } from '@components';
 	import { State } from '@root/lib/internal';
 	import { Flex } from '@root/lib/ui';
@@ -10,6 +11,7 @@
 	let load_state = $state(new State());
 
 	import IconAndroid from '~icons/icon-park-solid/android';
+	import IconAppStore from '~icons/mingcute/appstore-fill';
 
 	onMount(() => {
 		console.log(isAndroid, isIOS);
@@ -26,6 +28,10 @@
 		link.click();
 		document.body.removeChild(link);
 	}
+
+	function iosDownload() {
+		window.location.href = "https://apps.apple.com/app/6744039406"
+	}
 </script>
 
 {#if load_state.value == 'loading'}
@@ -38,7 +44,7 @@
 			<h2>Hi there, You have two choices.</h2>
 			<h3>You can either hit the download button below, and install the app.</h3>
 			<Button
-				class="text-[#a4c639] color-red-400"
+				class="text-[#a4c639]"
 				mode="outline"
 				text="Download APK"
 				onclick={download}><IconAndroid /></Button
@@ -47,13 +53,20 @@
 			<h3>Or you could use this website instead of the app (Not recommended)</h3>
 		</Flex.Col>
 	{:else if oniOS}
-		<h1>Hi there...</h1>
-		<h2>If you're seeing this, that means the app wasn't reviewed on time :(</h2>
-		<h4>
-			This means that on iphone, this isn't an official app. so you could just use this website as
-			the app.
-		</h4>
+	<Flex.Col class="gap-4">
+		<h2>Hi there, You have two choices.</h2>
+		<h3>You can either install the app on the app-store by clicking the button below.</h3>
+		<Button
+			class="text-black"
+			mode="outline"
+			text="Visit the App Store"
+			onclick={iosDownload}><IconAppStore /></Button
+		>
+
+		<h3>Or you could use this website instead of the app (Not recommended)</h3>
+	</Flex.Col>
 	{:else}
-		<span>You're on a computer... THERES NOTHING TO INSTALL!!!</span>
+		<h2>It seems like you're on a computer...</h2>
+		<h3>If you aren't, welp that sucks. Stop messing with your user-agent?</h3>
 	{/if}
 {/if}
