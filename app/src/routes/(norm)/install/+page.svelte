@@ -46,7 +46,10 @@
 	{#if onAndroid}
 		<Flex.Col class="gap-4">
 			<h2>Hi there, You have two choices.</h2>
-			<h3>You can either hit the download button below, and install the app.</h3>
+			<h3>You can either hit the download button below, wait for it to download, you'll be then prompted to install the app.</h3>
+			<h4>You might need to allow your browser to install apps from unknown sources</h4>
+			<h4>On most phones, on that prompt, hit settings and click your browser. It will then ask you again to install the app.</h4>
+			<h4>If it asks you to scan the app, just scan it. It might take a minute.</h4>
 			<Button
 				class="text-[#a4c639]"
 				mode="outline"
