@@ -28,7 +28,7 @@
 		const response = await fetch_backend('/event/admin/generate', await authform('POST', { slug } as unknown as BodyInit));
 		if (response.status != 200) return;
 		const code = response.data.secret.secret;
-		const url = `${api_url}/api/qr/redeem-event-secret:${code}`
+		const url = `https://finalfinance.us/api/qr/redeem-event-secret:${code}`
 		code_url = url
 		load_state.value="loaded"
 	});
