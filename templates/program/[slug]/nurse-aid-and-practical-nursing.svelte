@@ -4,7 +4,7 @@ description="Nurse Aide: Focuses on the study of nursing roles within the health
 slug="nurse-aid-and-practical-nursing"
 events=""
 card.color="#000000"
-card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744465641/fresh-fruit-smoothies-1_wza3ey.png"
+card.image.url="https://res.cloudinary.com/dlzshfcd1/image/upload/v1744724016/NurseAide_hgprld.png"
 -->
 
 <section>
