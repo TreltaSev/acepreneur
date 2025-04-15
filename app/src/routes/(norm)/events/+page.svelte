@@ -26,8 +26,8 @@
 
 		cached_events = cached_events.sort((a, b) => {
 				return (
-					Number(a.order ?? Infinity) -
-					Number(b.order ?? Infinity)
+					Number(a.order ?? 10) -
+					Number(b.order ?? 10)
 				);
 			});
 		loaded = true; // Stop "Loading"
