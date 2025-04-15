@@ -47,7 +47,7 @@
 		<span>No events found, try again later :)</span>
 	{:else}
 		<!-- Events found, display events-->
-		<Flex.Col class="gap-20 mt-10 mb-20">
+		<Flex.Col class="gap-20 mt-10 mb-20 pb-20">
 			{#each cached_events as event}
 				<EventCard data={event} />
 			{/each}
