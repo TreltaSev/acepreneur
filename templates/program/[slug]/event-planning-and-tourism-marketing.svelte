@@ -5,3 +5,6 @@ slug="event-planning-and-tourism-marketing"
 card.color="#000000"
 card.image.url="https://res.cloudinary.com/dlzshfcd1/image/upload/v1744644229/EventPlanning-TourismMarketing_ud6ycb.png"
 -->
+
+
+<img src="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744656016/6_movvfx.png" style="width: 100%; object-fit: cover; border-radius: 16px; margin-top:20px;" alt="ima"/>

@@ -3,9 +3,9 @@
 	import { Flex } from '@ui';
 	import IconCalendar from '~icons/solar/calendar-date-outline';
 	import IconMap from '~icons/solar/map-outline';
-	import IconQRCode from '~icons/solar/qr-code-bold';
-	import IconFolder from '~icons/solar/folder-outline';
+	import IconGraduation from '~icons/fluent/hat-graduation-32-regular';
 	import IconSettings from '~icons/solar/settings-outline';
+	import IconMoney from '~icons/solar/money-bag-linear';
 
 	// --- Logic ---
 	import { cn } from '@lib/utils';
@@ -19,9 +19,9 @@
 		children,
 		class: className,
 		navigationClass = $bindable(
-			`s_2xl:hidden s_xl:hidden s_lg:hidden 
-			min-h-[15%] h-[15%] 
-			box-border pt-2 
+			`s_2xl:hidden s_xl:hidden
+			min-h-[13%] h-[10%] 
+			box-border pt-0 
 			justify-between items-end 
 			px-[5%] w-full 
 			box-border 
@@ -55,22 +55,15 @@
 		{/snippet}
 	</Item>
 
-	<Item href="/map">
+	<Item href="/pricemap">
 		{#snippet icon()}
-			<IconMap class="size-full" />
+			<IconMoney class="size-full" />
 		{/snippet}
 	</Item>
 
-	<Flex.Col
-		class="bg-app text-white aspect-square h-[70%] mb-[4%] rounded-full shrink-0 items-center justify-center animate"
-		onclick={qr_button_onclick}
-	>
-		<IconQRCode class="size-[50%] shrink-0" />
-	</Flex.Col>
-
 	<Item href="/programs">
 		{#snippet icon()}
-			<IconFolder class="size-full" />
+			<IconGraduation class="size-full" />
 		{/snippet}
 	</Item>
 

@@ -6,3 +6,5 @@ card.color="#161716"
 card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744467189/Radio_eibz2h.jpg"
 program="radio-broadcasting-and-journalism"
 -->
+
+<img src="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744656017/7_ryv1nr.png" style="width: 100%; object-fit: cover; border-radius: 16px; margin-top:20px;" alt="ima"/>

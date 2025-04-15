@@ -13,3 +13,6 @@ card.image.url="https://res.cloudinary.com/dlzshfcd1/image/upload/v1744724016/Nu
         Our Nurse Aide and Practical Nursing students can perform vital sign assessments, including temperature, blood pressure, pulse, and respiratory rate checks.
     </h4>
 </section>
+
+<img src="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744656023/18_dj5n6t.png" style="width: 100%; object-fit: cover; border-radius: 16px; margin-top:20px;" alt="ima"/>
+

@@ -8,14 +8,12 @@ program="barbering"
 -->
 
 <section>
-  <h3>Time for a fresh cut?</h3>
-  <h4>
-    Hot towel beard trims for $7. Low taper haircuts with steam towel treatment
-    for $15. All done by skilled student barbers. You'll walk out sharper than
-    you came in.
-  </h4>
   <a
     href="https://docs.google.com/forms/d/e/1FAIpQLSfGssi8syAnWtB0eCOBlovcYQtKpu_h0csK8oZHxzczVl8HIA/viewform"
     ><button>Sign Up</button></a
   >
 </section>
+
+
+
+<img src="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744656014/2_jscwvy.png" style="width: 100%; object-fit: cover; border-radius: 16px; margin-top:20px;" alt="ima"/>

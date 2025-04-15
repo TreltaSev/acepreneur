@@ -56,7 +56,9 @@ export async function authform(
 
 	// Ensure identity is available
 	if (!(await has_preference('identity')) || (await get_preference('identity')) === 'undefined') {
-		throw new Error('No identification found in local storage');
+		setTimeout(() => {
+			window.location.reload()
+		}, 200)
 	}
 
 	// Add user identity token

@@ -4,6 +4,7 @@
 	import type { Props } from '..';
 	import { onMount } from 'svelte';
 	import { getColorCtx } from '@root/lib/ctx';
+	import { goto } from '$app/navigation';
 
 	// Destructure component props with default bindings
 	let {
@@ -63,12 +64,19 @@
 			observer.disconnect();
 		};
 	});
+
+	async function route_to() {
+		goto(`/events/${data?.slug}`)
+	}
 </script>
 
+<!-- svelte-ignore a11y_no_static_element_interactions -->
 <!-- Root container with optional highlight styling -->
+<!-- svelte-ignore a11y_click_events_have_key_events -->
 <div
 	bind:this={ref_card}
 	class={cn(eventCardCls)}
+	onclick={route_to}
 >
 	<!-- Card Image -->
 	<img
@@ -77,13 +85,14 @@
 		style={data?.card.image.style}
 	/>
 
+	<!-- svelte-ignore a11y_missing_attribute -->
 	<div class="card-information">
 		<!-- Card Title & Description -->
-		<h3>{data?.name}</h3>
+		<h3 class="text-center font-bold self-center">{data?.name}</h3>
 		<h4>{data?.description}</h4>
 
 		<!-- Link to event detail page -->
-		<a href={`/events/${data?.slug}`} class="flex w-full">
+		<a class="flex w-full">
 			<!-- Button styled with dynamic event color -->
 			<button
 				class="text-white py-5 rounded-[1rem] w-full"

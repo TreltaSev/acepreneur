@@ -15,6 +15,8 @@ program="sports-med"
   >
 </section>
 
+<img src="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744656023/17_auny6z.png" style="width: 100%; object-fit: cover; border-radius: 16px; margin-top:20px;" alt="ima"/>
+
 <section style="margin-top:20px;">
   <h3>Curious about your BMI?</h3>
   <h4 style="opacity:60%;">
@@ -32,3 +34,5 @@ program="sports-med"
     drill. They will receive a copy of their scores! $3 per entry.
   </h4>
 </section>
+
+

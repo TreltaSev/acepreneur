@@ -11,11 +11,53 @@ program="game-design-and-web-dev"
 -->
 
 <section>
+  <h2 style="text-align:center; font-weight:700;">Pricing</h2>
+  <hr style="margin-bottom: 10px" />
+  <div
+    style="display: flex; flex-direction: row; width: 100%; justify-content: space-between; padding-left: 16px; padding-right: 16px; box-sizing: border-box;"
+  >
+    <h3>Esports Free Play</h3>
+    <h3>$5</h3>
+  </div>
+  <hr style="margin-top:30px;" />
+  <h3 style="margin-bottom: 20px; text-align:center; font-weight:700;">
+    Tournament Bracket Play
+  </h3>
+  <hr style="margin-top: 12px;" />
+
+  <div
+    style="display: flex; flex-direction: row; width: 100%; justify-content: space-between; padding-left: 16px; padding-right: 16px; box-sizing: border-box;"
+  >
+    <h3>Single Game</h3>
+    <h3>$10</h3>
+  </div>
+  <hr style="margin-top: 12px;" />
+
+  <div
+    style="display: flex; flex-direction: row; width: 100%; justify-content: space-between; padding-left: 16px; padding-right: 16px; box-sizing: border-box;"
+  >
+    <h3>Two For Game</h3>
+    <h3>$15</h3>
+  </div>
+  <hr style="margin-top: 12px;" />
+
+  <div
+    style="display: flex; flex-direction: row; width: 100%; justify-content: space-between; padding-left: 16px; padding-right: 16px; box-sizing: border-box;"
+  >
+    <h3>VIP Unlimited play</h3>
+    <h3 style="margin-bottom: 20px;">$20</h3>
+  </div>
+</section>
+
+<section>
   <h3>Want to get into the action?</h3>
-  <h4>
+  <h4 class="test">
     While the tournament itself is walk-in (With a fee of course), it could be
     beneficial for you to signup here before walking in. That way there won't be
     any hassle
   </h4>
-  <a href="https://docs.google.com/forms/d/e/1FAIpQLSdxxh5htTFr9KWatwv8loKhW7ZWbguUqFWEZCVam_uQKgrlwA/viewform?usp=sf_link"><button>Register</button></a>
+  <a
+    href="https://docs.google.com/forms/d/e/1FAIpQLSdxxh5htTFr9KWatwv8loKhW7ZWbguUqFWEZCVam_uQKgrlwA/viewform?usp=sf_link"
+    ><button>Register</button></a
+  >
 </section>
