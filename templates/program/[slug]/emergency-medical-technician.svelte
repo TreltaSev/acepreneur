@@ -3,7 +3,7 @@ name="Emergency Medical Technician"
 description="Students explore and apply the fundamentals of emergency medical services, anatomy, physiology and medical terminology. They demonstrate skills in assessing and managing patient care, including assessing the scene and understanding shock, resuscitation and trauma."
 slug="emergency-medical-technician"
 events="cpr-first-aid-basics"
-card.color="#000000"
+card.color="#354488"
 card.image.url="https://res.cloudinary.com/dlzshfcd1/image/upload/v1744649984/EMT_nyommj.png"
 -->
 

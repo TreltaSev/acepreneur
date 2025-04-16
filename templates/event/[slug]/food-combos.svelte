@@ -2,7 +2,7 @@
 name="Food Combos"
 description="Stop by for lunch or an early dinner and grab a meal that is lovingly prepared by Culinary Arts students. Each Combo is only $10 and includes a hamburger or hot dog with all the fixings, French Fries and a drink."
 slug="food-combos"
-card.color="#DD8E43"
+card.color="#f8951d"
 card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744368976/food-combos_sqs5ro.png"
 program="culinary-arts"
 -->
