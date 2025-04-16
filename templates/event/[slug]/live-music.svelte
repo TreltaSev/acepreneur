@@ -8,3 +8,9 @@ program="radio-broadcasting-and-journalism"
 -->
 
 <img src="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744656017/7_ryv1nr.png" style="width: 100%; object-fit: cover; border-radius: 16px; margin-top:20px;" alt="ima"/>
+<section>
+    <a
+      href="https://docs.google.com/forms/d/e/1FAIpQLSf6vYmewxwdrZIC1R11tS8YP1p0V4CCUjEUmvFpykqq6nZowA/viewform?usp=sharing"
+      ><button>Sign Up</button></a
+    >
+  </section>
