@@ -3,7 +3,7 @@ name="Mother's Day Gifts"
 description="Our Graphics Communications students have been busy creating amazing Mother’s Day gifts including mugs that can be combined with one of the plants from our plant sale to make a unique and thoughtful present."
 slug="mothers-day-gifts"
 card.color="#00509d"
-card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744466688/Beard_Trimmer_Guards_2_1_sy6zat.webp"
+card.image.url="https://res.cloudinary.com/dlzshfcd1/image/upload/v1744777587/Mother_sDayMugs_tqeipt.png"
 program="graphic-communications"
 -->
 
