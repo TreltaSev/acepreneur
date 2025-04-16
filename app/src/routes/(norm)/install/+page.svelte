@@ -57,7 +57,13 @@
 				onclick={download}><IconAndroid /></Button
 			>
 
-			<h3>Or you could use this website instead of the app (Not recommended)</h3>
+			<h3>Or you could use this website instead of the app (Click one of the icons below :) )</h3>
+			<Button
+				class="text-black"
+				mode="outline"
+				text="Back to Home Page"
+				href="/events"></Button
+			>
 		</Flex.Col>
 	{:else if oniOS}
 		<Flex.Col class="gap-4">
@@ -70,7 +76,13 @@
 				onclick={iosDownload}><IconAppStore /></Button
 			>
 
-			<h3>Or you could use this website instead of the app (Not recommended)</h3>
+			<h3>Or you could use this website instead of the app (Click one of the icons below :) )</h3>
+			<Button
+				class="text-black"
+				mode="outline"
+				text="Back to Home Page"
+				href="/events"></Button
+			>
 		</Flex.Col>
 	{:else}
 		<h2>It seems like you're on a computer...</h2>
