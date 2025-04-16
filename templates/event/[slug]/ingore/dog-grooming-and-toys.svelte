@@ -4,6 +4,5 @@ description="Come grab a handmade dog toy created by our Veterinary Science prog
 slug="vet"
 card.color="#cc935d"
 card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744467080/images_yhvmn2.jpg"
+program="veterinary-science"
 -->
-
-<img src="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744656018/10_b5zpei.png" style="width: 100%; object-fit: cover; border-radius: 16px; margin-top:20px;" alt="ima"/>
