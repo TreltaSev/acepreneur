@@ -1,6 +1,6 @@
 <!--@metadata
 name="Entrepreneurship Day"
-description="Welcome to Entrepreneurship Day, The main event of the day that brings everyone and everything together"
+description="Welcome to Entrepreneurship Day, The main event of the day that brings everyone and everything together!"
 slug="entrepreneurship-day"
 card.color="#089da1"
 card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744656025/22_j9zgxx.png"

@@ -54,7 +54,7 @@ program="game-design-and-web-dev"
   <h4 class="test">
     While the tournament itself is walk-in (With a fee of course), it could be
     beneficial for you to signup here before walking in. That way there won't be
-    any hassle
+    any hassle!
   </h4>
   <a
     href="https://docs.google.com/forms/d/e/1FAIpQLSdxxh5htTFr9KWatwv8loKhW7ZWbguUqFWEZCVam_uQKgrlwA/viewform?usp=sf_link"
