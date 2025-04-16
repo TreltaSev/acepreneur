@@ -2,6 +2,7 @@
 name="Veterinary Items for Sale & Dog Grooming"
 description="Discover veterinary items for sale to enhance your pet's life and improve clinic efficiency. Come grab a handmade dog toy created by our Veterinary Science program. In addition, they will be performing live demonstrations of pet grooming and giving lots of tips and tricks for creating a happy pup!"
 slug="veterinary-items-for-sale"
+program="veterinary-science"
 card.color="#0d59bc"
 card.image.url="https://res.cloudinary.com/dtuexxqi2/image/upload/v1744468608/must-have-items-for-your-vet-clinic_1205_iuh4bd.jpg"
 -->
