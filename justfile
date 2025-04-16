@@ -90,3 +90,9 @@ dc-alt ALT SERVICE="":
 dc-int ALT SERVICE="":
     just dc-alt {{ALT}} {{SERVICE}} 
     docker exec -it {{SERVICE}} sh
+
+# Runs update program and update event
+[working-directory: './backend']
+update:
+    siblink run ./scripts/updateEvents.py
+    siblink run ./scripts/updatePrograms.py
